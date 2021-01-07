@@ -1,0 +1,54 @@
+# Data to populate schedule (lecture topics, labs, assignments)
+weeks:
+    # start is date of first lecture (a Monday)
+    # due date-time is for assign1 (will assume weekly repeat thereafter)
+  - start_date: "2021-01-11"
+    assign1_duedate: "2021-01-26 11:59 PM"
+    mon: /lectures/Intro/
+    lab: /labs/lab0/
+    assign: /assignments/assign0/
+    fri: /lectures/ARM/
+  -
+    mon: /lectures/ASM/
+    lab: /labs/lab1/
+    assign: /assignments/assign1/
+    fri: /lectures/C_Control/
+  -
+    mon: /lectures/C_Pointers/
+    lab: /labs/lab2/
+    assign: /assignments/assign2/
+    fri: /lectures/C_Functions/
+  -
+    mon: /lectures/Serial/
+    lab: /labs/lab3/
+    assign: /assignments/assign3/
+    fri: /lectures/Linking/
+  -
+    mon: /lectures/Memory/
+    lab: /labs/lab4/
+    assign: /assignments/assign4/
+    fri: /lectures/C_Mastery/
+  -
+    mon: Presidents Day Holiday
+    lab: /labs/lab5/
+    assign: /assignments/assign5/
+    fri: /lectures/Keyboard/
+  -
+    mon: /lectures/Framebuffer/
+    lab: /labs/lab6/
+    assign: /assignments/assign6/
+    fri: /lectures/Interrupts1/
+  -
+    mon:  /lectures/Interrupts2/
+    lab: /labs/lab7/
+    assign: /assignments/assign7/
+    fri: /lectures/Sensors/
+  -
+    mon: TBA
+    lab: /labs/projectlab1/
+    assign: /project/
+    fri: /lectures/Arithmetic/
+  -
+    mon: /lectures/Wrap/
+    lab: /labs/projectlab2/
+    fri: Project Presentations
