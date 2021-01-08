@@ -41,7 +41,7 @@ pre {
 <div class="row flex-row">
 <div class="nav nav-pills flex-column sidenav">
 {%- for f in header_names %}
-    <a class="tab-link nav-link" id="{{p.basename}}-tab" data-toggle="pill" href="#{{f}}" onclick="location.replace('#{{f}}');"> 
+    <a class="tab-link nav-link" id="{{f}}-tab" data-toggle="pill" href="#{{f}}" onclick="location.replace('#{{f}}');"> 
     {{f}}.h</a>
 {%- endfor %}
 </div>
