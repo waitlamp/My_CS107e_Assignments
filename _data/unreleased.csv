@@ -3,7 +3,6 @@ permalink,title,released
 "/assignments/assign3/","Assignment 3: Implement a String Formatting Library",false
 "/assignments/assign7/","Assignment 7: System Monitor with Interrupts",false
 "/assignments/assign5/","Assignment 5: Keyboard and Simple Shell",false
-"/assignments/assign0/","Assignment 0: Choose Lab Section, Learn Git",false
 "/assignments/assign2/","Assignment 2: Implement a Clock",false
 "/assignments/assign6/","Assignment 6: Graphics Library and Console",false
 "/assignments/assign1/","Assignment 1: Implement a Larson Scanner",false
@@ -12,6 +11,7 @@ permalink,title,released
 "/labs/lab1/","Lab 1: Setup your Raspberry Pi",false
 "/labs/lab6/","Lab 6: Drawing into the Framebuffer",false
 "/labs/lab4/","Lab 4: Linked and Loaded",false
+"/labs/lab0/","Lab 0: Command line, binary numbers",false
 "/labs/projectlab1/","Project Lab: Getting Started",false
 "/labs/lab2/","Lab 2: Below C Level",false
 "/labs/lab5/","Lab 5: Keyboard Surfin'",false
