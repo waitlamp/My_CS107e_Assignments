@@ -2,13 +2,9 @@
 
 This site is hosted at <https://cs107e.github.io/>.
 
-For local preview:
+To test locally:
 
-- Install tools on local system
-   - ruby, bundler, jekyll 
-   - see instructions here <https://jekyllrb.com/docs/installation/>
-- Start server
-    + `bundle exec jekyll serve`
-- View in browser at url <http://localhost:4000>
-    + live reload enabled
-
+1. `sudo gem install bundler`
+2. `bundle install`
+3. `bundle exec jekyll serve`
+4. Go to <http://localhost:4000>
