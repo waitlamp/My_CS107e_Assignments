@@ -18,19 +18,15 @@ __To prep for assign0:__
 
 {% endcomment %}
 
-*Written by Omar Rizwan, updated by Peter McEvoy and Sean Konz for Winter 2021*
+*Written by Omar Rizwan, updated by Peter McEvoy for autumn 2020*
 
 {% include duedate.html n=0 %}
 
-<small>This assignment is not for a grade, but to be ready to tackle your future assignments, it's critical that you understand all the topics covered, and that you complete it on-time so your development environment is ready for the rest of your assignments. If you run into troubles, please reach out on Ed ASAP.</small>
+<small>This assignment is not for a grade, but we do need you to complete it on-time so that you're set up to work on the rest of the assignments. If you run into troubles, please reach out on our [forum].</small>
 
 ## Goals
 
-Your goal for this assignment is two-fold:
-
-1. Walk through and understand the assignment workflow
-2. Brush up on your tools, and fundamental concepts that you'll expand on during the assignments.
-
+We have a single goal for this assignment: walk through the assignment workflow.
 This will include initializing your assignments repo, downloading the starter
 code, checking in your solution, and submitting it for grading.
 
@@ -39,7 +35,7 @@ This assignment will introduce you to the basics of the
 system and the [GitHub](https://github.com) repository hosting service that we will be using in this course.
 
 ## Prerequisites
-Read over the following course guides before continuing. These concepts are important, so make sure you take your time, and ask questions (on Ed or on google) if you have trouble understanding anything:
+Read over the following course guides before continuing:
 
 - [Git](/guides/git)
 - [Unix command line](/guides/unix)
@@ -109,7 +105,6 @@ command to copy your public key to your clipboard:
 $ cat ~/.ssh/id_rsa.pub | pbcopy
 ```
 
-**Note**: If the above seemed like magic to you, take a few minutes to read through [this guide on what SSH keys are and how they work](https://wiki.archlinux.org/index.php/SSH_keys). 
 
 ### 3. Get assignment starter files
 
@@ -179,16 +174,8 @@ To get practice with adding and commiting a file with Git, go ahead and open up
 `lab.txt` and edit its contents so that it displays the following information:
 
 ```
-<lab_day> <intended lab arrival time>-<Intended lab departute time>
+<assigned_lab_day> <assigned_lab_start_time>-<assigned_lab_end_time>
 ```
-
-i.e. 
-```
-Wednesday 10:00am-12:00pm
-```
-You should expect to be at lab for at least 2 hours every week. Lab is held on
-Wednesday 10am - 2pm PT.
-
 
 Save and quit the file. 
 
@@ -229,13 +216,6 @@ commit, the more opportunities you will have to restore previous working states
 without losing as much work.  **We recommend that you commit early and often and 
 that you write detailed commit messages.**
 
-{% include callout.html type="danger" %}
-Git command responses can sometimes look cryptic and scary. DON'T BE SCARED!!! 
-Git is your friend :). Reading all the responses from git messages will help 
-you understand the commands your running, and prevent you from missing 
-important messages about the state of your repo.
-</div>
-
 
 **Note:**  GitHub will show commits for `Branch: master` by default. To see the code and
 changes for a specific assignment branch, switch to the branch by selecting it from  `Branch` drop-down menu :
@@ -247,10 +227,6 @@ Create a file called `background.txt` that contains answers to the following
 questions. Please ensure that your responses are clearly labeled (i.e. we know 
 what question it correspond too) and reasonably organized.
 
-> __Tip__ If you're stuck on any of the questions, take a look at the guides section
-of the course website, post on Ed, or start reading some articles online! 
-{: .callout-info}
-
 1. What is the result of performing a bitwise OR of the following two
    hexadecimal numbers (include the result in decimal): 0x0f OR 0xff. Now left
    shift that number by 24; what is the result in hexadecimal? Assume numbers are 32-bit.
@@ -258,23 +234,10 @@ of the course website, post on Ed, or start reading some articles online!
 2. How many milliamperes of current will flow through a 1.5K resistor connected
    to 3V on one end and 0V (Ground) on the other end?
 
-3. Find a file in the directory `/etc` on your computer; tell us the name of the
+3. Find a file in the directory `/etc` on your computer; send us the name of the
    file and the number of bytes contained in that file. How many files and
-   directories are contained in the first level of directory `/etc`? Include 
-   the commands you used to answer these questions.
-
-4. Find the path to the include/ directory in your cs107e.github.io repo and type
-    the absolute path to this folder, and the relative path to the folder using the
-    CS107E environment variable you created during your environment setup. Remember 
-    this folder location! This is where all your assignment header files are located.
-
-5. What editor do you plan on using for the class? What is your plan on learning
-    how to best use your editor? (i.e. for people using vim, you can run the 
-    vimtutor command from your terminal). Tell us a bit about how you customized your 
-    editor!
-
-6. In a version control system like git, what is a "commit"? What is a "branch"?
-    If you're unsure, refer to the [git guide on the course website](/guides/git)
+   directories are contained in the first level of directory `/etc`? Include the commands you used to
+   answer these questions.
 
 Use the `git` commands you learned in the previous steps to stage this file and
 commit it to your local repository. Then, push your changes to GitHub.
@@ -346,7 +309,6 @@ commit at 12:02, the submission is one day late.
 
 ## Afterward: Grader's code review
 
-
 Graders will review code by including line-specific and general comments on the
 pull request page:
 
@@ -358,16 +320,6 @@ along with any inline comments that the grader has added.
 <img title="Files changed." src="images/09-files-changed.png" width="500">
 
 When finished with their review, the grader will submit it so that you can view
-the feedback. Graders will also run automated tests on your assignments to test 
-functionality. The results of these tests will be released on the corresponding
-assignment branch within your `src/tests/` and `logs/assignX` directory. The tests
-directory will have some new test files of the tests that failed on your 
-implementation. The logs directory will contain the recieved output of the test when
-run with your implementation, as well as the expected output of the test when
-run with the staff solution implementation. It will be up to you to re-write 
-any tests you failed and fix your bugs. We expect you to have fixed all your 
-basic bugs on all your assignments by the time you submit assignment 7. Our goal
-with this process is to replicate the process you'd follow if you were a 
-software engineer in industry. You'll almost never write code and forget about
-it! The iterative process of writing code, and fixing bugs is as fundamental to 
-software engineering as mitochondira are to a living cell!
+the feedback. Once you've received a completed review, you can click the Merge 
+button to merge the `assign0-basic` branch into `master`. At this point, you can
+safely delete the `assign0-basic` branch using the Delete button.
