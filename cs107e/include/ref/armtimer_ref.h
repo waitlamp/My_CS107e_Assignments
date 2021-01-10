@@ -1,5 +1,4 @@
-#ifndef ARMTIMER_REF
-#define ARMTIMER_REF
+#pragma once
 #include "armtimer.h"
 void ref_armtimer_init(unsigned int tick_interval);
 void ref_armtimer_enable(void);
@@ -12,4 +11,3 @@ void ref_armtimer_clear_event(void);
 bool ref_armtimer_check_and_clear_overflow(void);
 bool ref_armtimer_check_interrupt(void);
 bool ref_armtimer_check_and_clear_interrupt(void);
-#endif
