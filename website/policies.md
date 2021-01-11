@@ -6,27 +6,32 @@ toc: true
 
 
 ## Grading Policy
-Your course grade is a combination of your participation in lab and your work on the assignments and final project. 
+Your course grade is compromised your participation in lab and your work on the assignments and final project. 
 
-+ Labs meet weekly, your participation is expected/mandatory.
-+ There are 7 weekly assignments. Each assignment will have a required basic part and optional extensions.  You are required to complete the basic part, and are encouraged to attempt some of the extensions.
-+ The course culminates with a final project where you design and implement a system of your choosing. 
++ __Labs__ meet weekly, your participation is mandatory.
++ There are 7 weekly __assignments__. Each assignment has a set of required core features along with optional extensions or "stretch goals".  You must implement the core functionality and are encouraged to attempt some of the extensions.  
++ The course culminates with a final __project__ where you design and implement a system of your choosing. 
 
 If you have your sights set on earning an __A__ course grade, you will need consistently __outstanding__ work:
 + Attend and participate in all labs 
-+ Assignments 
-    - Basic requirements are complete and fully-functional for all assignments
-    - In addition, 3 or more assignment extensions successfully completed
-    - Earn the full system bonus for using all your own code on the last assignment
++ Assignments core
+    - Core functionality is complete/correct for all assignments
+        - Passing results on all Priority 1 and Priority 2 tests (revise and resubmit ok)
     - Code quality (style and tests) trending to `+`
++ Assignments stretch/bonus
+    - 3 or more assignment extensions successfully completed
+    - Earn the full system bonus for using all your own code on the last assignment
+    - Achieved timeliness for most/all assignments
 + Outstanding final project, excellent execution
 
 For a __B__ course grade, we expect consistently __solid__ work:
 + Attend and participate in all labs
-+ Assignments
-    - Basic requirements are complete and mostly fully-functional for all assignments
-    - At least 1 assignment extension attempted/completed or full system bonus achieved
++ Assignments core
+    - Core functionality is mostly complete/correct for all assignments
+        - Passing results on all Priority 1 tests (revise and resubmit ok)
     - Code quality (style and tests) trending to `ok`
++ Assignments stretch/bonus
+    - One extension completed or full system bonus earned
 + Good final project, satisfactory execution
 
 Work that is not completed satisfactorily will earn grades **C and below**.
@@ -34,31 +39,17 @@ Work that is not completed satisfactorily will earn grades **C and below**.
 
 ## Late Policy
 
-Hofstadter's Law: "It always takes longer than you think, even when you take
-Hofstadter's Law into account."
+The course moves at a steady pace and the weekly assignments build on one other. In our experience, one of the clearest factors in student success has been the dedication to stay on pace. Learning to set a schedule and manage your time to hit deadlines is a valuable skill to develop and an accomplishment we want to reward. We designed our policy to encourage good habits, but also allow some flexibility in these unpredictable times of online learning.
 
-The rules:
+1. The submission deadline for the weekly assignments will be end of day in the Pacific time zone, i.e. Tuesday 11:59pm GMT-7. Completing your work by scheduled deadline and submitting on-time earns you a "timeliness" reward for that assignment. Your accumulated timeliness rewards boost your overall course grade.
 
-{% assign time = site.data.quarter.weeks[0].assign1_duedate | date: "%l:%M %P" %}
-1.  The cutoff for on-time submission is typically <B>{{ time }}</B> of the due date. Late
-    days are counted in 24-hour periods. Submitting anytime after {{ time }}
-    and before {{ time }} of the next day is one day late, and so on. We use the
-    timestamp of your final git commit as the time of submission.
+2. There is a 2-day (48-hour) "grace period" for late submissions after the deadline. There is no grading penalty for a late submission, but it does not earn the timeliness reward. The grace period is intended as built-in accommodation for a snag or setback. If you plan your work to submit by the deadline, you have the grace period in reserve to give you cover if something unexpected derails your schedule. We do not admonish you for using the grace period, but we will encourage you to catch back up without further delay.
 
-2.  You are given **4 "grace days"** (self-granted extensions) which you can use to give yourself extra time without penalty. HOWEVER, you may only use **Two "grace days" on any single assignment**.
+3. Our grading begins after the grace period closes, and thus we expect a submission from all students at that time.
 
-3.  Instructor-granted extensions are only considered **after all grace days
-    are used** and only given in exceptional situations.
+4. The final project must be submitted on time.
 
-4.  Late work handed in when you have run out of grace is **discounted 10% per
-    day late**. It is always to your advantage to complete all the assignments
-    even if they are late.
 
-5.  Late submissions (penalty or not) are not accepted after the hard deadline,
-    which is **6pm PST on the Friday after the assignment is due** but may be restricted to
-    fewer days on a per-assignment basis.
-
-6.  The final project must be submitted on time.
 
 ## Collaboration Policy
 
