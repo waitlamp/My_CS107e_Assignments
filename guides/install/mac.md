@@ -35,19 +35,20 @@ If you already use Homebrew, skip to the next section; otherwise follow these st
 $ brew -v
 Homebrew 2.7.1
 ```
+Fine if your version number is newer.
 
 ## Install arm-none-eabi toolchain
 We use a cross-compiler toolchain to compile programs for the Raspberry Pi. 
 
 1. Install our custom brew formula containing the cross-compile tools.
     ```console
-    $ brew install cs107e/cs107e/arm-none-eabi-9
+    $ brew install cs107e/cs107e/arm-none-eabi-test
     ```
 
 {% include checkstep.html content="confirm compiler" %}
 ```console
-$ brew info arm-none-eabi-9
-cs107e/cs107e/arm-none-eabi-9: stable 9-2019q4-cs107e
+$ brew info arm-none-eabi-test
+cs107e/cs107e/arm-none-eabi-test: stable 9-2019q4-cs107e
 ARM embedded toolchain MacOS for cs107e
 $ arm-none-eabi-gcc --version
 arm-none-eabi-gcc (GNU Tools for Arm Embedded Processors 9-2019-q4-major) 9.2.1 20191025 (release) [ARM/arm-9-branch revision 277599]

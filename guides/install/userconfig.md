@@ -45,8 +45,8 @@ When opening a new shell, the environment is initialized by reading a configurat
     .    .bash_history   .bashrc     cs107e_home     .python_history 
     ..   .bash_logout    .config     .profile        .viminfo
     ```
-
-    If your home directory does not yet have the configuration file, use `touch` to create an empty file with the appropriate name:
+(The filenames listed in your directory may be somewhat different, don't worry!) Look through list to see if there is already a configuration file for your shell. 
+    If not listed, use `touch` to create an empty file with the appropriate name:
     ```console
     $ touch .bashrc
     ```
