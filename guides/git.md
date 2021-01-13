@@ -216,14 +216,14 @@ There are many bells and whistles to Git, but the two ideas of recording the
 editing history and sharing changes with others are at the heart of Git. Git
 takes a long time to understand; the longer I use it, the more I learn about it.
 If you're interested in learning more, here are some useful resources:
-- (Hacker Noon)[https://hackernoon.com/understanding-git-fcffd87c15a3]: another
+- [Hacker Noon](https://hackernoon.com/understanding-git-fcffd87c15a3) another
   introductory guide to Git.
 - Git man (short for manual) pages: the official documentation for Git. They can be accessed
   through the command line via `man git-<command>` or `git <command> --help`.
   For example, to see the man page for `git add`, you can use either `man
   git-add` or `git add --help`. The man pages can be difficult to understand at
   first, so it's normal to be confused. 
-- (Pro Git)[https://git-scm.com/book/en/v2]: the comprehensive book on Git. If
+- [Pro Git](https://git-scm.com/book/en/v2): the comprehensive book on Git. If
   you want to understand Git, not just use it, then I highly recommend this book. 
 
 Also, please please please ask the teaching staff questions as they come up. 

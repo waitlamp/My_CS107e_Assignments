@@ -152,6 +152,7 @@ Most commands also accept an option such `--help` or `-h` to print out a short *
 $ more --help
 ```
 
+Another very handy tool is the website <http://explainshell.com>. Enter a command here and it will break the command down and explain what it does and what options it uses.
 
 ## Tips
 
