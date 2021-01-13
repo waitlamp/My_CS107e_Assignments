@@ -45,7 +45,7 @@ The course moves at a steady pace and the weekly assignments build on one other.
 
 2. There is a 2-day (48-hour) "grace period" for late submissions after the deadline. There is no grading penalty for a late submission, but it does not earn the timeliness reward. The grace period is intended as built-in accommodation for a snag or setback. If you plan your work to submit by the deadline, you have the grace period in reserve to give you cover if something unexpected derails your schedule. We do not admonish you for using the grace period, but we will encourage you to catch back up without further delay.
 
-3. Our grading begins after the grace period closes, and thus we expect a submission from all students at that time.
+3. Our grading begins after the grace period closes, and thus we expect a submission from all students at that time. There will be an opportunity to later revise and resubmit to address shortcomings in your initial submit. 
 
 4. The final project must be submitted on time.
 

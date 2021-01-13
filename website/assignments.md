@@ -50,10 +50,8 @@ passes sanity check and may be evaluated by the graders.
 
 ### What is the policy on late assignments?
 
-Students are given a few self-granted grace days, a penalty is applied for
-further late work, and there is a hard deadline after which no further late
-work will be accepted. Read our [course late policy](/policies/#late-policy)
-for the details.
+Assignments are due weekly at end of day Tuesday 11:59pm Pacific. On-time submission is awarded a small bonus that boosts course grade. After the deadline is a 2-day grace period that allows late submission with no penalty. All submissions are expected by end of the grace period. There is also an opportunity to later revise and resubmit to address shortcomings in your initial submit.  Read our [course late policy](/policies/#late-policy)
+for specifics.
 
 ### What is the assignment collaboration policy?
 
@@ -68,13 +66,13 @@ The final project is usually done in teams of 2 or 3. If working in a team, all 
 ### How are assignments structured?
 Each assignment writeup has a required basic part and various optional extensions. 
 
-The __basic part__ is required of all students. This basic part follows directly from the material covered in lecture and lab. It has a tight specification to which your submission is expected to match precisely. We provide suggested steps to guide you through completing the basic part. 
+The __core features__ are required of all students. The work follows directly from the material covered in lecture and lab. It has a tight specification to which your submission is expected to match precisely. We provide suggested steps to guide you through completing the core part. 
 
-The __extensions__ are optional add-ons that allow you to explore further and earn additional points. These are not required, but it is highly encouraged that you attempt some of the extensions. Extensions are given with a looser specification and much less guidance than the basic part. If tackling an extension, you will need to research advanced material on your own and apply your creativity in problem-solving.
+The __extensions__ are optional add-ons that allow you to explore further and earn additional points. These are not required, but it is highly encouraged that you attempt some of the extensions. Extensions are given with a looser specification and much less guidance than the core features. If tackling an extension, you will need to research advanced material on your own and apply your creativity in problem-solving.
 
 In assignments 2 through 7, you will build up a library of useful utilities for bare metal programming on the Raspberry Pi.  These assignments build on one another. To complete assignment 5, say, you will need working versions of assignments 2 through 4. 
 
-If you do not complete the basic part of an assignment,
+If you do not complete the core part of an assignment,
 you may have trouble completing the next assignment.
 To help you in these situations, we provide our
 reference implementations.
@@ -88,7 +86,7 @@ if you hand-in the last assignment using only your own code,
 we will award you additional bonus points for building a complete working system. 
 
 ### How are assignments graded?
-Correctly completing the basic part requirements earns full functionality points. We test functionality by exercising your code against our grading tests.  For each bug or test failure, we apply a point-based deduction and file a github issue on your submission to report the problem. You may be able to earn back some of the points originally deducted by making a timely follow-up resubmission that resolves the issue.
+We test functionality by exercising your code against our grading tests. For each bug or test failure, we file a github issue to report the problem. An issue is categorized with its priority, Priority 1 being the most important and decreasing from there.  For full credit on the core functionality, you must have passing results on all of the Priority 1 tests. You are encouraged to revise and resubmit in order to address any Priority 1 issues.  Lower priority bugs can be addressed at your discretion.
 
 We will also look at your code and assess the code quality.
 Good code should be decomposed into small, clear, well-named functions so that 
