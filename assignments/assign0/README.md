@@ -99,7 +99,7 @@ $ git log
 ```
 
 Also note that you can add multiple files (also called staging) and commit their
-changes as a single commit. This is important because you don't every want your code
+changes as a single commit. This is important because you don't ever want your code
 to be in an inconsistent or bad state. For example, if you add a new file that
 another file references, you want to put those two changes together in a single
 commit; the file shouldn't be there if it isn't referenced, and you don't want
@@ -177,8 +177,10 @@ $ git tag assign0-submission
 $ git push --tags
 ```
 
-Now, go to your repo on GitHub and verify that your newly created tag shows up
-in the "Tags" section of the branches dropdown menu.
+Be sure you always name your submission flag with the format `assignX-submission`
+where X is the particular assignment number. Now, go to your repo on GitHub and
+verify that your newly created tag shows up in the "Tags" section of the branches
+dropdown menu.
 
 If you need to commit a few more changes after creating the tag, you can
 recreate it by doing the following:
