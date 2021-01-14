@@ -77,7 +77,7 @@ The `rpi-run.py` script sends a binary file from your laptop to the bootloader. 
 ```console
 $ cd $CS107E/firmware
 $ rpi-run.py blink-actled.bin 
-Found serial port: /dev/cu.SLAB_USBtoUART
+Found serial device: /dev/cu.SLAB_USBtoUART
 Sending `blink-actled.bin` (72 bytes): .
 Successfully sent!
 ```
