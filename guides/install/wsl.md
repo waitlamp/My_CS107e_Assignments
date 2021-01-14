@@ -50,7 +50,7 @@ Ubuntu version 20.04 LTS for WSL is available in the Microsoft Store.
     ```
 Do not be alarmed about the long-winded unix-babble produced -- these processes are total chatterboxes.
 
-{% include checkstep.html content="confirm Ubuntu version" %}
+{% include checkstep.html content="confirm Ubuntu and WSL version" %}
 ```console
 $ lsb_release -a
 No LSB modules are available.
@@ -58,9 +58,13 @@ Distributor ID: Ubuntu
 Description:    Ubuntu 20.04.1 LTS
 Release:        20.04
 Codename:       focal
+$ powershell.exe "wsl --list --version"
+  NAME              STATE       VERSION
+  Ubuntu-20.04      Running     1
 ```
+The rightmost column of the last command reports the version of WSL. It is critical that you are using WSL version 1, not 2, as serial port support is not available in WSL2. 
 
-You now have an up-to-date version of Ubuntu running on top of your Windows OS.
+You now have an up-to-date version of Ubuntu running in WSL1 on top of your Windows OS.
 
 <a name="files"></a>
 ### Accessing WSL files from Windows
