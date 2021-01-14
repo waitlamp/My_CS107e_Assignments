@@ -3,7 +3,7 @@ released: true
 permalink: /assignments/assign0/
 title: "Assignment 0: Git oriented"
 toc: true
-duedate: 2020-01-19 11:59 PM
+duedate: 2021-01-19 11:59 PM
 ---
 
 {% comment %}
@@ -24,18 +24,18 @@ _Written by Omar Rizwan, updated by Peter McEvoy and Sean Konz for Winter 2021_
 
 {% include duedate.html n=0 %}
 
-<small>This assignment is not for a grade, but to be ready to tackle your future assignments, it's critical that you understand all the topics covered, and that you complete it on-time. If you run into troubles, please reach out on Ed ASAP.</small>
+<small>This assignment is not for a grade, but it's critical that you understand all the topics covered and that you complete it on-time so that you are ready to tackle the upcoming assignments. If you run into troubles, please reach out on Ed ASAP.</small>
 
 ## Goals
 
 Your goal for this assignment is two-fold:
 
 1. Walk through and understand the assignment workflow
-2. Brush up on your tools, and fundamental concepts that you'll expand on during the assignments.
+2. Practice with your tools and refresh on background concepts
 
-This will include downloading the starter files, editing the files, committing your changes, and submitting for grading.
+The tasks you will do include downloading the starter files, editing the files, committing your changes, and submitting for grading.
 
-This assignment will introduce you to the workflow that you will use for each assignment in the course. Our process uses the
+This is the same workflow you will use for each assignment in the course. Our process uses the
 [git](<https://en.wikipedia.org/wiki/Git_(software)>) version control
 system and the [GitHub](https://github.com) repository hosting service. Note
 that this assignment assumes that you've completed [lab0](/labs/lab0) in its
@@ -46,7 +46,7 @@ completed all of the steps.
 
 ### 1. Switch to the dev branch
 
-Navigate to your assignments repo and check which branch you're on:
+Navigate to your local assignments repo and check which branch you're on:
 
 ```
 $ cd ~/cs107e_home/assignments
@@ -61,8 +61,7 @@ $ git checkout dev
 
 ### 2. Record your lab preference
 
-To get practice with adding and commiting a file with Git, go ahead and create and
-open up `lab.txt` and edit its contents so that it displays the following information:
+Create a file named `lab.txt` and edit its contents so that it displays the following information:
 
 ```
 <lab day> <intended lab arrival time>-<intended lab departure time>
@@ -74,15 +73,13 @@ i.e.
 Wednesday 10:00am-12:00pm
 ```
 
-You should expect to be at lab for at least 2 hours every week. Lab is held on
-Wednesday 10am - 2pm PST.
+You should expect to be at lab for at least 2 hours every week. The lab session is open on Wednesday 10am - 2pm PT.
 
-Save and quit the file.
+Save the file.
 
 ### 3. Commit your change locally and push it to remote
 
-Once you confirm that Git has detected that you changed `lab.txt`, go ahead and
-add, commit (save to local repo), and push it (update remote repo):
+Now you are going to tell Git about the changes you have made.  The commands below add the changed file to the staging index, commit staged changes (save to local repo), and push the commit to GitHub (update remote repo):
 
 ```
 $ git status
@@ -148,26 +145,26 @@ what question it corresponds to) and reasonably organized.
    directories are contained in the first level of directory `/etc`? Include
    the commands you used to answer these questions.
 
-4. Find the path to the include/ directory in your cs107e.github.io repo and type
-   the absolute path to this folder, and the relative path to the folder using the
-   CS107E environment variable you created during your environment setup. Remember
-   this folder location! This is where all your assignment header files are located.
+4. Change directory to your `cs107e.github.io` repo and find within the folder named `cs107e`. What is the
+   the absolute path to this folder? What is the relative path using the
+   CS107E environment variable you created during your environment setup? Remember
+   this folder location! Inside the `cs107e` there is an `include` folder where all your assignment header files are located.
 
-5. What editor do you plan on using for the class? What is your plan on learning
+5. What editor do you plan on using? What is your plan on learning
    how to best use your editor? (i.e. for people using vim, you can run the
    vimtutor command from your terminal). Tell us a bit about how you customized your
    editor!
 
-6. In a version control system like git, what is a "commit"? What is a "branch"?
-   If you're unsure, refer to the [git guide on the course website](/guides/git)
+6. In git speak, what is a "commit"? What is a "branch"?
+   If you're unsure, refer to our [git guide](/guides/git).
 
 Use the `git` commands you learned in the previous steps to stage this file and
 commit it to your local repository. Then, push your changes to GitHub.
 
 ### 5. Tag submission commit
 
-In future assignments, we'll run tests on your code to verify that it works as
-expected. You get to choose which commit we run your tests by using a tag. We'll
+In future assignments, we'll run tests on your submission to verify that it works as
+expected. You identify which commit that we test by using a tag. We'll
 also use this tag to determine your submission time. In Git, a tag is simply a way
 of giving a name to a particular commit. Create a tag to identify this assignment's
 submission by doing the following:
@@ -182,8 +179,8 @@ where X is the particular assignment number. Now, go to your repo on GitHub and
 verify that your newly created tag shows up in the "Tags" section of the branches
 dropdown menu.
 
-If you need to commit a few more changes after creating the tag, you can
-recreate it by doing the following:
+If you commit additional changes after creating the tag, you can
+move the tag to a later commit with the following command:
 
 ```
 $ git tag -f assign0-submission
@@ -266,4 +263,4 @@ run with the staff solution. Your follow-up to those issues is to investigate te
 with this process is to replicate the process you'd follow if you were a
 software engineer in industry. You'll almost never write code and forget about
 it! The iterative process of writing code, and fixing bugs is as fundamental to
-software engineering as mitochondira are to a living cell!
+software engineering as mitochondria are to a living cell!
