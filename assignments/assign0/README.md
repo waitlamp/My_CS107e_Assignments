@@ -184,10 +184,10 @@ move the tag to a later commit with the following command:
 
 ```
 $ git tag -f assign0-submission
-$ git push --tags
+$ git push --tags --force
 ```
 
-### 5. Create a pull request (submission)
+### 6. Create a pull request (submission)
 
 In this course, assignment submission is done using GitHub's _pull request_
 feature. Pull requests provide a summary view of changes made to the code as
