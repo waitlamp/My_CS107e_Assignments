@@ -1,3 +1,5 @@
+#include "pi.h"
+
 // linker memmap places these symbols at start/end of bss
 extern int __bss_start__, __bss_end__;
 
@@ -18,9 +20,5 @@ void _cstart(void) {
 
     main();
 
-    // Turn on the green ACT LED (GPIO 47)
-    volatile unsigned int *GPIO_FSEL4  = (unsigned int *)0x20200010;
-    volatile unsigned int *GPIO_SET1   = (unsigned int *)0x20200020;
-    *GPIO_FSEL4 = (*GPIO_FSEL4 & ~(7 << 21)) | (1 << 21);
-    *GPIO_SET1 = 1 << 15;
+    pi_led_on(PI_ACT_LED);
 }

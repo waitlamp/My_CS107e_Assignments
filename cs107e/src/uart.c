@@ -43,6 +43,7 @@ struct UART {
 #define MINI_UART_CNTL_RX_ENABLE 0x00000001
 
 static volatile struct UART *uart = (struct UART*) MINI_UART_BASE;
+static bool initialized = false;
 
 
 /* Key detail from the Broadcom Peripherals data sheet p.10
@@ -75,6 +76,7 @@ void uart_init(void) {
     uart->baud = 270; // baud rate ((250,000,000/115200)/8)-1 = 270
 
     uart->cntl = MINI_UART_CNTL_TX_ENABLE | MINI_UART_CNTL_RX_ENABLE;
+    initialized = true;
 }
 
 unsigned char uart_recv(void) {
@@ -114,6 +116,12 @@ int uart_getchar(void) {
 }
 
 int uart_putchar(int ch) {
+    // force initialize if not yet done
+    // this fallback is special case for uart_putchar as
+    // without it, all output (print/assert) can fail and no
+    // clear indication because of self-referential nature of problem
+    if (!initialized) uart_init();
+
     // convert newline to CR LF sequence by inserting CR
     if (ch == '\n') {
         uart_send('\r');
@@ -121,6 +129,7 @@ int uart_putchar(int ch) {
     uart_send(ch);
     return ch;
 }
+
 int uart_putstring(const char *str) {
     int n = 0;
     while (str[n]) {
