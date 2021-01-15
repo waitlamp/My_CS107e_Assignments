@@ -1,11 +1,11 @@
-/* File: gpioextra.c
- * -----------------
+/* File: gpio_extra.c
+ * ------------------
  * Support for GPIO event detection and internal pull-up/down
  * Julie Zelenski Sat Jan 27 09:15:07 PST 2018
  */
 
 #include "gpio.h"
-#include "gpioextra.h"
+#include "gpio_extra.h"
 #include "_gpio_private.h"
 #include <stddef.h>
 

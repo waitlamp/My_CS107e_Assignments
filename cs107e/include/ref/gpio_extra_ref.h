@@ -1,5 +1,5 @@
 #pragma once
-#include "gpioextra.h"
+#include "gpio_extra.h"
 void ref_gpio_enable_event_detection(unsigned int pin, unsigned int event);
 void ref_gpio_disable_event_detection(unsigned int pin, unsigned int event);
 bool ref_gpio_get_event_detection(unsigned int pin, unsigned int event);

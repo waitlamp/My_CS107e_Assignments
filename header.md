@@ -36,7 +36,7 @@ pre {
 }
 </style>
 
-{% assign header_names = "assert,backtrace,console,disassemble,fb,font,gl,gpio,gpio_interrupts,gpioextra,interrupts,keyboard,mailbox,malloc,pi,printf,ps2,ringbuffer,shell,shell_commands,strings,timer,uart" | split: ',' %}
+{% assign header_names = "assert,backtrace,console,disassemble,fb,font,gl,gpio,gpio_interrupts,gpio_extra,interrupts,keyboard,mailbox,malloc,pi,printf,ps2,ringbuffer,shell,shell_commands,strings,timer,uart" | split: ',' %}
 
 <div class="row flex-row">
 <div class="nav nav-pills flex-column sidenav">

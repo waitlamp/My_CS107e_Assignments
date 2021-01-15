@@ -50,7 +50,7 @@ void gpio_interrupts_disable(void);
  * source can have one handler: further dispatch should be invoked by
  * the handler itself. Whether or not a particular pin will
  * generate interrupts is specified by the events system,
- * defined in `gpioextra.h`.
+ * defined in `gpio_extra.h`.
  *
  * Asserts if failed to install handler (e.g., the pin is invalid).
  * Pins are defined in `gpio.h`.
