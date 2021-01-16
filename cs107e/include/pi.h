@@ -25,13 +25,13 @@ enum {
 /*
  * Halts current program execution and reboots the Pi.
  */
-void pi_reboot(void);
+void pi_reboot(void) __attribute__ ((noreturn));
 
 /*
  * Goes into an infininte loop that flashes the red power
  * LED on the Pi board. This function does not return.
  */
-void pi_abort(void);
+void pi_abort(void) __attribute__ ((noreturn));
 
 /*
  * Turns on the specified LED.

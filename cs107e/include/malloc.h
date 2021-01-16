@@ -49,6 +49,6 @@ void free(void *ptr);
  * The call realloc(NULL, size) is equivalent to malloc(size)
  * The call realloc(ptr, 0) is equivalent to free(ptr) and returns NULL
  */
-void *realloc(void *ptr, size_t new_size);
+void *realloc(void *ptr, size_t new_size)  __attribute__ ((warn_unused_result));
 
 #endif
