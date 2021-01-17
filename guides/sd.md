@@ -9,7 +9,7 @@ toc: true
 {: .float-right}
 Your parts kit contains a microSDHC card. A secure digital (SD) card
 stores data in non-volatile memory. The HC in SDHC stands for high
-capacity. A micro-SD is shown here with its adapter "jacket" . The Raspberry Pi card reader slot accepts an un-jacketed micro-SD card. When the Pi boots, it looks for a program file named `kernel.img` on its micro-SD card. To change the program executed at boot, you change that file. 
+capacity. A micro-SD is shown here with its adapter "jacket" . The Raspberry Pi card reader slot accepts an un-jacketed micro-SD card. When the Pi reset, it looks for a program file named `kernel.img` on its micro-SD card. To change the program executed after reset, you change that file. 
 
 The process of loading a program onto the SD card looks like this:
 
@@ -19,7 +19,7 @@ The process of loading a program onto the SD card looks like this:
 2. Use card on Raspberry Pi:
     - Insert card into P's card slot. 
     - Reset Pi.
-    - When the Pi boots, it reads the program to run from the card.
+    - After reset, the Pi reads the program to run from the card.
 
 To change the program, repeat the process to copy an updated version of the files onto the card. 
 
@@ -68,11 +68,11 @@ To eject the card from the Pi's card slot, __push__ the card in and allow it to 
 
 ## Troubleshooting
 
-If the files on the SD card are missing, incorrectly named or corrupted, the Pi will fail to boot. You can watch the Pi's on-board leds during boot for clues about progress.  
+If the files on the SD card are missing, incorrectly named or corrupted, the Pi will fail to reset. You can watch the Pi's on-board leds after a reset for clues about progress.  
 - When the Pi resets and is receiving power, the red PWR led should turn on and stay lit.
 - If the green ACT led turns on and __stays lit__, this indicates the Pi failed in first-stage boot. Check that SD card is fully inserted and the card contains the proper file `bootcode.bin`
 - If the green ACT led does __four fast flashes__, long pause and repeats, the Pi failed in second-stage boot. Check that the card contains the proper file `start.elf`
 - If the green ACT led does __eight fast flashes__, long pause and repeats, the Pi failed to run the `kernel.img` program. Check that the card contains the proper file `kernel.img`
-- If the green ACT led does __two flashes__, short pause and repeats, ("heartbeat pattern"), this means booting was successful and the bootloader is now running.
+- If the green ACT led does __two flashes__, short pause and repeats, ("heartbeat pattern"), this means reset was successful and the bootloader is now running.
 
-If you ever need to fix the contents of a corrupted SD card, copy the known good versions of the boot files from the directory `$CS107e/firmware` .
+If you ever need to fix the contents of a corrupted SD card, copy the known good versions of the firmware files from the directory `$CS107e/firmware` .
