@@ -66,6 +66,19 @@ a[href^="http://"]:after, a[href^="https://"]:after {
     padding-left: 3px;
 }
 
+/* zoomable images have special styling */
+img.zoom {
+    @extend .rounded, .border, .p-1, .d-block, .mx-auto;
+    cursor: zoom-in;
+
+}
+
+/* if width not otherwise set, use 50% as default */
+img.zoom:not([width]) {
+    width: 50%;
+}
+
+
 // JDZ turn on for debugging
 NOTdiv {
     border: 1px dotted gray;

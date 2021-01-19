@@ -53,7 +53,7 @@ After you've verified the blink program, use `bootloader.bin` as the `kernel.img
 You can copy the files using `cp` in a shell or via the macOS Finder or Windows File Explorer. After copying the firmware files onto your SD card, safely eject it.
 
 ## Insert card into Raspberry Pi
-Insert the card into the slot on the underside of the Raspberry Pi circuit board labeled "Micro SD Card". There is a small spring that holds the card in place. As you push the card in, you will feel the mechanism grab onto the card and secure it in place.
+Insert the card into the slot on the underside of the Raspberry Pi circuit board labeled "Micro SD Card". There is a small spring that holds the card in place. As you push the card in, you will feel the mechanism grab onto the card and secure it.
 
 ![micro SD inserted on Pi](../images/sd.pi.jpg)
 {: .mx-auto}

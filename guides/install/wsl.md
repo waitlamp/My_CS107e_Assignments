@@ -17,7 +17,7 @@ You may need to restart your computer a few times throughout this process, so it
 ## Requirements
 Confirm that you are running an appropriate version of Windows 10. To find the version number, type `winver` into the start menu search bar and run the command. A panel appears that reports the version information as shown in this screenshot:
 
-![Window Version 1909](img/winver.png)
+![Window Version 1909](images/winver.png)
 {: .w-75}
 
 When we updated our installation instructions for Winter Quarter 2021, we tested on __Version 1909__ of Windows 10 and recommend that your version match ours. 
