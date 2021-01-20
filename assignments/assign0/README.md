@@ -79,7 +79,7 @@ Save the file.
 
 ### 3. Commit your change locally and push it to remote
 
-Now you are going to tell Git about the changes you have made.  The commands below add the changed file to the staging index, commit staged changes (save to local repo), and push the commit to GitHub (update remote repo):
+Now you are going to tell Git about the changes you have made. The commands below add the changed file to the staging index, commit staged changes (save to local repo), and push the commit to GitHub (update remote repo):
 
 ```
 $ git status
@@ -145,10 +145,12 @@ what question it corresponds to) and reasonably organized.
    directories are contained in the first level of directory `/etc`? Include
    the commands you used to answer these questions.
 
-4. Change directory to your `cs107e.github.io` repo and find within the folder named `cs107e`. What is the
+4. Change directory to your `cs107e.github.io` repo and find the folder named `cs107e`. What is the
    the absolute path to this folder? What is the relative path using the
    CS107E environment variable you created during your environment setup? Remember
-   this folder location! Inside the `cs107e` there is an `include` folder where all your assignment header files are located.
+   this folder location! Inside the `cs107e` there is an `include` folder where all your
+   assignment header files are located. If you're having trouble with this, look up the command
+   `pwd` and read [this] (https://cs107e.github.io/guides/unix/)
 
 5. What editor do you plan on using? What is your plan on learning
    how to best use your editor? (i.e. for people using vim, you can run the
