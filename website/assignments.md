@@ -43,14 +43,9 @@ Assignments are distributed to students as `git` repositories.
 You edit, compile, and debug programs in the local assignments repository on your laptop. When finished, 
 you submit by creating a pull-request. Consult [Assignment 0](/assignments/assign0/) for information about using git.
 
-When the pull-request is created, code is run through a sanity check 
-to ensure the code compiles. Students should ensure their code aligns with 
-specified [assignment directory structure](dir_structure) so it 
-passes sanity check and may be evaluated by the graders. 
-
 ### What is the policy on late assignments?
 
-Assignments are due weekly at end of day Tuesday 11:59pm Pacific. On-time submission is awarded a small bonus that boosts course grade. After the deadline is a 2-day grace period that allows late submission with no penalty. All submissions are expected by end of the grace period. There is also an opportunity to later revise and resubmit to address shortcomings in your initial submit.  Read our [course late policy](/policies/#late-policy)
+Assignments are due weekly at end of day Tuesday 11:59pm Pacific. On-time submission is awarded a small bonus that boosts course grade. After the deadline is a 2-day grace period that allows late submission with no penalty. All submissions are expected by end of the grace period.  Read our [course late policy](/policies/#late-policy)
 for specifics.
 
 ### What is the assignment collaboration policy?
@@ -81,12 +76,12 @@ you can fall back on our version.
 
 The last assignment requires you to use code from
 many of the previous assignments.
-To encourage you to complete all assignments and fix any bugs within them,
-if you hand-in the last assignment using only your own code,
+To encourage you to complete all assignments and resubmit to fix your bugs,
+if you submit the last assignment using only your own code,
 we will award you additional bonus points for building a complete working system. 
 
 ### How are assignments graded?
-We test functionality by exercising your code against our grading tests. For each bug or test failure, we file a github issue to report the problem. An issue is categorized with its priority, Priority 1 being the most important and decreasing from there.  For full credit on the core functionality, you must have passing results on all of the Priority 1 tests. You are encouraged to revise and resubmit in order to address any Priority 1 issues.  Lower priority bugs can be addressed at your discretion.
+We test functionality by exercising your code against our grading tests. For each bug or test failure, we file a GitHub issue to report the problem. An issue is categorized with its priority, Priority 1 being the most important and decreasing from there.  For full credit on the core functionality, you must have passing results on all of the Priority 1 tests. You are encouraged to revise and resubmit in order to address any Priority 1 issues.  Lower priority bugs can be addressed at your discretion. A higher percentage of passed tests boosts your course grade.
 
 We will also look at your code and assess the code quality.
 Good code should be decomposed into small, clear, well-named functions so that 
@@ -103,3 +98,5 @@ it will improve your grade and more importantly your coding style.
 For details on course grades, see our [course grading
 policy](/policies/#grading-policy).
 
+## What is the revise and resubmit policy?
+If our grading feedback from your assignment submission indicates one or more failed test cases on core functionality, you are encourage to review the bug reports and rework your code to fix the underlying bug(s). When you submit the revised code, we will run the tests again and update your quality metrics to show the now-passed results.
