@@ -24,7 +24,7 @@ which is based on the ARMv6 architecture.
 [Technical Reference Manual](/readings/arm1176.pdf).  
 
 * ARM1176JFZ-S processors use the ARMv6 architecture,
-which is documented in the [ARMv6 Architecture Manual](/readings/armv6.pdf). At 1000 pages, the full manual is quite a tome; here is an [excerpt for the instruction set](/readings/armisa.pdf).
+which is documented in the [ARMv6 Architecture Manual](/readings/armv6.pdf). At 1000 pages, the full manual is quite a tome!
 
 * ARM System-on-Chip Architecture (2nd Edition), Steve Furber. <https://www.amazon.com/dp/0201675196/>
 Steve Furber was the principal design of the first ARM processor.
@@ -37,17 +37,18 @@ in Chapter 4: ARM Organization and Implementation.
 
 ## ARM assembly
 
-* Carl Burch's
-  [Introduction to ARM Assembly Language](http://www.toves.org/books/arm/)
-  is a recommended starting point.
+* Specification of [ARM instruction set](/readings/armisa.pdf) (excerpted from ARM manual).
 
+* Davespace's [Introduction to ARM Course](http://www.davespace.co.uk/arm/introduction-to-arm/index.html) is a recommended starting point.
+
+* Carl Burch's [Introduction to ARM Assembly Language](http://www.toves.org/books/arm/) is also quite good.
   *Note: Burch's document uses the
   [older ARM syntax](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0773a/chr1383143764305.html)
   instead of the GNU syntax we use.*
 
 * A [Whirlwind Tour of ARM Assembly](http://www.coranac.com/tonc/text/asm.htm) from the TONC Guide to programming the Nintendo Game Boy Advance (which uses am ARM processor).
 
-* Davespace's [Introduction to ARM Course](http://www.davespace.co.uk/arm/introduction-to-arm/index.html).
+
 
 * Think in Geek article series [ARM Assembler for the Raspberry Pi](http://thinkingeek.com/2013/01/09/arm-assembler-raspberry-pi-chapter-1/).
 

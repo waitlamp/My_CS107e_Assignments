@@ -26,6 +26,7 @@ We prepared these guides on various topics relevant to CS107E students. Hope you
 
 ## Development tools/process
 - [Git](git)
+- [One page of ARM](arm)
 - [Bare metal programming using gcc](gcc) 
 - [Using make for ARM cross-development](make)
 - [Using gdb in simulation mode](gdb)
