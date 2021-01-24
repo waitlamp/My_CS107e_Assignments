@@ -375,46 +375,48 @@ Reset your Pi now and re-run the blink program. Hoorah, hoorah, hoorah!! 👏 Sh
 
 Below is the blink program that Pat wrote in Monday's lecture. This code is available in the file `lab1/code/blink/blink.s` and also reproduced below.
 
-    .equ DELAY, 0x3F0000
+```
+.equ DELAY, 0x3F0000
 
-    // configure GPIO 20 for output
-    ldr r0, FSEL2
-    mov r1, #1
-    str r1, [r0]
+// configure GPIO 20 for output
+ldr r0, FSEL2
+mov r1, #1
+str r1, [r0]
 
-    mov r1, #(1<<20)
+mov r1, #(1<<20)
 
-    loop: 
+loop: 
 
-    // set GPIO 20 high
-    ldr r0, SET0
-    str r1, [r0] 
+// set GPIO 20 high
+ldr r0, SET0
+str r1, [r0] 
 
-    // delay
-    mov r2, #DELAY
-    wait1:
-        subs r2, #1
-        bne wait1
+// delay
+mov r2, #DELAY
+wait1:
+    subs r2, #1
+    bne wait1
 
-    // set GPIO 20 low
-    ldr r0, CLR0
-    str r1, [r0] 
+// set GPIO 20 low
+ldr r0, CLR0
+str r1, [r0] 
 
-    // delay
-    mov r2, #DELAY
-    wait2:
-        subs r2, #1
-        bne wait2
+// delay
+mov r2, #DELAY
+wait2:
+    subs r2, #1
+    bne wait2
 
-    b loop
+b loop
 
-    FSEL0: .word 0x20200000
-    FSEL1: .word 0x20200004
-    FSEL2: .word 0x20200008
-    SET0:  .word 0x2020001C
-    SET1:  .word 0x20200020
-    CLR0:  .word 0x20200028
-    CLR1:  .word 0x2020002C
+FSEL0: .word 0x20200000
+FSEL1: .word 0x20200004
+FSEL2: .word 0x20200008
+SET0:  .word 0x2020001C
+SET1:  .word 0x20200020
+CLR0:  .word 0x20200028
+CLR1:  .word 0x2020002C
+```
 
 If there is anything you don't understand about this program,
 ask questions of your partner and others.
@@ -445,53 +447,57 @@ of 2.
 ### 8.  Adding a button
 The final lab exercise is to study the `button` program and build a breadboard circuit to test the program. This button program is in the file `lab1/code/button/button.s`.
 
-The button program reads the state of a button connected to GPIO 10 and turns on the LED on GPIO 20 when the button is pressed.
+> If you are coming back to review this lab, please note that I slightly changed the code after lab finished. The original program started with the LED off and when the button was pressed it turned the LED on. The updated program inverts that behavior, the LED starts on and when button pressed the LED turns off. This change makes it easier to confirm that the LED part of the circuit is working when the program starts, and then you can go on to test the button's ability to turn it off.  As originally presented, when the button turned on the LED, if you tested and the LED didn't light, you had to content with figuring whether failure was the LED or the button or both, which made for tougher debugging.
+{: .callout-info}
 
-    // configure GPIO 10 for input
-    ldr r0, FSEL1
-    mov r1, #0
-    str r1, [r0]
+The button program reads the state of a button connected to GPIO 10 and turns off the LED on GPIO 20 when the button is pressed.
 
-    // configure GPIO 20 for output
-    ldr r0, FSEL2
-    mov r1, #1
-    str r1, [r0]
+```    
+// configure GPIO 10 for input
+ldr r0, FSEL1
+mov r1, #0
+str r1, [r0]
 
-    // bit 10
-    mov r2, #(1<<10)
+// configure GPIO 20 for output
+ldr r0, FSEL2
+mov r1, #1
+str r1, [r0]
 
-    // bit 20
-    mov r3, #(1<<20)
+// bit 10
+mov r2, #(1<<10)
 
-    loop: 
-        // read GPIO 10 
-        ldr r0, LEV0
-        ldr r1, [r0] 
-        tst r1, r2
-        beq on // when the button is pressed (goes LOW), turn on LED
-        
-        // set GPIO 20 low
-        off:
-            ldr r0, CLR0
-            str r3, [r0]
-            b loop
+// bit 20
+mov r3, #(1<<20)
 
-        // set GPIO 20 high
-        on:
-            ldr r0, SET0
-            str r3, [r0]
-            b loop
+loop: 
+    // read GPIO 10 
+    ldr r0, LEV0
+    ldr r1, [r0] 
+    tst r1, r2
+    beq off // when the button is pressed (goes LOW), turn off LED
+    
+    // set GPIO 20 high
+    on:
+        ldr r0, SET0
+        str r3, [r0]
+        b loop
 
-    FSEL0: .word 0x20200000
-    FSEL1: .word 0x20200004
-    FSEL2: .word 0x20200008
-    SET0:  .word 0x2020001C
-    SET1:  .word 0x20200020
-    CLR0:  .word 0x20200028
-    CLR1:  .word 0x2020002C
-    LEV0:  .word 0x20200034
-    LEV1:  .word 0x20200038
+    // set GPIO 20 low
+    off:
+        ldr r0, CLR0
+        str r3, [r0]
+        b loop
 
+FSEL0: .word 0x20200000
+FSEL1: .word 0x20200004
+FSEL2: .word 0x20200008
+SET0:  .word 0x2020001C
+SET1:  .word 0x20200020
+CLR0:  .word 0x20200028
+CLR1:  .word 0x2020002C
+LEV0:  .word 0x20200034
+LEV1:  .word 0x20200038
+```
 
 
 Challenge yourself to understand
@@ -508,7 +514,7 @@ With this knowledge, you're ready to answer the check-in question[^5].
 
 Now that you understand how the program operates, you can reconfigure your breadboard circuit to test the program. 
 
-Grab a button mechanism and button cap from your parts kit.  Measure the resistance across the pushbutton legs using a multimeter and figure out which pins are always connected and which become connected when the button is pushed.  Use these observations to determine how to position the button on the breadboard to act as a switch.
+Grab a pushbutton mechanism and button cap from your parts kit. The button has four legs. The legs are partitioned into two pairs of legs, where the pair is always connected. When the button is pushed, all four legs become connected. Your first task is to work out which pairs are always connected and which legs become connected when the switch is closed. The division may not be obvious! A good way to experimentally confirm is to measure resistance/continuity across the legs using a multimeter.  Once you understand how the legs are connected,  position the button on the breadboard so it can act as a switch.
 
 The last detail to work out is the default state of the input pin used to read the button state. Before we connect the pin to something, its voltage is in a "floating" state. It's up to us to intentionally pull the pin to a known initial state so we get a reliable reading. The button program above is written to expect an initial state of high. We will connect the pin to the power rail via a 10K resistor and "pull up" the line to set its initial state as high. GPIO 10 will initially read as high. When the button is pressed, it grounds the circuit and GPIO 10 will read low.  Sparkfun has a nice tutorial on the [use of pull-up resistors](https://learn.sparkfun.com/tutorials/pull-up-resistors/all) for more information.
 
@@ -517,9 +523,9 @@ Here is the schematic. VCC is 3.3V and R1 is 10K.
 ![Button with pull-up resistor diagram](images/pull-up-resistor.jpg)
 {: .w-50 .mx-auto}
 
-Add the above circuit on your breadboard and use GPIO 10 as your input pin. Use your pinout to find GPIO 10 on the Raspberry Pi header. Be sure to include the 10K resistor! (without, it pressing the button would create a short between power and ground) 
+Add the above circuit on your breadboard and use GPIO 10 as your input pin. Use your pinout to find GPIO 10 on the Raspberry Pi header. Be sure to include the 10K resistor! (without, it pressing the button would create a short between power and ground and could damage your Pi.) 
 
-After confirming your circuit is correctly constructed, power it up and run the button program. In the initial state, the LED is off. When you press and hold the button the LED turns on.  Let there be 💡!
+After confirming your circuit is correctly constructed, power it up and run the button program. In the initial state, the LED is on. When you press and hold the button the LED turns off.  Let there be 💡!
 
 ## Check in with TA
 

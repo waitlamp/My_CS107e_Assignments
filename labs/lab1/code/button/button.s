@@ -19,19 +19,20 @@ loop:
 	ldr r0, LEV0
 	ldr r1, [r0] 
 	tst r1, r2
-	beq on // when the button is pressed (goes LOW), turn on LED
+	beq off // when the button is pressed (goes LOW), turn off LED
         
+        // set GPIO 20 high
+    on:
+        ldr r0, SET0
+        str r3, [r0]
+        b loop
+
         // set GPIO 20 low
     off:
         ldr r0, CLR0
         str r3, [r0]
         b loop
 
-        // set GPIO 20 high
-    on:
-        ldr r0, SET0
-        str r3, [r0]
-        b loop
 
 FSEL0: .word 0x20200000
 FSEL1: .word 0x20200004
