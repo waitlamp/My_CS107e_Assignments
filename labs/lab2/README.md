@@ -61,7 +61,7 @@ To prepare for this lab, please do the following:
 First things first: join a lab table and make introductions all around. Congratulate each other on completing the first assignment. Virtual high five to celebrate your bare metal mettle!
 
 This lab has four exercises and we recommend that you spend no more than 20 minutes each on the first three, reserving the second hour of lab for the breadboarding task. We want you to leave lab with a solid start on the hardware setup needed for your next assignment.
-=======
+
 Bring up the [check-in](checkin) questions to ponder as you work through lab.
 
 ### 1. C to assembly (20 min)
