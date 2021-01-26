@@ -57,12 +57,9 @@ To prepare for this lab, please do the following:
 
 ## Lab exercises
 
-
 First things first: join a lab table and make introductions all around. Congratulate each other on completing the first assignment. Virtual high five to celebrate your bare metal mettle!
 
 This lab has four exercises and we recommend that you spend no more than 20 minutes each on the first three, reserving the second hour of lab for the breadboarding task. We want you to leave lab with a solid start on the hardware setup needed for your next assignment.
-
-Bring up the [check-in](checkin) questions to ponder as you work through lab.
 
 ### 1. C to assembly (20 min)
 
@@ -74,15 +71,17 @@ assembly and figure out what the compiler did rather that sit
 there dumbfounded by the unexpected behavior!
 
 Change to the `lab2/code/codegen` directory. Open the `codegen.c` source file in
-your text editor. The file contains four parts that concern different aspects of C: arithmetic, if/else, loops, and pointers.
+your text editor. The file contains functions that concern different aspects of C such as arithmetic, control flow, and pointers. Skim the C code and read our comments.
 
-Skim the C code and read our comments.
+Pull up <https://godbolt.org/z/8T1bYW> in your browser; this is Compiler Explorer configured to match our toolchain:  `C` language, compiler version `ARM gcc 7.2.1 (none)` and split output windows to show compiled result at different different optimization levels (`-Og` and `-O2`).
 
-In your browser, visit the [Compiler Explorer](https://godbolt.org/). Configure the settings to match our toolchain:  `C` language, compiler version `ARM gcc 7.2.1 (none)` and optimization flags `-Og`.
+In `codegen.c`, find the section marked `Part (a): arithmetic`. Paste the functions into the Compiler Explorer source pane on the left and review the generated assembly shown in the right panes. Verify that the assembly accomplishes what was asked for in the C source. Do you note any surprising choices in how it goes about it?  Read our comments in `codegen.c` as the guide for what to look for and follow-up experiments to try. 
 
-Find the section marked `Part (a): arithmetic`. Paste the functions into the Compiler Explorer source pane on the left and review the generated assembly shown in the right pane. Verify that the assembly accomplishes what was asked for in the C source. Do you note any surprising choices in how it goes about it?  Read our comments in `codegen.c` as the guide for what to look for and follow-up experiments to try. After you finish exploring Part a, do the same with Parts b, c, and d.
+After you finish exploring Part a, do the same with the other parts in `codegen.c`.
 
-The Compiler Explorer is handy for quick interactive exploration; you can also see the compiler's output using use the command-line tools. The command `arm-none-eabi-objdump -d somefile.o` invokes the _disassembler_ to extract the assembly from a compiled object file. Run the command `make codegen.list` to see the steps involved. Open the resulting `codegen.list` file in your text editor and you can review the entire program's worth of assembly.
+The final part includes some C code for which the generated assembly is somewhat surprising -- examine those closely to understand what is happening and why. The handling of "undefined behavior" can be particularly wacky. When asked to compile C code that ventures outside the boundary of legal C, the compiler has complete freedom. Check out this article for more examples <https://embeff.com/compiler-dependent-behaviour-in-practice/>
+
+While the web-based Compiler Explorer is handy for quick interactive exploration; you can also use the command-line tools to see the compiler's output. Our makefile includes a rule to generate a "list" file. A list file uses the _disassembler_ to extract the assembly from a compiled object file. The command `arm-none-eabi-objdump -d somefile.o` invokes the disassembler. Run the command `make codegen.list` to create a list file from the `codegen.o` file. Open the resulting `codegen.list` file in your text editor and you can review the entire program's worth of assembly.
 
 A good way to learn how a system works is by trying
 things. Curious about a particular C construct is translated to assembly? Wonder about the effect of changing the compiler optimization level? Try it out and see. Let your curiosity be your guide!
@@ -246,16 +245,15 @@ display. Knowing which breadboard column number aligns with each pin is helpful 
 see the pins underneath. We chose to place our display so __pin 1 of the display is aligned with column 50 on the breadboard__.
 
 The display LEDs require a current-limiting resistor just as the LEDs in your larson scanner did. Place a 1K resistor on the board bridging the
-middle. Use the cutter to clip the leads so that it sits neatly. Notice how the resistor should snap in neatly---here's an example of how the staff uses our tools to do this neatly.
+middle. The resistor should sit neatly---here's an example of how the staff uses the pliers to make a sharp crease and clips the leads with the cutters for a nice secure fit.
 
 ![fitting a resistor](images/fitting_resistor.gif)
-
 
 Use a pair of red and black male-female jumpers to connect the power and ground rails of the breadboard to the 3.3V and Ground
 pins on your Raspberry Pi. Pick out three short male-male jumpers (orange for 3.3V, black for GND, and green). Use the orange jumper to connect the top of
 the resistor to the red power rail. Use the green jumper from the bottom of the resistor to
 segment A (Pin 11, which will be at breadboard columns 51 if you aligned Pin 1
-to column 50 as described above). Use the black jumper to tie digit D1 (Pin 12, column 50) to the ground rail. When you apply power to your Rasberry Pi, segment A of
+to column 50 as described above). Use the black jumper to tie digit D1 (Pin 12, column 50) to the ground rail. When you apply power to your Raspberry Pi, segment A of
 digit 1 should light up as shown below:
 
 ![Wired breadboard with components](images/jumper1.jpg){: .zoom}
