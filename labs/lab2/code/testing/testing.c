@@ -9,19 +9,21 @@
 
 // infinite loop that flashes the red power LED (GPIO 35)
 void abort(void) {
-    int delay = 0x100000;
+    volatile unsigned int *FSEL3 = (void *)0x2020000c;
+    volatile unsigned int *SET1 = (void *)0x20200020;
+    volatile unsigned int *CLR1 = (void *)0x2020002c;
+    volatile int delay;  // volatile counter to prevent optimize out of delay loop
     int bit35 =  1 << 3;
 
     // Configure GPIO 35 function to be output.
     // This wipes functions for other gpios in this register (30-39)
     // but that's okay, because this is a dead-end routine.
-    *((volatile unsigned int *)0x2020000c) = 1 << 15; // GPIO_FSEL3
-    while (1) {
-        *((volatile unsigned int *)0x20200020) = bit35;  // GPIO_SEL1
-        // Delay loop uses volatile counters to prevent being optimized out
-        for (volatile int i = 0; i < delay; i++) ;
-        *((volatile unsigned int *)0x2020002c) = bit35; // GPIO_CLR1
-        for (volatile int i = 0; i < delay; i++) ;
+    *FSEL3 = 1 << 15;
+    while (1) { // infinite loop
+        *SET1 = bit35;  // on
+        for (delay = 0x100000; delay > 0; delay--) ;
+        *CLR1 = bit35;  // off
+        for (delay = 0x100000; delay > 0; delay--) ;
     }
 }
 
