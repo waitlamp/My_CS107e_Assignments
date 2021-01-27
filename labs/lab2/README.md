@@ -236,6 +236,10 @@ the bottom (after all, ground is always underneath us).
 
 ![Breadboard with two wires](images/power-rails.jpg){: .zoom }
 
+Want to see how you can use your tools to get a tight fit? Watch our staff fit a wire between two set points.
+
+![Fitting a wire](images/fitting_wire.gif)
+
 Now insert the display on the far right edge of breadboard. Make sure the display is
 oriented correctly: the decimal points should be on the bottom, and the digits
 slanted to the right.
