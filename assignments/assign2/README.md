@@ -170,19 +170,15 @@ Now bathed in the green light of your now-comprehensive test cases for the gpio 
 
 The `gpio` module is a key component of the library you are building. Several of the modules you will implement in later assignments will layer on `gpio`. Given your efforts to throughly test and vet the module, you will be able to confidently rely on it going forward!
 
-> **A note on volatile**
-> Writing code that correctly interacts with a peripheral will require understanding of the `volatile` keyword. Consider this pointer to the memory-mapped GPIO device register LEV0:
-
+>**A note on volatile**
+Writing code that correctly interacts with a peripheral will require understanding of the `volatile` keyword. Consider this pointer to the memory-mapped GPIO device register LEV0:
 ```
 unsigned int *lev = (unsigned int *)0x20200034;
 ```
-
 The data at that address can, and should, be qualified as `volatile`:
-
 ```
 volatile unsigned int *lev = (unsigned int *)0x20200034;
 ```
-
 A `volatile unsigned int` indicates the value can change due to events not apparent in the code. `*lev` access the current pin state through the device register. Whether the state is 0 or 1 depends on what is physically connected to the pin, which can change externally. If C code repeatedly reads from `*lev` with no intervening write to the location, the optimizer could make the assumption that the value will not change and cache the value of the first read and re-use it later.
 If type is qualified as `volatile`, the compiler cannot make that assumption and must re-read the value for each and every access.  
 Note that `volatile` is not something to throw about willy-nilly. Apply it thoughtfully and intentionally to those specific data values that need to be treated in this special manner. Extraneous use of `volatile` can be misleading and will reduce performance as it disallows the compiler from making optimizations.
