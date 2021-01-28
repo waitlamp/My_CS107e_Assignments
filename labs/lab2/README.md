@@ -127,7 +127,7 @@ that if that file changes, then the target is stale and must be rebuilt)
 You should be able to answer the check-in question about makefiles[^1] now.
 
 ### 3. Testing (20 min)
-
+<a href="testing"></a>
 An effective developer knows that testing your code goes hand-in-hand with writing it. The better your tests and more timely your efforts, the sooner you will find your bugs and the easier your debugging will be. To help you grow this important skill, upcoming assignments will include a required testing component along with our guidance on testing structure and strategies..
 
 The standard C library offers an `assert` macro for use as a simple diagnostic. Run the command `man assert` in your Terminal to read about the standard library version. The `assert` macro takes an expression that is expected to evaluate to true. If the expression is, in fact, true, then the assertion succeeds and the program continues on.  If the expression is false, the assertion fails which cause the program to print an error message and exit. In CS106B, you may have used the C++ SimpleTest framework and writing test cases using `STUDENT_TEST` and `EXPECT`, the C `assert` serves a similar purpose for writing test cases, but with a more primitive feature set.

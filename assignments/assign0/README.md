@@ -163,8 +163,8 @@ what question it corresponds to) and reasonably organized.
 Use the `git` commands you learned in the previous steps to stage this file and
 commit it to your local repository. Then, push your changes to GitHub.
 
+<a name="submit"></a>
 ### 5. Tag submission commit
-
 In future assignments, we'll run tests on your submission to verify that it works as
 expected. You identify which commit that we test by using a tag. We'll
 also use this tag to determine your submission time. In Git, a tag is simply a way
@@ -182,7 +182,7 @@ verify that your newly created tag shows up in the "Tags" section of the branche
 dropdown menu.
 
 If you commit additional changes after creating the tag, you can
-move the tag to a later commit with the following command:
+move the tag to a later commit with the following command (note that you need to push `--force` when moving a tag that already exists)
 
 ```
 $ git tag -f assign0-submission
