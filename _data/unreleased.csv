@@ -1,29 +1,28 @@
 permalink,title,released
-"/project/","Final Project",false
-"/assignments/assign3/","Assignment 3: Implement a String Formatting Library",false
-"/assignments/assign7/","Assignment 7: System Monitor with Interrupts",false
-"/assignments/assign5/","Assignment 5: Keyboard and Simple Shell",false
-"/assignments/assign6/","Assignment 6: Graphics Library and Console",false
-"/assignments/assign4/","Assignment 4: Backtrace and Malloc",false
-"/labs/projectlab2/","Project Lab 2: How Are You Doing?",false
-"/labs/lab6/","Lab 6: Drawing into the Framebuffer",false
-"/labs/lab4/","Lab 4: Linked and Loaded",false
 "/labs/projectlab1/","Project Lab: Getting Started",false
 "/labs/lab5/","Lab 5: Keyboard Surfin'",false
 "/labs/lab3/","Lab 3: Debugging and Testing",false
+"/labs/lab6/","Lab 6: Drawing into the Framebuffer",false
 "/labs/lab7/","Lab 7: Raspberry Pi, Interrupted",false
-"/lectures/Framebuffer/","Graphics and the framebuffer",false
-"/lectures/Keyboard/","Keyboards and the PS/2 Protocol",false
-"/lectures/ArithmeticAndSensors/","Sensors and Arithmetic",false
-"/lectures/Serial/","Communication and the Serial Protocol",false
+"/labs/projectlab2/","Project Lab 2: How Are You Doing?",false
+"/labs/lab4/","Lab 4: Linked and Loaded",false
+"/project/","Final Project",false
+"/assignments/assign7/","Assignment 7: System Monitor with Interrupts",false
+"/assignments/assign3/","Assignment 3: Implement a String Formatting Library",false
+"/assignments/assign5/","Assignment 5: Keyboard and Simple Shell",false
+"/assignments/assign6/","Assignment 6: Graphics Library and Console",false
+"/assignments/assign4/","Assignment 4: Backtrace and Malloc",false
 "/lectures/Interrupts1/","Interrupts",false
-"/lectures/Linking/","Modules, Libraries, and Linking",false
-"/lectures/Wrap/","Wrap or There and Back Again",false
-"/lectures/Memory/","Memory Management",false
 "/lectures/MakingEngineering/","Engineering an Art Project",false
-"/lectures/SystemDesign/","System Design and Computer Architecture",false
-"/lectures/C_Mastery/","C Mastery",false
-"/lectures/Arithmetic/","Computer Arithmetic",false
+"/lectures/Framebuffer/","Graphics and the framebuffer",false
+"/lectures/ArithmeticAndSensors/","Sensors and Arithmetic",false
+"/lectures/Linking/","Modules, Libraries, and Linking",false
 "/lectures/Interrupts2/","Interrupts, cont'd",false
-"/lectures/C_Functions/","C Functions",false
+"/lectures/Memory/","Memory Management",false
+"/lectures/Serial/","Communication and the Serial Protocol",false
 "/lectures/Sensors/","Sensors",false
+"/lectures/Keyboard/","Keyboards and the PS/2 Protocol",false
+"/lectures/C_Mastery/","C Mastery",false
+"/lectures/Wrap/","Wrap or There and Back Again",false
+"/lectures/SystemDesign/","System Design and Computer Architecture",false
+"/lectures/Arithmetic/","Computer Arithmetic",false
