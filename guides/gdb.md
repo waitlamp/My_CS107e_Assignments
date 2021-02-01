@@ -42,7 +42,7 @@ sent to the Pi.  The `elf` version of the file is the one used by the gdb simula
 
 Run `gdb` on the `blink.elf` file:
 
-```console
+```console?prompt=(gdb),$
 $ arm-none-eabi-gdb blink.elf
 GNU gdb (GDB) 9.2
 Copyright (C) 2014 Free Copyright (C) 2020 Free Software Foundation, Inc.
@@ -63,13 +63,13 @@ Reading symbols from blink.elf...done.
 (gdb)
 ```
 In gdb, we first connect to the simulator:
-```console
+```console?prompt=(gdb)
 (gdb) target sim
 Connected to the simulator
 ```
 
 And then load the program:
-```console
+```console?prompt=(gdb)
 (gdb) load
 Loading section .text, size 0xd8 vma 0x8000
 Start address 0x8000
@@ -81,7 +81,7 @@ the start address (0x8000).
 
 Let's review the code for `main`. Note that `gdb` knows about the source file and line numbers because our Makefile uses compiler flag `-g`.
 
-```console
+```console?prompt=(gdb)
 (gdb) list main
 1   static volatile unsigned int *FSEL2 = (unsigned int *)0x20200008;
 2   static volatile unsigned int *SET0  = (unsigned int *)0x2020001C;
@@ -96,13 +96,13 @@ Let's review the code for `main`. Note that `gdb` knows about the source file an
 ```
 
 Set a breakpoint on line 10 of this file:
-```console
+```console?prompt=(gdb)
 (gdb) break 10
 Breakpoint 1 at 0x8028: file blink.c, line 10.
 ```
 The `run` command starts executing the program in the simulator. It will quickly hit the breakpoint we set:
 
-```console
+```console?prompt=(gdb)
 (gdb) run
 Starting program: blink.elf
 Breakpoint 1, main () at blink.c:10
@@ -112,7 +112,7 @@ The program is stopped at line 10. This is before this line of C has executed.
 
 The gdb `print` command can be used to view a variable or evaluate an expression.
 
-```console
+```console?prompt=(gdb)
 (gdb) print SET0
 $1 = (volatile unsigned int * const) 0x2020001c
 (gdb) print *SET0
@@ -120,13 +120,13 @@ $2 = 0
 ```
 Execute the next line.
 
-```console
+```console?prompt=(gdb)
 (gdb) next
 ```
 
 Print the affected memory location to see its updated value. `print/x` says to print in hexadecimal format.
 
-```console
+```console?prompt=(gdb)
 (gdb) print/x *SET0
 $3 = 0x100000
 ```
@@ -135,8 +135,9 @@ Success. The assignment statement turned on bit 20!
 
 Use `next` to execute the next line, the delay loop. The simulator operates fairly slowly, so the loop will take a while to execute. Use `Control-C` to interrupt the program and bring control back to the debugger.  Print the loop counter to see how far into the loop it is:
 
-```console
-^C0x0000804c in main () at blink.c:11
+```console?prompt=(gdb)
+^C
+0x0000804c in main () at blink.c:11
 11          for (int i = 0; i < 0x3f0000; i++) 
 (gdb) print i
 $4 = 22928

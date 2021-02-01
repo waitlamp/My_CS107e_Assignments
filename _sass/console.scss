@@ -9,8 +9,8 @@ $midgray: #aaaaaa;
 $charcoal: #444444;
 
 $console-bg: $nearblack;
-$console-in: $nearwhite;
-$console-out: $periwinkle;
+$console-input: $nearwhite;
+$console-output: $periwinkle;
 
 .unselectable { /* browsers handle differently, sigh */
     -moz-user-select: none;
@@ -21,14 +21,14 @@ $console-out: $periwinkle;
 
 .language-console pre, .language-console .highlight *
 {
-    background-color: $console-bg; color: $console-in; font-weight: 700;
+    background-color: $console-bg; color: $console-input; font-weight: 700;
 }
 
 /* select from terminal session will not capture prompt/response */
 .language-console .highlight .gp, .language-console .highlight .go
 {
     @extend .unselectable;
-    color: $console-out; font-weight: 500;
+    color: $console-output; font-weight: 500;
 }
 
 .language-console {
@@ -73,3 +73,10 @@ $console-out: $periwinkle;
     text-align: left;
 }
 
+/* gdb frame info lines start with #, don't style as comment
+.language-console .highlight .c
+{
+    color: $console-output;
+    font-style: normal;
+    font-weight: 500;
+}

@@ -26,7 +26,7 @@ Follow the installation instructions for your OS
 After completing the installation instructions, use these final check steps below to confirm your environment from top to bottom.
 
 {% include checkstep.html content="confirm $CS107E, cross-compile build and debugger __with simulator__" %}
-```console
+```console?prompt=(gdb),$
 $ cd $CS107E/sample_build
 $ make clean && make all
 rm -f *.o *.bin *.elf *.list *~

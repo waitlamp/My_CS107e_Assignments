@@ -78,6 +78,12 @@ img.zoom:not([width]) {
     width: 50%;
 }
 
+.smallcaps {
+    font-size: 80%;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
 // JDZ turn on for debugging
 NOTdiv {
