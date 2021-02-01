@@ -5,7 +5,7 @@ static volatile unsigned int* SET0  = (unsigned int *)0x2020001c;
 static volatile unsigned int* CLR0  = (unsigned int *)0x20200028;
 
 
-void pause(int delay)
+void pause(volatile int delay)
 {
     while(--delay) ;
 }
