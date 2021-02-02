@@ -73,7 +73,7 @@ $console-output: $periwinkle;
     text-align: left;
 }
 
-/* gdb frame info lines start with #, don't style as comment
+/* gdb frame info lines start with #, don't style as comment */
 .language-console .highlight .c
 {
     color: $console-output;
