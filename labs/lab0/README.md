@@ -279,22 +279,17 @@ Every programmer has their own (usually strongly held) opinion about which edito
 No matter which editor you decide to make your home base, we think it's a worthwhile investment for everyone to learn enough Emacs and Vim that you could open a file, make an edit, and save & close the file without any trouble (this skill will serve you well in the future, like if you have to quickly edit code on systems you've just ssh'ed into).
 
 To start with, practice opening a new file named `emacs_is_better.txt` in the directory `~/` with emacs:
-```
+```console
 $ emacs ~/emacs_is_better.txt
 ```
-If that worked, type away! Once you're ready to save your document and exit Emacs, type:
-```
-ctrl+x ctrl+s
-ctrl+x ctrl+c
-```
+If that worked, type away! Once you're ready to save your document and exit Emacs, type `ctrl+x ctrl+s` to save and `ctrl+x ctrl+c` to exit.
+
 Now that you've tried Emacs, let's get a taste of Vim. To open a new file in `~/` named `vim_is_better.txt`, type:
-```
+```console
 $ vim ~/vim_is_better.txt
 ```
-To edit in vim, there's actually another step. We need to switch out of command mode into insert mode. Type `i` and you should be able to start writing away! Once you feel ready to quit, type `ESC` (the escape character) and you'll be back into command mode. From there, to save and quit, type:
-```
-:wq
-```
+To edit in vim, there's actually another step. We need to switch out of command mode into insert mode. Type `i` and you should be able to start writing away! Once you feel ready to quit, type `ESC` (the escape character) and you'll be back into command mode. From there, to save and quit, type `:wq`.
+
 As long as you are able to open, edit, and exit in Emacs and Vim, you could attack any command line and start writing code (albeit, not very efficiently).
 
 At this point, you might be wondering---why are programmers obsessed with these tools? There are a million tools that can edit text far more intuitively, from Google Docs to iMessage to a text box in MS Paint---and while that's all true, the benefit of these text editors is 1) agility & speed and 2) configurability.

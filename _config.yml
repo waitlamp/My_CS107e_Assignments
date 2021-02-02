@@ -18,8 +18,10 @@ markdown: kramdown
 kramdown:
   input:                GFM
   hard_wrap:            false
-  syntax_highlighter:   rouge
   smart_quotes:         ["apos", "apos", "quot", "quot"]
+  syntax_highlighter:   rouge
+  syntax_highligher_opts:
+    default_lang: c
 
 plugins:        [jekyll-sitemap, jekyll-target-blank]
 
