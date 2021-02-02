@@ -135,7 +135,7 @@ you're in, while `step` executes the next line of code,
 which may be in a different function.
 
 Use `run` to restart the program
-and then use `step` you hit the breakpoint.
+and then use `step` once you hit the breakpoint.
 
 ```console?prompt=(gdb)
 (gdb) run
