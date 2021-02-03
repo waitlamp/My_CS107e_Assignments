@@ -245,7 +245,11 @@ You should probably restart the Pi, since you interrupted it mid-load.
 
     elif args.s:  # after sending, -s will exec `screen`, name the session so can find it later
         screen_cmd = "screen -S rpi %s 115200" % (portname)
-        printq("\n%s: %s" % (args.exename, screen_cmd))
-        sys.exit(os.system(screen_cmd))
+        print("\n%s" % screen_cmd)
+        ans = input("Start screen? [y/n] ")
+        if ans.lower() == "y":
+            sys.exit(os.system(screen_cmd))
+        else:
+            printq("%s: screen canceled." % args.exename)
 
     sys.exit(0)
