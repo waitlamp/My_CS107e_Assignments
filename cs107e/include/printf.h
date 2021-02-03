@@ -10,13 +10,13 @@
 #include <stdarg.h>
 #include <stddef.h>
 
-/* These three functions from the printf family construct a
+/* The functions vnsprintf, snprintf, and printf construct a
  * formatted output from an input format string and arguments.
- * All three functions accept format strings specified using the same
- * kind of conversions, but differ slightly in how the function is
- * called or what it does with the output string, e.g., whether it is
+ * These functions support same conversion options in format
+ * string, but differ slightly in how the function is called
+ * or what it does with the output string, e.g., whether it is
  * sent to the Raspberry Pi UART (printf) or written into the
- * client's buffer (snprintf, vsnprintf).
+ * destination buffer (snprintf, vsnprintf).
  *
  * The supported format conversions are
  *   %c    single character
@@ -36,45 +36,44 @@
  */
 
 /*
- * Constructs a formatted output string from an input string and arguments.
+ * Constructs a formatted output string from an input string and a va_list
+ * of arguments. Writes output string to the destination buffer.
  *
- * `buf` is the destination where output string is to be written
- * `bufsize` is the size of `buf`, output string will be truncated
- * if necessary to fit
- * `format` string may contain ordinary characters (copied to `buf` as-is)
- * and/or format conversions (written to `buf` after converting next
- * argument to string).
- *
- * Returns total number of characters written if entire formatted string
- * fits in `buf`; otherwise returns the number of characters it would
- * have written if there were space.
+ * @param buf       destination buffer where to write output string
+ * @param bufsize   size of destination buffer (output truncated to fit if needed)
+ * @param format    format for output string. May contain ordinary characters
+ *                  (copied to destination as-is) and format conversions (next
+ *                  argument converted and copied to destination)
+ * @param args      list of arguments to be converted
+ * @return          count of characters written if entire formatted string
+ *                  fits in destination; otherwise count of characters it would
+ *                  have written if there were space.
  */
 int vsnprintf(char *buf, size_t bufsize, const char *format, va_list args);
 
 /*
- * Constructs a formatted output string from an input string and arguments.
+ * Constructs a formatted output string from an input string and variable
+ * arguments. Writes output string to the destination buffer.
  *
- * `buf` is the destination where output string is to be written
- * `bufsize` is the size of `buf`, output string will be truncated
- * if necessary to fit
- * `format` string may contain ordinary characters (copied to `buf` as-is)
- * and/or format conversions (written to `buf` after converting next
- * argument to string).
- *
- * Returns total number of characters written if entire formatted string
- * fits in `buf`; otherwise returns the number of characters it would
- * have written if there were space.
+ * @param buf       destination buffer where to write output string
+ * @param bufsize   size of destination buffer (output truncated to fit if needed)
+ * @param format    format for output string. May contain ordinary characters
+ *                  and format conversions
+ * @param ...       variable arguments to be converted
+ * @return          count of characters written if entire formatted string
+ *                  fits in destination; otherwise count of characters it would
+ *                  have written if there were space.
  */
 int snprintf(char *buf, size_t bufsize, const char *format, ...) __attribute__((format(printf, 3, 4)));
 
 /*
- * Constructs a formatted output string from an input string and arguments,
- * and outputs final string to UART.
+ * Constructs a formatted output string from an input string and arguments.
+ * Writes output string to UART.
  *
- * `format` string may contain ordinary characters (output as-is)
- * and/or format conversions (output after converting next argument to string).
- *
- * Returns the number of characters written to UART.
+ * @param format    format for output string. May contain ordinary characters
+ *                  and format conversions
+ * @param ...       variable arguments to be converted
+ * @return          count of characters written to UART
  */
 int printf(const char *format, ...) __attribute__((format(printf, 1, 2)));
 

@@ -14,7 +14,7 @@
 
 
 /*
- * These enumerated values establish symbolic names for each of the GPIO pins.
+ * The enumerated values below establish symbolic names for each of the GPIO pins.
  * Although you could directly refer to pins by number, using the
  * names makes it more clear to the reader what a given value represents.
  *
@@ -85,7 +85,7 @@ enum {
 #define GPIO_RX GPIO_PIN15
 
 /*
- * These enumerated values establish symbolic names for each of the
+ * The enumerated values below establish symbolic names for each of the
  * available GPIO pin functions. Each pin function corresponds to
  * a particular "mode" of operation.  For example, setting a pin's
  * function to GPIO_FUNC_INPUT configures the pin to be used as an input.
@@ -149,7 +149,7 @@ void gpio_set_output(unsigned int pin);
  * @param pin   the GPIO pin number to set or clear
  * @param val   1 to set pin to high, 0 to clear pin
  *
- * If `pin` is invalid, does nothing.
+ * If `pin` or `val` is invalid, does nothing.
  */
 void gpio_write(unsigned int pin, unsigned int val);
 
