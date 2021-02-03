@@ -469,7 +469,7 @@ The `rpi-run.py` that sends a program to the bootloader can optionally open a co
 $ rpi-run.py -s echo.bin
 ```
 
-The commands send the `echo.bin` program to run on the Pi, and then will automatically open `screen` in your terminal. As you type, your characters ar being sent to the program running on the Pi and the output from the Pi is echoed back to your terminal. 
+The commands send the `echo.bin` program to run on the Pi, and then will automatically open `screen` in your terminal. As you type, your characters are being sent to the program running on the Pi and the output from the Pi is echoed back to your terminal. 
 
 While you continue typing, have your partner gently unplug the jumper from the RX pin on your USB-serial and then re-connect it. What changes? Why does that happen? Answer this check-in question[^2]
 
