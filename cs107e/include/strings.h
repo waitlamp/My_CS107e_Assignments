@@ -95,7 +95,7 @@ unsigned int strtonum(const char *str, const char **endptr);
  * @param dst       destination buffer containing null-terminated string
  * @param str       null-terminated string to append to destination
  * @param dstsize   size of the dst buffer
- * @return          result of numeric conversion (or 0 if first char is invalid)
+ * @return          final size of dst if there were space to append all of src
  */
 size_t strlcat(char *dst, const char *src, size_t dstsize);
 
