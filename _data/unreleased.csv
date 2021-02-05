@@ -14,7 +14,6 @@ permalink,title,released
 "/lectures/MakingEngineering/","Engineering an Art Project",false
 "/lectures/Framebuffer/","Graphics and the framebuffer",false
 "/lectures/ArithmeticAndSensors/","Sensors and Arithmetic",false
-"/lectures/Linking/","Modules, Libraries, and Linking",false
 "/lectures/Interrupts2/","Interrupts, cont'd",false
 "/lectures/Memory/","Memory Management",false
 "/lectures/Sensors/","Sensors",false
