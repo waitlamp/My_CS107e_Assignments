@@ -1,4 +1,4 @@
-/* 
+/*
  * Sample code to use as gdb practice.
  */
 
@@ -28,7 +28,7 @@ int make_array(void)
 
 int diff(int a, int b)
 {
-    return abs(a - b);
+    return abs(b - a);
 }
 
 int main(void)

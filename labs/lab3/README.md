@@ -46,7 +46,6 @@ These exercises are useful preparation for your next assignment which is to impl
 To prepare for lab, do the following: 
 
 1. Read our [guide to using gdb in simulation mode](/guides/gdb). Print out a copy of the [gdb reference card](/readings/gdb-refcard.pdf) to have on hand.
-1. Review this [recap of stack frames](stack/).
 1. Pull the latest version of the `cs107e.github.io` courseware repository. 
 1. Clone the lab repository `https://github.com/cs107e/lab3`.
 
@@ -146,21 +145,19 @@ Breakpoint 1, main () at simple.c:35
 35	{
 (gdb) step
 38        int d = diff(x, y);
-(gdb) step
+(gdb) ⏎
 diff (a=a@entry=33, b=b@entry=107) at simple.c:31
-31        return abs(a - b);
+31        return abs(b - a);
+(gdb) ⏎
+abs (v=v@entry=74) at simple.c:8
+8     return result;
 ```
 
-Execution has stepped into `diff` and is stopped at the first line of the function.  Another `step` from here will step into the call to the `abs` function.
+The return/enter key(`⏎`) causes `gdb` to repeat the last command (in above sequence, it will `step` two more times).
 
-```console?prompt=(gdb)
-(gdb) step
-abs (v=v@entry=-74) at simple.c:8
-8         return result;
-9   }
-```
+We first stepped into `diff` then took two steps in `abs` and execution is now stopped at the return statement.
 
-When using stepping through code, gdb displays the single next line of code to be executed. To see more context, use the `list` command
+When stepping through code, gdb displays the next line of code to be executed. To see more context, use the `list` command
 ```console?prompt=(gdb)
 (gdb) list
 4
@@ -199,119 +196,45 @@ When debugging a function, a common workflow is to
   1. Recursively apply rules 2-3 until you find the bug.
 
 <a name="1b"></a>
-#### 1b) Use `gdb` to trace function calls
-If you didn't get a chance to do the pre-lab reading, review this recap on [stack frames](stack/) now.
+#### 1b) Use `gdb` to access stack frames
+There are gdb commands that allow you to trace function calls and view stack frames.  Let's try them out!
 
-There are gdb commands that allow you to drop down to the assembly instructions and view the contents of registers and memory.  Let's try them out!
-
-Use `delete` to delete any existing breakpoints and set a breakpoint at the `diff` function:
+Use `delete` to delete any existing breakpoints and set a breakpoint at the `abs` function:
 ```console?prompt=(gdb)
 (gdb) delete
 Delete all breakpoints? (y or n) y
-(gdb) break diff
-Breakpoint 2 at 0x80c4: file simple.c, line 30.
+(gdb) break abs
+Breakpoint 2 at 0x8010: file simple.c, line 6.
 (gdb) run
-Breakpoint 2, diff (a=a@entry=33, b=b@entry=107) at simple.c:30
+Breakpoint 2, abs (v=v@entry=74) at simple.c:6
 ```
 
-We asked for a breakpoint on the function `diff` and gdb converted our request to `0x80c4` which corresponds to the address of the first instruction of `diff`. A breakpoint set at `0xAddr` will stop the program just before executing the
-instruction at `0xAddr`. 
-
-The command `disassemble` with no arguments lists the ARM instructions in the context where the program is currently executing. The instruction marked `=>`is the next one to be executed.
+You are now stopped at the breakpoint on `abs`. The command `disassemble` with no arguments lists the ARM instructions in the context where the program is currently executing. The instruction marked `=>`is the next one to be executed.
     
 ```console?prompt=(gdb)
 (gdb) disassemble
-Dump of assembler code for function diff:
-=> 0x000080c4 <+0>:     mov r12, sp
-   0x000080c8 <+4>:     push {r11, r12, lr, pc}
-   0x000080cc <+8>:     sub r11, r12, #4, 0
-   0x000080d0 <+12>:    sub r0, r0, r1
-   0x000080d4 <+16>:    bl  0x8010 <abs>
-   0x000080d8 <+20>:    sub sp, r11, #12, 0
-   0x000080dc <+24>:    ldm sp, {r11, sp, lr}
-   0x000080e0 <+28>:    bx  lr
+Dump of assembler code for function abs:
+=> 0x00008010 <+0>: mov r12, sp
+   0x00008014 <+4>: push  {r11, r12, lr, pc}
+   0x00008018 <+8>: sub r11, r12, #4, 0
+   0x0000801c <+12>:  cmp r0, #0, 0
+   0x00008020 <+16>:  rsblt r0, r0, #0, 0
+   0x00008024 <+20>:  sub sp, r11, #12, 0
+   0x00008028 <+24>:  ldm sp, {r11, sp, lr}
+   0x0000802c <+28>:  bx  lr
+End of assembler dump.
 ```
-Note that the first instruction of `diff` is at
-address `0x80c4`, as we expected.
+Note that the first instruction of `abs` is at
+address `0x8010`, as we expected.
+We asked for a breakpoint on the function `abs` and gdb converted our request to `0x8010` which corresponds to the address of the first instruction of `abs`. A breakpoint set at `0xAddr` will stop the program just before executing the
+instruction at `0xAddr`. 
 
-Use the command `info reg` to display all of the current registers.
-```console?prompt=(gdb)
-(gdb) info reg
-r0             0x21 33
-r1             0x6b 107
-r2             0x8180   33152
-r3             0x8180   33152
-r4             0x4a 74
-r5             0x0  0
-r6             0x0  0
-r7             0x0  0
-r8             0x0  0
-r9             0x0  0
-r10            0x0  0
-r11            0x7ffffec    134217708
-r12            0x7fffff0    134217712
-sp             0x7ffffd8    0x7ffffd8
-lr             0x80fc   33020
-pc             0x80c4   0x80c4 <diff>
-cpsr           0x600000d3   1610612947
-```
-What value is currently in `r0`? Why does `r0` contain that value? (Consider: at what point in the program execution are we stopped right now? What was the last use of `r0`?)
-
-You can access a single
-register by using the syntax $regname, e.g. `$r0`.
-
-```console?prompt=(gdb)
-(gdb) print $r0
-$2 = 33
-```
-
-Print the `$lr` register to see the value currently stored.  What is that value? Disassemble that address, what code does it show you? 
-```console?prompt=(gdb)
-(gdb) print/x $lr
-$5 = 0x80fc
-(gdb) disassemble $lr
-```
-
-`gdb` has a very useful feature to auto-display the current value of an expression every time you single-step.
-This is done with the `display` command.
-The command `display/4wx $sp` will auto-display a sequence of 4 words (w) in hex (x) beginning at the memory location pointed by the current `sp`. gdb will re-display that expression again after each gdb command.
-```console?prompt=(gdb)
-(gdb) display/4wx $sp
-1: x/4xw $sp
-0x7ffffd8:  0x0000004a  0x00000000  0x07fffffc  0x07fffff0
-(gdb) step
-0x7ffffc8:  0x07ffffec  0x07ffffd8  0x000080fc  0x000080d0
-```
-
-The values printed each time are the four values topmost on the stack. As you being executing in `diff`, a `push` instruction placed these four values onto the stack. Examine the disassembly for `diff` to see which four registers are pushed. These registers correspond to the APCS "full frame".
-
-Because you used the `display` command, gdb will reevaluate and print that
-same expression after each gdb command. In this way, you can monitor the
-top of the stack as you step through the program. This is quite handy and
-much faster than manually reissuing a `print` command after each `next` or `step`.
-
-Use `step` to proceed from here and watch the auto-display'ed stack contents to see what is happening to the values on the stop of the stack as you go in and out of the various function calls:
-
-```console?prompt=(gdb)
-(gdb) step
-(gdb) ⏎
-(gdb) ⏎
-(gdb) ⏎
-```
-
-The return/enter key(`⏎`) causes `gdb` to repeat the last command (in above sequence, it will `step` 4 times).
-
-Note how the stack changes as you step through the function.
-Which instructions change the value of the register `sp`? Which instructions change the contents of the memory pointed to by `sp`?
-
-Use `delete` to delete all breakpoints. Set a breakpoint on
-the `abs` function and re-run the program until you hit this
-breakpoint.  Use the gdb `backtrace` to show the sequence of function
+Use the gdb `backtrace` to show the sequence of function
 calls leading to here:
 
 ```console?prompt=(gdb)
 (gdb) backtrace
-#0  abs (v=v@entry=-74) at simple.c:6
+#0  abs (v=v@entry=74) at simple.c:6
 #1  0x000080d8 in diff (a=a@entry=33, b=b@entry=107) at simple.c:31
 #2  0x000080fc in main () at simple.c:38
 ```
@@ -327,7 +250,7 @@ Stack level 0, frame at 0x7ffffc8:
 pc = 0x8010 in abs (simple.c:6); saved pc = 0x80d8
 called by frame at 0x7ffffd8
 source language c.
-Arglist at 0x7ffffc8, args: v=v@entry=-74
+Arglist at 0x7ffffc8, args: v=v@entry=74
 Locals at 0x7ffffc8, Previous frame's sp is 0x7ffffc8
 ```
 
@@ -335,7 +258,7 @@ The `info locals` and `info args` commands give more information about the stack
 
 ```console?prompt=(gdb)
 (gdb) info args
-v = -74
+v = 74
 (gdb) info locals
 result = <optimized out>
 ```
@@ -344,6 +267,8 @@ result = <optimized out>
 the compiler decided that it did not need to use the stack to store its value.  Where,
 is the value of `result` being tracked? Hint: `disassemble abs` and look at the
 assembly instructions to figure it out. Knowing assembly is useful. 
+
+
 
 `gdb` also lets you inspect state of other frames on the call stack.
 
@@ -359,45 +284,42 @@ b = 107
 (gdb) info locals
 No locals.
 ```
-Now let's go back "down" to the stack frame for `abs`.
+
+Another useful `info` command is `info reg` which displays the values currently in the Pi's registers. 
+```console?prompt=(gdb)
+(gdb) info reg
+r0             0x4a                74
+r1             0x6b                107
+r2             0x8180              33152
+r3             0x8180              33152
+r4             0x4a                74
+r5             0x0                 0
+r6             0x0                 0
+r7             0x0                 0
+r8             0x0                 0
+r9             0x0                 0
+r10            0x0                 0
+r11            0x7ffffd4           134217684
+r12            0x7ffffd8           134217688
+sp             0x7ffffc8           0x7ffffc8
+lr             0x80d8              32984
+pc             0x8010              0x8010 <abs>
+cpsr           0x600000d3          1610612947
+```
+What value is currently in `r0`? Why does `r0` contain that value? (Consider: at what point in the program execution are we stopped right now? What was the last use of `r0`?) What value is in `r1`?
+
+You can access a single register by using the syntax $regname, e.g. `$r0`.
 
 ```console?prompt=(gdb)
-(gdb) down
-#0  abs (v=v@entry=-74) at simple.c:6
-```
-Disassemble the code for `abs` and trace its operation instruction
-by instruction.
-
-```console?prompt=(gdb)
-(gdb) disass abs
-Dump of assembler code for function abs:
-=> 0x00008010 <+0>:     mov r12, sp
-   0x00008014 <+4>:     push {r11, r12, lr, pc}
-   0x00008018 <+8>:     sub r11, r12, #4, 0
-   0x0000801c <+12>:    cmp r0, #0, 0
-   0x00008020 <+16>:    rsblt   r0, r0, #0, 0
-   0x00008024 <+20>:    sub sp, r11, #12, 0
-   0x00008028 <+24>:    ldm sp, {r11, sp, lr}
-   0x0000802c <+28>:    bx  lr
-End of assembler dump.
+(gdb) print $r0
+$2 = 74
 ```
 
-The `abs` function contains eight instructions in total. The first three instructions are the function _prolog_ which set up the
-stack frame and the last three instructions are the _epilog_ to tear down the frame and return at function exit. That two middle instructions are function body. Identify those instructions in the above sequence. Work out how they do the job of the `abs` function. Where does it
-read the value of `v` from?  Where does it write the return value?
+For further practice with gdb and stack frames, now try tracing and exploring with the `factorial` and `make_array` functions.
 
-The final instruction of `abs` is branch exchange that returns control
-to the caller. Who is the caller of `abs`? What is the address of the 
-instruction in the caller that will be executed when `abs` returns? 
-
-The goal of all this mucking about in gdb is to solidify your understanding the mechanics of function calls and the runtime stack. If you there are portions you don't yet understand, ask your tablemates, or the staff to resolve those questions now.
-
-The `simple.c` program contains a few other functions that you can use to further your understanding of the stack.other
-
-The `factorial` function operates recursively. Set a breakpoint on the `factorial` and it will stop on each recursive call. Continue until you hit the breakpoint for the 5th time and use
-`backtrace` to see contents of stack. Try moving `up` and
-`down` and use `info frame` and `info args` to explore the stack
-frames.  Each invocation has its own copy of the parameter `n`. But obviously those copies can't all be stored in the single `r0` register! Disassemble the `factorial` function and look at the assembly instruction to see what the outer calls are doing with their copy of the argument that allows it be preserved while making another recursive call.
+The `factorial` function operates recursively. Set a breakpoint on `factorial` so gdb will stop on each recursive call.  Each time you hit the breakpoint, use `backtrace` to see how the stack changes as you get deeper into the recursion. Try moving `up` and
+`down` and use `info frame` and `info args` to view individual stack
+frames.  Note how each invocation has its own copy of the parameter `n`. 
 
 The function `make_array` demonstrates how the stack is used
 for storage of local variables. A local variable of size 32 bits or fewer (i.e. simple int) is likely stored in a register without the overhead of  writing to stack memory. Larger data
@@ -406,6 +328,8 @@ stack. Set a breakpoint on the `make_array` function. Use `info locals` to see t
 the array elements initialized to any particular value?  Step through
 the loop a few times and use `info locals` to see how the array is
 updated. 
+
+The goal of all this mucking about in gdb is to solidify your understanding the mechanics of function calls and the runtime stack. If you there are portions you don't yet understand, ask your tablemates, or the staff to resolve those questions now.
 
 Now introduced to `gdb`, you'll want incorporate it into your development process and to practice until you become comfortable and fluent.  Gdb can help you learn more about how your C code translates to generated assembly and being able to observe and manipulate your program while it is executing will be an invaluable aid when tracking down bugs.
 
@@ -428,7 +352,7 @@ Disconnect the two jumpers between the RX and TX of the USB-serial adapter and t
 
 Use a single jumper to connect TX to RX on the USB-serial adapter in loop back mode, as shown in this photo:
 
-![loop back](images/loopback-spr20.jpg){: .zoom}
+![loop back](images/loopback.jpg){: .zoom}
 
 In loop back mode,
 the signals sent out on the TX pin are wired straight to the RX pin. Reading from the RX pin will read the characters sent over TX.
@@ -667,7 +591,7 @@ The gdb simulator is a powerful addition to your toolbox, but it is important to
 
 Answer these questions that probe on topics from the lab and review your answers with the TA to confirm your understanding.
 
-[^1]: Explain how the `lr` register is used as part of making a function call. Which instruction writes to the `lr` register? Which instruction reads from it? What commands could you use in `gdb` to observe the changes to the `lr` register during execution of a function call?
+[^1]: What `gdb` commands can you use to interrupt an program and figure out where the program is executing and view current program state (values of registers, parameters, variables, etc.)?   
 
 [^2]: Why is it necessary to plug in both `TX` and `RX` for the echo program to work correctly?
 
