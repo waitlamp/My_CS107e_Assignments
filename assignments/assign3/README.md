@@ -377,15 +377,19 @@ One unfortunate circularity with trying to test printf is the lack of a working
 printf to help you debug.  Here are a couple of strategies you may want to consider:
 
 - __Use the debugger__! Run under gdb in simulation mode and use gdb commands to
-  step and print variables to observe your program's operation. We strongly encourage you to invest in building up your gdb chops now -- this investment will really pay off! Stay mindful of the differences between the simulator and the actual Pi. (review exercise 4d of [Lab3](/labs/lab3/#4d-differences-under-simulation) if you need a refresher).
-
-    * Always start gdb from the __top-level directory__ of your assignments repo and debug the elf file within the build subdirectory. There is a `.gdbinit` configuration file there to fake the existence of a uart peripheral within gdb . Confirm you have the special breakpoint using `info break 1`
+  step and print variables to observe your program's operation. We strongly encourage you to invest in building up your gdb chops now -- this investment will really pay off! Stay mindful of the differences between the simulator and the actual Pi. (Review [Exercise 4 of Lab 3](/labs/lab3/#4d-differences-under-simulation) for a refresher)
+<a name="gdbinit">
+    * Run the debugger on program.elf file. Always start gdb from the __top-level directory__ of your assignments repo and access the elf file in the `build` subdirectory:
     ```console?prompt=(gdb),#
     # cd ~/cs107e_home/assignments
     # arm-none-eabi-gdb build/test_strings_printf.elf
     GNU gdb (GDB) 9.2
     ... blah blah blah...
-    (gdb) info break 1
+    (gdb)
+    ```
+    The `.gdbinit` configuration file here fakes the existence of a uart peripheral within gdb. Confirm it is active by checking for our special breakpoint:
+    ```console?prompt=(gdb),#
+    (gdb) info break
     Num     Type           Disp Enb Address    What
     1   breakpoint     keep y   0x00008bf4 in uart_putchar at uart.c:118
         silent
@@ -393,7 +397,7 @@ printf to help you debug.  Here are a couple of strategies you may want to consi
         return
         cont
     ```
-
+    This breakpoint intercepts a character intended to output on uart and echoes it manually. Without this bit of trickery, a program that attempts to output to the uart will stall or otherwise misbehave when accessing the non-existent peripheral in the gdb simulator.
 - __Liberal use of `assert()` tests__. For example, you can test the output written
   by `signed_to_base` matches the expected output by asserting the two strings
   `strcmp` as equal. Note that the version of `assert` from assign3 forward calls  `uart_putstring` to print out details (i.e. line number, failed expression), so you are no longer limited to interpreting red and green smoke signals.
@@ -424,7 +428,7 @@ printf("Encoded instruction %x disassembles to %pI\n", add, &add);
 printf("Encoded instruction %x disassembles to %pI\n", *first, first);
 ```
 The output of the above code is:
-```console
+```console?prompt=none
 Encoded instruction e0843005 disassembles to add r3, r4, r5
 Encoded instruction e3a0d302 disassembles to mov sp, #134217728
 ```
@@ -434,7 +438,7 @@ You _could_ use your bit-masking superpowers to pick apart an encoded instructio
 To learn more about the instruction encoding, refer to the [ARM ISA documentation](/readings/armisa.pdf#page=2) and this
 [ARM guide from USCD](https://cseweb.ucsd.edu/~ricko/CSE30/ARM_Translation_Guide.pdf).
 
-Your extension should be capable of decoding the most common variants of the data processing and branch instructions. The ARM instruction set has a remarkably regular  encoding, so you can catch a good chunk of all instructions with just a few cases. If you want to get fancier, try decoding load/store and load/store multiple (i.e. push and pop). Don't worry about making special cases for oddballs. For any instructions you don't decode, simply print the encoded value. Make sure that the output of your disassembler has the format `instr dst, op1, op2`.
+Your extension should be capable of decoding the most common variants of the data processing and branch instructions. The ARM instruction set has a remarkably regular encoding, so you can catch a good chunk of all instructions with just a few cases. If you want to get fancier, try decoding load/store and load/store multiple (i.e. push and pop). Don't worry about making special cases for oddballs. For any instructions you don't decode, simply print the encoded value. Make sure that the output of your disassembler has the format `instr dst, op1, op2`.
 
 There is a unit test in the `test_strings_printf.c` that demonstrates sample disassemble use.  To see how good a job your disassembler is doing, compare your output to the result from gdb's tools.  In `gdb`, you can disassemble the single instruction at an address with the `x/i` command or dump a sequence of instructions using the `disassemble` command:
 
