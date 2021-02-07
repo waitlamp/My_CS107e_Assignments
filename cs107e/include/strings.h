@@ -5,6 +5,9 @@
 
 /*
  * Write `n` bytes of value `val` to the memory area `dst`.
+ * Due to historical artifact, `val` parameter has type `int` even
+ * though the argument is treated as `unsigned char`. The
+ * least significant byte of `val` is copied `n` times.
  *
  * @param dst   address of memory location
  * @param val   the byte value to replicate
@@ -14,9 +17,9 @@
 void *memset(void *dst, int val, size_t n);
 
 /*
- * Copy `n` bytes from the memory area `src` to the memory area `dst`. Memory
- * areas `dst` and `src` should not overlap, otherwise behavior
- * is undefined.
+ * Copy `n` bytes of data from the memory area `src` to the
+ * memory area `dst`. Memory areas `dst` and `src` should not overlap,
+ * otherwise behavior is undefined.
  *
  * @param dst   address of memory location area to write
  * @param src   address of memory location area to read
@@ -29,7 +32,7 @@ void *memcpy(void *dst, const void *src, size_t n);
  * Compute the length of string `str`.
  *
  * @param str   null-terminated string
- * @return      the count of characters preceding terminating NUL character
+ * @return      the count of characters preceding terminating '\0' character
  */
 size_t strlen(const char *str);
 
@@ -54,7 +57,7 @@ int strcmp(const char *s1, const char *s2);
  *
  * `strtonum` processes the characters of `str`, stopping at the first
  * character that is not a valid digit in the base or at the terminating
- * NUL (whichever comes first).  The function is not required to support
+ * '\0' (whichever comes first).  The function is not required to support
  * leading spaces or a plus/minus sign. Such characters can be
  * treated as invalid and stop the conversion.
  *
@@ -65,11 +68,14 @@ int strcmp(const char *s1, const char *s2);
  *
  * If `endptr` is not NULL, *endptr is updated to point to the character
  * in `str` where conversion stopped. This is either the address of the
- * first invalid character in `str` or the address of the terminating NUL
+ * first invalid character in `str` or the address of the terminating '\0'
  * if all characters in `str` are valid digits.
  *
  * The function result is the converted value or 0 if the first character of
  * `str` is not a valid digit and no conversion was possible.
+ *
+ * The function only needs to handle converting numbers that are within
+ * the range reprsentable as `unsigned int`.
  *
  * @param str       null-terminated string to convert
  * @param endptr    output parameter, will point to character after conversion end
