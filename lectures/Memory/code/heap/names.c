@@ -2,6 +2,8 @@
 #include "strings.h"
 #include "uart.h"
 
+#define MAX_LINE_LEN 64
+
 static int get_and_echo(void)
 {
     char ch = uart_getchar();   // read input from terminal
@@ -10,13 +12,13 @@ static int get_and_echo(void)
 
 static char *read_line(void)
 {
-    char buf[64];
+    char buf[MAX_LINE_LEN];
     char *result = buf; // where does result point?
 
-    for (int i = 0; i < sizeof(buf) - 1; i++) {
+    for (int i = 0; i < MAX_LINE_LEN - 1; i++) {
         char ch = get_and_echo();
-        buf[i] = ch == '\n' ? '\0' : ch;
-        if (!buf[i]) break;
+        result[i] = ch == '\n' ? '\0' : ch;
+        if (!result[i]) break;
     }
     return result;
 }
