@@ -25,7 +25,7 @@ Here we have gathered links to various interactive demos and visualization tools
 ## C
 - Use the Godbolt [Compiler Explorer](http://gcc.godbolt.org/) to enter C code and see the mapping to compiled assembly. Choose `C` language, compiler `ARM gcc 9.2.1(none)` and flags `-O` to approximate the toolchain we use in the course.
 
-- Type a C program into [Repl](https://repl.it/languages/c) and it will compile and execute in a virtual environment.
+- Type a C program into [Rextester](https://rextester.com/l/c_online_compiler_gcc ) and it will compile and execute in a virtual environment.
 Handy for quickly running a C snippet to see what it does.
 
 - Enter a C program into [C Tutor](http://pythontutor.com/c.html#mode=edit) and you can step through and visualize its execution, including showing the contents of the stack and heap memory.

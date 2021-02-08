@@ -402,7 +402,7 @@ printf to help you debug.  Here are a couple of strategies you may want to consi
   by `signed_to_base` matches the expected output by asserting the two strings
   `strcmp` as equal. Note that the version of `assert` from assign3 forward calls  `uart_putstring` to print out details (i.e. line number, failed expression), so you are no longer limited to interpreting red and green smoke signals.
 
-- **Compare to reference.** The `string` and `printf` functions are a part of the C standard library, available in any C compiler (non-bare-metal). If you are not sure of the expected behavior for a particular call, try it on your local compiler, or do a quick test in this handy [online Repl C environment](https://repl.it/languages/c).
+- **Compare to reference.** The `string` and `printf` functions are a part of the C standard library, available in any C compiler (non-bare-metal). If you are not sure of the expected behavior for a particular call, try it on your local compiler, or do a quick test in this handy [online C environment (Rextester)](https://rextester.com/l/c_online_compiler_gcc ).
 
 ## Extension: disassembler
 After completing printf, there may not be much bandwidth left for further explorations, but we think this extension is particularly neat and hope we can inspire a few of you to go for it!
