@@ -18,8 +18,9 @@ void *memset(void *dst, int val, size_t n);
 
 /*
  * Copy `n` bytes of data from the memory area `src` to the
- * memory area `dst`. Memory areas `dst` and `src` should not overlap,
- * otherwise behavior is undefined.
+ * memory area `dst`. It is a client error to call memcpy on
+ * `dst` and `src` areas that overlap. In such a case,
+ * the behavior is undefined.
  *
  * @param dst   address of memory location area to write
  * @param src   address of memory location area to read
