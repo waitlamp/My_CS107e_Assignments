@@ -24,7 +24,6 @@
  */
 void *malloc(size_t nbytes);
 
-
 /*
  * Deallocate the memory block at address `ptr`.
  *
@@ -36,6 +35,22 @@ void *malloc(size_t nbytes);
  * @param ptr       address of memory block to deallocate
  */
 void free(void *ptr);
+
+
+
+/*
+ * Return the address of the previous end of the heap segment
+ * and enlarge the segment by the specified number of bytes.
+ * The call `sbrk(0)` returns the address of the end of segment
+ * with no change in size. You may assume that no calls to
+ * sbrk with a non-zero argument will come from outside clients,
+ * calls to enlarge the segment will only come from within
+ * your heap allocator implementation.
+ *
+ * @param nbytes    the number of bytes to extend the segment end by
+ * @return          address of previous end of segment (before enlarge)
+ */
+void *sbrk(int nbytes);
 
 
 #endif

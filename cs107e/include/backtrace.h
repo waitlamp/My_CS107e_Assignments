@@ -69,9 +69,7 @@ int backtrace(frame_t f[], int max_frames);
  */
 void print_frames(frame_t f[], int n);
 
-
-/* Function: print_backtrace
- * -------------------------
+/*
  * Convenience function that calls `backtrace` and `print_frames` to display
  * stack frames of currently executing program.
  */
