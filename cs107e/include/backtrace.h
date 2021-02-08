@@ -35,8 +35,7 @@ typedef struct {
 } frame_t;
 
 
-/* Function: backtrace
- * -------------------
+/*
  * backtrace() gathers a backtrace for the calling program and writes the
  * call stack information into the array pointed to by `f`.
  *
@@ -45,16 +44,18 @@ typedef struct {
  * represents a caller who has a frame on the stack.
  *
  * The `max_frames` argument specifies the maximum number of frames that can be
- * stored in the array f.  If the backtrace contains more than `max_frames`,
- * then the information for only the `max_frames` most recent function calls
- * are stored in the array `f`.
+ * stored in the array f.  If the backtrace extends more than `max_frames`,
+ * only the `max_frames` most recent calls are stored into the array.
  *
- * The return value of the function is the number of frames written to `f`.
+ * The return value of the function is the count of frames written to `f`.
+ *
+ * @param f            array in which to write stack frames
+ * @param max_frames   maximum number of frames that can be stored in array
+ * @return             count of frames written to array
  */
 int backtrace(frame_t f[], int max_frames);
 
-/* Function: print_frames
- * ----------------------
+/*
  * Given an array of frames that has previously been filled in by a call to
  * backtrace(), `print_frames` prints the backtrace information, one line per
  * frame, using this format:
@@ -62,8 +63,12 @@ int backtrace(frame_t f[], int max_frames);
  *     #0 0x85f8 at malloc+132
  *     #1 0x8868 at strndup+28
  *     #2 0x8784 at main+24
+ *
+ * @param f     array of stack frames
+ * @param n     number of frames in array
  */
 void print_frames(frame_t f[], int n);
+
 
 /* Function: print_backtrace
  * -------------------------
@@ -72,8 +77,7 @@ void print_frames(frame_t f[], int n);
  */
 void print_backtrace(void);
 
-/* Function: name_of
- * -----------------
+/*
  * The argument to `name_of` is the numeric address in memory of the first
  * instruction of a function and `name_of` returns the name of that
  * function.
@@ -87,6 +91,10 @@ void print_backtrace(void);
  *
  * If no name is available for the given address, `name_of` returns
  * the constant string "???"
+ *
+ * @param fn_start_addr     numeric address of instruction in memory
+ * @return                  pointer to string of function's name or
+ *                          constant string "???" if name not available
  */
 const char *name_of(uintptr_t fn_start_addr);
 
