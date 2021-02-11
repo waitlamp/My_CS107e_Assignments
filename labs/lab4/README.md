@@ -42,7 +42,7 @@ To prepare for lab, do the following:
   Review the code for example program we will study in lab in [code/simple/simple.c](code/simple/simple.c). This program makes use of the stack for function calls, recursion, and local variables. Here is a [diagram of the program's address space](images/stack_abs.html) when stopped in the first call to `abs`. Make a printout of this diagram so you can mark it up with your notes as you study it. A solid understanding of the memory layout of your program is an essential starting point for your next assignment. 
 
 ## Lab exercises
-
+<a name="stack"></a>
 ### 1. Stack
 
 Refer to prelab for background reading on the stack and the APCS full frame. Change to the directory `lab4/code/simple`.  This program makes use of the stack for function calls, recursion, and local variables. We will use this program to study management of stack frames. Have your printed copy of the program's [memory diagram](images/stack_abs.html) handy for making notes.
@@ -347,7 +347,7 @@ With your group, annotate the bootloader source with comments documenting its op
 Have each person jot down notes and then explain their part to the group. **Collate your group's notes and annotated bootloader code and show to the CA.**[^4]
 
 ## Check in with TA
-
+<a name="checkin"></a>
 Each question below is a diagnostic question for a lab section. Test your understanding by answering the corresponding question as you finish an exercise. We encourage you to check in with a TA after
 completing a section or two, while the material is still fresh in your mind.
 

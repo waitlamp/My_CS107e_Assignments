@@ -75,7 +75,9 @@ $ cd ~/cs107e_home/assignments
 $ ln -sf makefiles/assign3.makefile Makefile
 ```
 
-Open the `assign3.makefile` and read the top-level comment about the `MY_MODULES` setting used to control which library modules are used when building.  In the starter makefile, `MY_MODULES` lists only the library modules for the current assignment. If you edit `assign3.makefile` to add the library modules you completed previously (e.g. `gpio.o` and `timer.o`), you will now be building on your own code instead of the reference. Using your previous modules as you move forward will further test your code and give you a jumpstart on earning the full system bonus awarded to a final assignment that uses all of your modules and none of the reference. If you encounter a problem using a previous module, you can remove it from `MY_MODULES` to instead use the reference version until you have a chance to resolve the underlying issue.
+<a name=mymodules></a>
+### Use of `MY_MODULES`
+Each week as you move forward, you have the option of building on your own code from the previous assignments. Open the `assign3.makefile` and read the top-level comment about the `MY_MODULES` setting used to control which modules are used when building.  In the starter makefile, `MY_MODULES` lists only the library modules for the current assignment. If you edit `assign3.makefile` to add the library modules you completed previously (e.g. `gpio.o` and `timer.o`), you will now be building on your own code instead of the reference. Using your previous modules as you move forward will further test your code and give you a jumpstart on earning the full system bonus awarded to a final assignment that uses all of your modules and none of the reference. If you encounter a problem using a previous module, you can remove it from `MY_MODULES` to instead use the reference version until you have a chance to resolve the underlying issue.
 
 The source files added to your repo for assignment 3 are:
 
