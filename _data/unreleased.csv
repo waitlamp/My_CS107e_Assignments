@@ -1,21 +1,20 @@
 permalink,title,released
-"/labs/projectlab1/","Project Lab: Getting Started",false
-"/labs/lab5/","Lab 5: Keyboard Surfin'",false
-"/labs/lab6/","Lab 6: Drawing into the Framebuffer",false
-"/labs/lab7/","Lab 7: Raspberry Pi, Interrupted",false
-"/labs/projectlab2/","Project Lab 2: How Are You Doing?",false
-"/project/","Final Project",false
-"/assignments/assign7/","Assignment 7: System Monitor with Interrupts",false
-"/assignments/assign5/","Assignment 5: Keyboard and Simple Shell",false
 "/assignments/assign6/","Assignment 6: Graphics Library and Console",false
-"/lectures/Interrupts1/","Interrupts",false
-"/lectures/MakingEngineering/","Engineering an Art Project",false
-"/lectures/Framebuffer/","Graphics and the framebuffer",false
+"/assignments/assign5/","Assignment 5: Keyboard and Simple Shell",false
+"/assignments/assign7/","Assignment 7: System Monitor with Interrupts",false
 "/lectures/ArithmeticAndSensors/","Sensors and Arithmetic",false
 "/lectures/Interrupts2/","Interrupts, cont'd",false
-"/lectures/Sensors/","Sensors",false
-"/lectures/Keyboard/","Keyboards and the PS/2 Protocol",false
-"/lectures/C_Mastery/","C Mastery",false
-"/lectures/Wrap/","Wrap or There and Back Again",false
+"/lectures/Framebuffer/","Graphics and the framebuffer",false
 "/lectures/SystemDesign/","System Design and Computer Architecture",false
 "/lectures/Arithmetic/","Computer Arithmetic",false
+"/lectures/Interrupts1/","Interrupts",false
+"/lectures/MakingEngineering/","Engineering an Art Project",false
+"/lectures/Sensors/","Sensors",false
+"/lectures/Wrap/","Wrap or There and Back Again",false
+"/lectures/C_Mastery/","C Mastery",false
+"/project/","Final Project",false
+"/labs/lab6/","Lab 6: Drawing into the Framebuffer",false
+"/labs/lab5/","Lab 5: Keyboard Surfin'",false
+"/labs/projectlab2/","Project Lab 2: How Are You Doing?",false
+"/labs/projectlab1/","Project Lab: Getting Started",false
+"/labs/lab7/","Lab 7: Raspberry Pi, Interrupted",false
