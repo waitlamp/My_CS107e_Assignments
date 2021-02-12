@@ -85,7 +85,7 @@ The `backtrace` module provides functionality to gather and print a stack backtr
 
 Consider a program whose `main` function calls `tokenize`, which then calls `strndup`. A backtrace initiated during `strndup` could look something like this: 
 
-```
+```console
 #0 0x8090 at strndup+40
 #1 0x814c at tokenize+116
 #3 0x8354 at main+24
@@ -139,6 +139,7 @@ $4 = (void *) 0x802c <binky+12>
 0x7fffc68:  0x0000851c  0x0000802c  0x00000000  0x00000000
 0x7fffc78:  0x00000000  0x00000000
 ```
+- One piece of advice that cannot overemphasized is that __pointer arithmetic scales by the size of the pointee type__. The expression `ptr + 2` when `ptr` is type `char *` is simply adding 2 to the base address `ptr`. However, if `ptr` is type `int *`, `ptr + 2` is adding 8 (2*sizeof(int)) to `ptr`. This will come up when using offset arithmetic to access relative locations within the stack. A location that is an offset of 12 bytes from a char *base can also be described as offset of 3 words from a int *base, so be sure to consider pointee type when determining appropriate value for offset.
 
 #### Obtaining a function's name
 The final task in harvesting the backtrace is to associate the name of the function with each stack frame. Symbol names are usually not present in a binary file as functions are referred to by address, not name. However, there is a compiler option to retain function names in the binary to support developers (such as yourself) writing debugging tools. The assignment makefile has the flag `-mpoke-function-name` enabled in `CFLAGS`. This option tells gcc to store a function's name with the compiled instructions, embedded in the memory preceding the function's first instruction. 
@@ -176,7 +177,7 @@ The embedded function name is null-terminated and the terminator is counted in t
 
 If our example program is re-compiled with the `-mpoke-function-name` flag, the text section will contain the function names embedded alongside the instructions (see [memory diagram with embedded function names](images/diagram_with_poke.html)). Using this diagram as a guide, work out by what steps you could access a function's name if starting from the address for the function's first instruction. This is  what needs to happen in `name_of`.
 
-Put this all together and you have a module capable of harvesting a backtrace for the current stack, including function names. It requires surprisingly little code, but it's dense and heavy on the pointer arithmetic and typecasts. Carefully map  out your approach, take it slow, and use `gdb` as you go to examine memory and print expressions to confirm your steps. Validating your backtrace against `gdb`'s `backtrace` command can also be a useful debugging technique.
+Put this all together and you have a module capable of harvesting a backtrace for the current stack, including function names. It requires surprisingly little code, but it's dense and heavy on the pointer arithmetic and typecasts. Carefully map out your approach, take it slow, and use `gdb` as you go to examine memory and print expressions to confirm your steps. Validating your backtrace against `gdb`'s `backtrace` command can also be a useful debugging technique.
 
 Every stack frame uses the same layout, so once you have code to correctly backtrace one stack, that code is quite likely to correctly handle all other stacks without special cases. Confirm with a few tests and you're done with this module!
 
@@ -301,7 +302,7 @@ In addition, you should tag each allocated block with the context it was allocat
 
 Modify `free` to verify that the red zones are intact for the block currently being freed. If not, print an error message about the block in error along with its mini-backtrace that identifies where the block was allocated from.
 
-```
+```console
 =============================================
  **********  Mini-Valgrind Alert  ********** 
 =============================================
@@ -316,7 +317,7 @@ The values for the address, damaged red zone, size, etc. will be specific to the
 
 Mini-Valgrind also tracks heap statistics, such as the count of calls to `malloc` and `free` and the aggregate total number of bytes requested. Implement the function `memory_report` that is intended to be used at program completion to print a summary of the total heap usage and list all remaining memory leaks. The mini-backtrace stored in the block header is used to identify the context for each leaked block.
 
-```
+```console
 =============================================
  **********  Mini-Valgrind Alert  ********** 
 =============================================
