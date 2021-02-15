@@ -4,7 +4,7 @@
  * Author: Julie Zelenski <zelenski@cs.stanford.edu>
  */
 
-#include "ps2.h"
+#include "ps2_keys.h"
 
 #define UNUSED { PS2_KEY_NONE, PS2_KEY_NONE }
 
@@ -112,7 +112,7 @@ ps2_key_t const ps2_keys[] = {
     /* 63 */      UNUSED,
     /* 64 */      UNUSED,
     /* 65 */      UNUSED,
-    /* 66 */   { '', '' }, 
+    /* 66 */   { '', '' },
     /* 67 */      UNUSED,
     /* 68 */      UNUSED,
     /* 69 */   { PS2_KEY_END, '1' },

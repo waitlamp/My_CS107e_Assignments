@@ -55,7 +55,7 @@ void gpio_interrupts_disable(void);
  * Asserts if failed to install handler (e.g., the pin is invalid).
  * Pins are defined in `gpio.h`.
  */
-handler_fn_t gpio_interrupts_register_handler(unsigned int pin, handler_fn_t fn);
+handler_fn_t gpio_interrupts_register_handler(unsigned int pin, handler_fn_t fn, void *aux_data);
 
 /*
  * `gpio_interrupts_default_handler`
@@ -65,7 +65,7 @@ handler_fn_t gpio_interrupts_register_handler(unsigned int pin, handler_fn_t fn)
  * registering a handler, plus as a convenience for uninstalling
  * a handler (replace it with this).
  */
-bool gpio_default_handler(unsigned int pc);
+bool gpio_default_handler(unsigned int pc, void *aux_data);
 
 
 #endif

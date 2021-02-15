@@ -1,70 +1,88 @@
 #ifndef PS2_H
 #define PS2_H
 
-/* This module declares constants for interacting with a PS/2
- * keyboard, including an array that serves as a lookup table
- * to access information about the keys and the characters they produce.
- *
- * Each entry in the array corresponds to one physical key on the keyboard.
- * Each key has an assigned PS/2 scancode. The array is organized
- * in order of scancode. The scancode is used as an index to access
- * the character produced by that key.  For the
- * special keys (non-character), its associated char is a value >= 0x90
- * from the ps2_codes enumeration below. The `other_ch` is the key
- * when shift is applied: for some key it is the same as `ch`.  
- *
- * You use this interface in assignment 5 to implement a keyboard
- * driver.
+/*
+ * Module that communicates with a PS2 device such as a keyboard
+ * or mouse.
+ * You will implement this interface in assignments 5 and 7.
  *
  * Author: Julie Zelenski <zelenski@cs.stanford.edu>
- * Author: Philip Levis <pal@cs.stanford.edu>
- * Date:   Novembner 2020 
+ *
+ * Last edited Feb 2021
  */
 
-typedef struct {
-    unsigned char ch;
-    unsigned char other_ch;
-} ps2_key_t;
+#include <stdbool.h>
 
-extern ps2_key_t const ps2_keys[];
+typedef struct ps2_device ps2_device_t;
 
-/* Since regular chars have ASCII values that are all <= 0x7F,
- * we assign codes >= 0x90 to the non-char keys.
+/*
+ * Initializes a new PS2 device connected to specified clock and data GPIO
+ * pins. The clock and data GPIOs are configured to use the internal pull-up
+ * resistors which pull these lines to high resting state as required
+ * for PS2 protocol. Returns the new PS2 device.
+ *
+ * To configure a new PS2 device in your code:
+ *
+ *     ps2_device_t *dev = ps2_new(KEYBOARD_CLK, KEYBOARD_DATA);
+ *
+ * Notice that this interface is slightly different from the _init exposed by
+ * other libpi modules. This _new pattern allows a client to create multiple PS2
+ * devices, such as one for a keyboard and another for a mouse. It also means
+ * that clients of this module don't need to know the implementation details
+ * (like size) of ps2_device_t, since they just keep a pointer.
+ *
+ * @param clock_gpio    the gpio connected to the clock line of the PS2 device
+ * @param data_gpio     the gpio connected to the data line of the PS2 device
+ * @return              pointer to new PS2 device or NULL if failed to create
+ *
+ * Although `ps2_new` configures the requested clock and data GPIOs
+ * to use the internal pull-up resistors, it is recommended to choose GPIO
+ * pins whose default state is already pull-up. This avoid timing issues
+ * due to the device attempting to handshake with the Pi before `ps2_new`
+ * has executed.
  */
-enum ps2_codes {
-    PS2_KEY_NONE = 0,
-    PS2_CODE_RELEASE = 0xF0,
-    PS2_CODE_EXTENDED = 0xE0,
-    PS2_KEY_SHIFT = 0x90,
-    PS2_KEY_ALT,    // values assigned in increasing sequence from here
-    PS2_KEY_CTRL,
-    PS2_KEY_CAPS_LOCK,
-    PS2_KEY_ENTER,
-    PS2_KEY_ESC,
-    PS2_KEY_F1,
-    PS2_KEY_F2,
-    PS2_KEY_F3,
-    PS2_KEY_F4,
-    PS2_KEY_F5,
-    PS2_KEY_F6,
-    PS2_KEY_F7,
-    PS2_KEY_F8,
-    PS2_KEY_F9,
-    PS2_KEY_F10,
-    PS2_KEY_F11,
-    PS2_KEY_F12,
-    PS2_KEY_NUM_LOCK,
-    PS2_KEY_HOME,
-    PS2_KEY_PAGE_UP,
-    PS2_KEY_PAGE_DOWN,
-    PS2_KEY_INSERT,
-    PS2_KEY_DELETE,
-    PS2_KEY_END,
-    PS2_KEY_SCROLL_LOCK,
-    PS2_KEY_ARROW_UP,
-    PS2_KEY_ARROW_DOWN,
-    PS2_KEY_ARROW_LEFT,
-    PS2_KEY_ARROW_RIGHT
-};
+ps2_device_t *ps2_new(unsigned int clock_gpio, unsigned int data_gpio);
+
+
+/*
+ * Read (blocking) a single scancode from the specifed PS2 device.
+ * Bits are read on the falling edge of the clock.
+ *
+ * Reads 11 bits: 1 start bit, 8 data bits, 1 parity bit, and 1 stop bit
+ *
+ * Discards and restarts the scancode if:
+ *   (lab5) The start bit is incorrect
+ *   (assign5) or if parity or stop bit is incorrect
+ *
+ * Returns the 8 data bits of a well-formed PS2 scancode.
+ * Will not return until it reads a complete and valid scancode.
+ *
+ * @param dev     PS2 device from which to read
+ * @return        scan code read from PS2 device
+ */
+unsigned char ps2_read(ps2_device_t *dev);
+
+
+/*
+ * Write a single command scancode to the specifed PS2 device.
+ * You do not need to implement this function unless you are
+ * doing the mouse extension.
+ *
+ * @param dev       PS2 device to which to write
+ * @param command   scancode to write
+ * @return          true if successful write, false otherwise
+ */
+bool ps2_write(ps2_device_t *dev, unsigned char command);
+
+
+/*
+ * Changes this PS2 device from default polling behavior to instead configure
+ * interrupts for gpio events. After setting device to use interrupts, client must
+ * also globally enable interrupts at system level.
+ *
+ * @param dev       PS2 device to use interrupts
+ */
+void ps2_use_interrupts(ps2_device_t *dev);
+
 
 #endif

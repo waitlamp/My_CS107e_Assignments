@@ -2,7 +2,7 @@
 #define KEYBOARD_H
 
 #include "gpio.h"
-#include "ps2.h"
+#include "ps2_keys.h"
 
 /*
  * Module to read keys typed on a PS/2 keyboard.
@@ -35,7 +35,7 @@ typedef enum {
 
 typedef struct {
     key_action_t action;                // see struct declared above
-    ps2_key_t key;                      // entry taken from ps2_keys table (see ps2.h)
+    ps2_key_t key;                      // entry taken from ps2_keys table (see ps2_keys.h)
     keyboard_modifiers_t modifiers;     // modifiers in effect, composed of above bit flags
 } key_event_t;
 
@@ -47,14 +47,11 @@ typedef struct {
  * `keyboard_init`: Required initialization for keyboard
  *
  * The keyboard must first be initialized before any key events can be read.
- * The first and second arguments identify which GPIO pins to use for the
- * PS/2 clock and data lines, respectively.
+ * The two arguments are the GPIO pins of the PS2 clock and data lines
+ * to use when creating the PS2 device.
  *
- * Although `keyboard_init` configures the requested clock and data GPIOs
- * to use the internal pull-up resistors, it is recommended to choose GPIO
- * pins whose default state is already pull-up, such as KEYBOARD_CLOCK and
- * KEYBOARD_DATA defined above. This avoid timing issues due to the keyboard
- * attempting to handshake with the Pi before `keyboard_init` has executed.
+ * @param clock_gpio    the gpio connected to the clock line of keyboard
+ * @param data_gpio     the gpio connected to the data line of keyboard
  */
 void keyboard_init(unsigned int clock_gpio, unsigned int data_gpio);
 
@@ -69,9 +66,11 @@ void keyboard_init(unsigned int clock_gpio, unsigned int data_gpio);
  * Ascii character. For a typed key not associated with an Ascii character,
  * such an arrow or function key, the function returns a value >= 0x90. The
  * value assigned to each non-Ascii key is given in the list of `ps2_codes`
- * in the `ps2.h` header file.
+ * in the `ps2_keys.h` header file.
  *
  * This function calls `keyboard_read_event` to receive a key press event.
+ *
+ * @return      Ascii value of typed char or function code for non-ascii key
  */
 unsigned char keyboard_read_next(void);
 
@@ -84,7 +83,7 @@ unsigned char keyboard_read_next(void);
  * A key event is a press or release of a single key. The returned
  * struct includes the key that was pressed or released and the state
  * of the modifier flags.
- * 
+ *
  * Returned key events do not include modifier keys. Pressing shift,
  * for example, will not result in a key event being returned, but if a key
  * that does produce a key event (e.g., 'a') is pressed before the shift
@@ -92,6 +91,8 @@ unsigned char keyboard_read_next(void);
  * key with the shift modifier set.
  *
  * This function calls `keyboard_read_sequence` to read a sequence.
+ *
+ * @return      key_event_t struct containing key event information
  */
 key_event_t keyboard_read_event(void);
 
@@ -108,9 +109,11 @@ key_event_t keyboard_read_event(void);
  *    3 bytes: extended key release
  *
  * The `keycode` field of the returned key_action_t stores the last byte
- * of the sequence. This keycode identifies the PS/2 key that was acted upon.
+ * of the sequence. This keycode identifies the PS2 key that was acted upon.
  *
  * This function calls `keyboard_read_scancode` to read each scancode.
+ *
+ * @return      key_action_t struct containing key action for sequence
  */
 key_action_t keyboard_read_sequence(void);
 
@@ -118,17 +121,10 @@ key_action_t keyboard_read_sequence(void);
 /*
  * `keyboard_read_scancode`: Bottom level keyboard interface.
  *
- * Read (blocking) a single scancode from the PS/2 keyboard.
- * Bits are read on the falling edge of the clock.
+ * Calls into PS2 module to read (blocking) a single scancode from
+ * the PS2 keyboard device
  *
- * Reads 11 bits: 1 start bit, 8 data bits, 1 parity bit, and 1 stop bit
- *
- * Discards and restarts the scancode if:
- *   (lab5) The start bit is incorrect
- *   (assign5) or if parity or stop bit is incorrect
- *
- * Returns the 8 data bits of a well-formed PS/2 scancode.
- * Will not return until it reads a complete and valid scancode.
+ * @return      scancode read from PS2 keyboard
  */
 unsigned char keyboard_read_scancode(void);
 

@@ -48,6 +48,7 @@ extern uint32_t *_RPI_INTERRUPT_VECTOR_BASE;
 // interrupts.h).
 static struct {
     handler_fn_t fn;
+    void *aux_data;
 } handlers[INTERRUPTS_COUNT];
 
 void interrupts_init(void) {
@@ -141,12 +142,13 @@ bool interrupts_is_pending(unsigned int irq_source) {
     return false;
 }
 
-handler_fn_t interrupts_register_handler(unsigned int source, handler_fn_t fn) {
+handler_fn_t interrupts_register_handler(unsigned int source, handler_fn_t fn, void *aux_data) {
     assert(is_basic(source) || (is_shared(source) && is_safe(source)));
     assert(vector_table_is_installed());
 
     handler_fn_t old_handler = handlers[source].fn;
     handlers[source].fn = fn;
+    handlers[source].aux_data = aux_data;
     return old_handler;
 }
 
@@ -182,6 +184,6 @@ void interrupt_dispatch(unsigned int pc);
 void interrupt_dispatch(unsigned int pc) {
     int next_interrupt = interrupts_get_next();
     if (next_interrupt < INTERRUPTS_COUNT) {
-        handlers[next_interrupt].fn(pc);
+        handlers[next_interrupt].fn(pc, handlers[next_interrupt].aux_data);
     }
 }
