@@ -83,13 +83,13 @@ The `make run` target builds and runs the sample application `build/heap_workflo
 ### Backtrace module
 The `backtrace` module provides functionality to gather and print a stack backtrace. A backtrace is a listing of the function call stack beginning at the currently executing  function, showing the sequence of calls that led to this function, and ending at `_cstart`.
 
-Consider a program whose `main` function calls `tokenize`, which then calls `strndup`. A backtrace initiated during `strndup` could look something like this: 
+Consider the simple program whose `main` function calls `diff`, which then calls `abs`. A backtrace initiated during `abs` could look something like this: 
 
-```console
-#0 0x8090 at strndup+40
-#1 0x814c at tokenize+116
-#3 0x8354 at main+24
-#4 0x83c0 at _cstart+48
+```console?prompt=(gdb)
+#0 0x8020 at abs+16
+#1 0x80d8 at diff+20
+#2 0x80fc at main+24
+#3 0x814c at _cstart+40
 ```
 
 Start by reviewing the header file for the module (available as `$CS107E/include/backtrace.h` or [browse backtrace.h here](/header#backtrace)). The functions exported by the `backtrace` module are:
