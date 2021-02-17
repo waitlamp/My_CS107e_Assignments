@@ -176,9 +176,9 @@ have staff around!
 
 Change to the directory `code/my_keyboard`. This is the
 same application as `code/keyboard_test`, except that rather than
-using the reference implementation, you are going to write your own code to read scan codes and sequences.
+using the reference implementation, you are going to write your own code to read scancodes and sequences.
 
-[Browse the headers](/header) for ps2.h and keyboard.h to review the module documentation. The `ps2` module manages the low-level communication with a PS2 device. The `keyboard` module layers on the ps2 module to interpret scan codes into typed keys. During lab, you will implement initial versions of the functions `ps2_read` in `ps2.c` and `keyboard_read_sequence` in `keyboard.c`.
+[Browse the headers](/header) for ps2.h and keyboard.h to review the module documentation. The `ps2` module manages the low-level communication with a PS2 device. The `keyboard` module layers on the ps2 module to interpret scancodes into typed keys. During lab, you will implement initial versions of the functions `ps2_read` in `ps2.c` and `keyboard_read_sequence` in `keyboard.c`.
 
 Open `ps2.c` in your text editor. The function `ps2_new` has already been written for you.  This function configures a new PS2 device for the specified clock and data gpio. In the library modules we have seen thus far, we have used global variables to store data that is shared across the module. A single set of global variables for the ps2 module does not work, as each device needs its own independent settings (i.e clock and data gpio). `ps2_new` creates a new struct to hold the per-device settings. Because that memory needs to be persistent after the function call exits, it allocates memory using your shiny new `malloc` . The rest of the function is setting the clock and data GPIOs as inputs and enabling the internal pull-up resistor so these pins default to high, as expected in the PS/2 protocol.
 

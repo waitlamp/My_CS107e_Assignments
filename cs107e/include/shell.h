@@ -4,12 +4,19 @@
 #include <stddef.h>
 
 /*
- * Interface to the CS107E shell. You implement the beginnings
- * of your shell in assignment 5 and complete it in assignment 7.
+ * Interface to the CS107E shell. Students implement the shell
+ * module in assignment 5.
  *
  * Author: Julie Zelenski <zelenski@cs.stanford.edu>
  * Last update: February 2019
  */
+
+/*
+ * This typedef gives a nickname to the type of function pointer used as the
+ * the shell input function.  A input_fn_t function takes no arguments and
+ * returns a value of type unsigned char.
+ */
+typedef unsigned char (*input_fn_t)(void);
 
 
 /*
@@ -23,15 +30,22 @@ typedef int (*formatted_fn_t)(const char *format, ...) __attribute__((format(pri
 /*
  * `shell_init`: Required initialization for shell
  *
- * One argument is a function pointer `print_fn`. The shell will call
- * this function whenever it wants to output text.  By supplying
- * a different function, you control how/where the output is displayed.
+ * The two arguments are function pointers. The `read_fn` is a function
+ * to read input. The shell calls this function to get the next
+ * character entered by user. The `print_fn` is a function to
+ * print output. The shell calls this function to output formatted
+ * text. The client's choice of read function controls where
+ * shell reads user input and choice of print function controls
+ * where/how shell output is displayed.
  *
  * Example usage:
- *   * `shell_init(printf)`
- *   * `shell_init(console_printf)`
+ *   `shell_init(keyboard_read_next, printf)`
+ *   `shell_init(keyboard_read_next, console_printf)`
+ *
+ * @param read_fn    function to read input char
+ * @param print_fn   function to output formatted text
  */
-void shell_init(formatted_fn_t print_fn);
+void shell_init(input_fn_t read_fn, formatted_fn_t print_fn);
 
 /*
  * `shell_bell`: audio/visual beep
@@ -45,10 +59,10 @@ void shell_bell(void);
 /*
  * `shell_readline`: read function of shell read-eval-print loop
  *
- * Reads a single line of input from the keyboard.
+ * Reads a single line of input from the user.
  *
- * Reads characters typed on the keyboard and stores them into `buf`.
- * Reading stops when the user types Return ('\n') or when `buf` is
+ * Reads characters entered by user and stores them into `buf`.
+ * Reading stops when the user enters Return ('\n') or when `buf` is
  * full (`bufsize` - 1), whichever comes first. A null-terminator is
  * written to the end of the contents in `buf`.
  * The ending newline is discarded (not written to buf).
@@ -56,6 +70,9 @@ void shell_bell(void);
  * When the user types backspace (\b):
  *   If there are any characters currently in the buffer, deletes the last one.
  *   Otherwise, calls `shell_bell`.
+ *
+ * @param buf       destination buffer to store characters
+ * @param bufsize   size of the buffer
  */
 void shell_readline(char buf[], size_t bufsize);
 
@@ -79,6 +96,9 @@ void shell_readline(char buf[], size_t bufsize);
  *
  * Returns the result of the call to the command function, or -1 if no
  * command was executed.
+ *
+ * @param line       command line to parse and execute
+ * @return           result returned by command function or -1 if none
  */
 int shell_evaluate(const char *line);
 

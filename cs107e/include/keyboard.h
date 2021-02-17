@@ -7,7 +7,7 @@
 /*
  * Module to read keys typed on a PS/2 keyboard.
  *
- * You implement this module in assignments 5 and 7.
+ * Students implement this module in assignment 5.
  *
  * Author: Philip Levis <pal@cs.stanford.edu>
  * Author: Julie Zelenski <zelenski@cs.stanford.edu>
@@ -44,7 +44,7 @@ typedef struct {
 #define KEYBOARD_DATA GPIO_PIN4
 
 /*
- * `keyboard_init`: Required initialization for keyboard
+ * `keyboard_init`: Required initialization for keyboard.
  *
  * The keyboard must first be initialized before any key events can be read.
  * The two arguments are the GPIO pins of the PS2 clock and data lines
@@ -121,10 +121,10 @@ key_action_t keyboard_read_sequence(void);
 /*
  * `keyboard_read_scancode`: Bottom level keyboard interface.
  *
- * Calls into PS2 module to read (blocking) a single scancode from
- * the PS2 keyboard device
+ * Calls into ps2 module to read (blocking) a single scancode from
+ * the PS2 keyboard device.
  *
- * @return      scancode read from PS2 keyboard
+ * @return      scancode read from keyboard
  */
 unsigned char keyboard_read_scancode(void);
 
@@ -134,9 +134,10 @@ unsigned char keyboard_read_scancode(void);
  *
  * Change keyboard from default polling behavior to instead configure interrupts
  * for gpio events. After setting keyboard to use interrupts, client must
- * also globally enable interrupts at system level.
+ * also globally enable interrupts at system level. This switchable feature is
+ * specific to reference module. The initial implementation by student is
+ * polling-only (assign5) and later changed to interrupt-only (assign7).
  */
 void keyboard_use_interrupts(void);
-
 
 #endif

@@ -65,7 +65,7 @@ handler_fn_t gpio_interrupts_register_handler(unsigned int pin, handler_fn_t fn,
  * registering a handler, plus as a convenience for uninstalling
  * a handler (replace it with this).
  */
-bool gpio_default_handler(unsigned int pc, void *aux_data);
+void gpio_default_handler(unsigned int pc, void *aux_data);
 
 
 #endif
