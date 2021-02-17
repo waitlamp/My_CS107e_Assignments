@@ -4,4 +4,4 @@ void ref_gpio_interrupts_init(void);
 void ref_gpio_interrupts_enable(void);
 void ref_gpio_interrupts_disable(void);
 handler_fn_t ref_gpio_interrupts_register_handler(unsigned int pin, handler_fn_t fn, void *aux_data);
-bool ref_gpio_default_handler(unsigned int pc, void *aux_data);
+void ref_gpio_default_handler(unsigned int pc, void *aux_data);
