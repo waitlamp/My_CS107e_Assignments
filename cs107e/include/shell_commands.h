@@ -63,7 +63,7 @@ int cmd_help(int argc, const char *argv[]);
  * Ignores all arguments. This function does not return; the program
  * exits and Pi is restarted.
  */
-int cmd_reboot(int argc, const char* argv[]);
+int cmd_reboot(int argc, const char *argv[]);
 
 /*
  * cmd_peek
@@ -89,7 +89,7 @@ int cmd_reboot(int argc, const char* argv[]);
  *
  * Ignores any arguments after the first. Returns 0 on success, 1 on error.
  */
-int cmd_peek(int argc, const char* argv[]);
+int cmd_peek(int argc, const char *argv[]);
 
 /*
  * cmd_poke
@@ -118,7 +118,7 @@ int cmd_peek(int argc, const char* argv[]);
  *
  * Ignores any arguments after the second. Returns 0 on success, 1 on error.
  */
-int cmd_poke(int argc, const char* argv[]);
+int cmd_poke(int argc, const char *argv[]);
 
 
 #endif

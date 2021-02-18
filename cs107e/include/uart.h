@@ -13,18 +13,18 @@
 enum {
     EOT = 4,  // Output end of transmission to indicate uart communication complete
     EOF = -1  // Receive end of file when no more data to read
-
 };
 
 /*
- * Initialize the UART code module. The init function should be called
- * once before any calls to other functions in the uart module. The
- * UART requires exclusive use of GPIO pins 14 (transmit) and 15 (receive).
- * Once the uart is initialized and in use, your code should not
- * muck with these two pins.
- * It is possible, although rare, to call uart_init() again to
- * reset the UART state. A re-initialization will discard any
- * pending data in the send/receive buffer.
+ * Initialize the UART code module. A single call to `uart_init`
+ * should made as part of the program initialization, before any
+ * calls to other uart_ functions.  It is allowed, although unusual,
+ * to call `uart_init` again to reset the UART state. A reset
+ * will discard any pending data in the send/receive buffer.
+ *
+ * The UART requires exclusive use of GPIO pins 14 (transmit)
+ * and 15 (receive).  Once the UART is initialized and in use,
+ * your code should not muck with these two pins.
  */
 void uart_init(void);
 
@@ -51,12 +51,14 @@ int uart_putchar(int ch);
 void uart_flush(void);
 
 /*
- * Returns true if there is a character ready to be read, false otherwise.
+ * Returns whether there is a character in the receive buffer.
+ *
+ * @return      true if character ready to be read, false otherwise
  */
 bool uart_haschar(void);
 
 /*
- * Outputs a string to the serial port by calling uart_putchar()
+ * Outputs a string to the serial port by calling `uart_putchar`
  * on each character.
  *
  * @param str  the string to output
@@ -65,20 +67,20 @@ bool uart_haschar(void);
 int uart_putstring(const char *str);
 
 /*
- * Outputs raw byte to the serial port. uart_send outputs the raw byte
- * with no translation (unlike uart_putchar which adds processing for
+ * Outputs raw byte to the serial port. `uart_send` outputs the raw byte
+ * with no translation (unlike `uart_putchar` which adds processing for
  * converting end-of-line markers). To send text character, use
- * uart_putchar; if raw binary data, use uart_send.
+ * `uart_putchar`; if raw binary data, use `uart_send`.
  *
  * @param byte   the byte to write to the serial port
  */
 void uart_send(unsigned char byte);
 
 /*
- * Obtain raw byte from the serial port. uart_recv returns the raw
+ * Obtain raw byte from the serial port. `uart_recv` returns the raw
  * byte with no translation (unlike uart_getchar which adds processing
  * for converting end-of-line and end-of-file markers). To read text
- * character, use uart_getchar; if raw binary data, use uart_recv.
+ * character, use `uart_getchar`; if raw binary data, use `uart_recv`.
  *
  * @return   the byte read from the serial port
  */

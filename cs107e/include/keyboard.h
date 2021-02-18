@@ -135,7 +135,7 @@ unsigned char keyboard_read_scancode(void);
  * Change keyboard from default polling behavior to instead configure interrupts
  * for gpio events. After setting keyboard to use interrupts, client must
  * also globally enable interrupts at system level. This switchable feature is
- * specific to reference module. The initial implementation by student is
+ * specific to reference module. The student's keyboard module is initially
  * polling-only (assign5) and later changed to interrupt-only (assign7).
  */
 void keyboard_use_interrupts(void);

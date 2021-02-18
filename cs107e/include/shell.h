@@ -14,7 +14,8 @@
 /*
  * This typedef gives a nickname to the type of function pointer used as the
  * the shell input function.  A input_fn_t function takes no arguments and
- * returns a value of type unsigned char.
+ * returns a value of type unsigned char. `keyboard_read_next` is an example
+ * of a possible shell input function.
  */
 typedef unsigned char (*input_fn_t)(void);
 
@@ -23,7 +24,8 @@ typedef unsigned char (*input_fn_t)(void);
  * This typedef gives a nickname to the type of function pointer used as the
  * the shell output function.  A formatted_fn_t function has one fixed
  * parameter (format string) and variable arguments to follow. The return
- * value is of type int.
+ * value is of type int. `printf` is an example of a possible shell
+ *  output function.
  */
 typedef int (*formatted_fn_t)(const char *format, ...) __attribute__((format(printf, 1, 2)));
 
@@ -32,11 +34,11 @@ typedef int (*formatted_fn_t)(const char *format, ...) __attribute__((format(pri
  *
  * The two arguments are function pointers. The `read_fn` is a function
  * to read input. The shell calls this function to get the next
- * character entered by user. The `print_fn` is a function to
- * print output. The shell calls this function to output formatted
- * text. The client's choice of read function controls where
- * shell reads user input and choice of print function controls
- * where/how shell output is displayed.
+ * input character. The `print_fn` is a function to print output.
+ * The shell calls this function to output formatted text.
+ * The client's choice of read function controls where shell reads
+ * input and cclient's hoice of print function controls where shell
+ * output is displayed.
  *
  * Example usage:
  *   `shell_init(keyboard_read_next, printf)`
