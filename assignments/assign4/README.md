@@ -258,7 +258,7 @@ Below we offer our suggestions for a step-by-step plan  of the tasks before you.
 
 5. **Upgrade `malloc()` to search freed blocks and reuse/split.**
       
-   Now change `malloc` to recycle a free block if possible. Walk the heap by traversing the implicit list of headers, and look for a free block of an appropriate size. A block that exactly matched the requested size would be ideal, but searching the entire heap to find that best fit block can be time-consuming. A quicker approach is to go with _first fit_, i.e. grab the first block found that is large enough. If this block satisfies the request with enough excess leftover to form a second block, split of that remainder into its own free block.
+   Now change `malloc` to recycle a free block if possible. Walk the heap by traversing the implicit list of headers, and look for a free block of an appropriate size. A block that exactly matched the requested size would be ideal, but searching the entire heap to find that best fit block can be time-consuming. A quicker approach is to go with _first fit_, i.e. grab the first block found that is large enough. If this block satisfies the request with enough excess leftover to form a non-empty second block, split that remainder into its own free block.
    
    If no recyclable block is found, then just extend the heap and place the new block at the end as before.
    
