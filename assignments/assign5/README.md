@@ -150,6 +150,9 @@ The return value from `ps2_read` is the 8 data bits from a well-formed packet. I
 
 In a similar vein, a dropped bit or discarded partial read could cause your driver to become de-synchronized. When that happens your driver can get stuck, trying to read a scancode byte starting mid-packet and waiting for further bits to arrive that aren't forthcoming. One way to resynchronize is using a simple timeout reset. Use your `timer` module to note if the current clock edge occurred more than 3ms after the previous one, and if so, reset the state and assume the current clock edge is for a start bit. This small effort provides additional robustness to combat flaky connections and hardware blips.
 
+The `struct ps2_device_t` at the top of the `ps2.c` is used to track the state associated with a given PS2 device. The struct defined in the starter code has just two fields (clock and data gpios). If you encounter a need to track additional state for the device, simply add new fields to the struct.
+
+
 > **Timing is everything!** The timing of the PS/2 protocol has to be strictly followed. The keyboard sends the bits rapid-fire and you must catch each bit as it arrives. Once your driver sees the falling clock edge for the start bit, it needs to stay on task to read each subsequent bit.  There is not time between clock edges to complete a call to a complex function like printf.  Save any debug printing for after you read the entire sequence.
 {: .callout-warning}
 
@@ -330,11 +333,11 @@ error: no such command `please`.
 
     This command takes one argument: `[address]`.  It prints the 4-byte value stored at memory address `address`. 
 
-    Example (assume address 0xFFFC contains the number 0x12345678):
+    Try using peek to get the contents at address `0x8000`. This memory location stores the first instruction of your program. The first instruction of the start sequence is `mov sp, #0x8000000`, encoded as `e3a0d302`.
 
     ```console?prompt=Pi>
-Pi> peek 0xFFFC
-0x0000fffc:  12345678
+Pi> peek 0x8000
+0x00008000:   e3a0d302
     ```
    Hint: the `strtonum` function from your strings module is handy for converting strings to numbers. If the address argument is missing or cannot be converted, `peek` prints an error message:
 
@@ -351,35 +354,37 @@ error: peek cannot convert 'bob'
 Pi> peek 7
 error: peek address must be 4-byte aligned
     ```
+
+    Peek displays the contents in memory at an address. To test the peek command, use peek on a location in the text or data section to see the encoded instruction or value of a global variable. Use `arm-none-eabi-nm build/uart_shell.elf` to get the symbol address to know which address to peek. You can also peek at the location for the system timer or gpio FSEL or LEV registers to read values of a peripheral register.
+
 + **poke**
 
     This command takes two arguments: `[address] [value]`.  The poke function stores `value` into the memory at `address`.
 
-    Example (assume 0xFFFC currently contains the number 0x12345678):
+    Here is an example of using poke to write to at address `0x8000`. (This memory location stores the first instruction of your program. Since that code has already executed and will not be re-entered, we can overwrite it without causing problems for the executing program):
 
     ```console?prompt=Pi>
-Pi> peek 0xFFFC
-0x0000fffc:  123456789
-Pi> poke 0xFFFC 1
-Pi> peek 0xFFFC
-0x0000fffc:  00000001
-Pi> poke 0xFFFC 0
-Pi> peek 0xFFFC
-0x0000fffc:  00000000
+Pi> peek 0x8000
+0x00008000:   e3a0d302
+Pi> poke 0x8000 1
+Pi> peek 0x8000
+0x00008000:  00000001
+Pi> poke 0x8000 0
+Pi> peek 0x8000
+0x00008000:  00000000
     ```
      `strtonum` will again be handy.  If either argument is missing or cannot be converted, `poke` prints an error message:
 
     ```console?prompt=Pi>
-Pi> poke 0xFFFC
+Pi> poke 0x8000
 error: poke expects 2 arguments [address] [value]
 Pi> poke fred 5
 error: poke cannot convert 'fred'
-Pi> poke 0xFFFC wilma
+Pi> poke 0x8000 wilma
 error: poke cannot convert 'wilma'
     ```
 
-    You can now turn a GPIO
-    pin on and off by entering shell commands!
+    You can now turn a GPIO pin on and off by entering shell commands!
 
     ```console?prompt=Pi>
 Pi> poke 0x20200010 0x200000
@@ -391,6 +396,8 @@ Pi> poke 0x2020002C 0x8000
     to see what is stored at these addresses. What do the above
     commands do? Hint: the ACT LED on the Pi
     is GPIO pin 47.
+
+  Take care when testing poke. Unlike peek which can read from any address without causing harm, poke is writing to the address and changing the contents of live memory. Depending on what you are changing, this could interfere with the executing program. Before poking an address, figure out what is stored there and what effect your update will have.
 
     Check out the
     [Wikipedia article on peek and poke](https://en.wikipedia.org/wiki/PEEK_and_POKE) if you're curious.
@@ -439,6 +446,8 @@ cs107e rocks
     If you didn't already know that your regular shell includes editing and history features like these, now is a great time to pick up a few new tricks to help boost your productivity!
 
 What other neat tricks can you teach your Pi now that you have a an interactive shell?  Our reference shell throws in a few cute freebies such as `gpio` to turn on and off gpio pins and the simple calculator from lab5. If you wrote the disassemble extension for assign3 (or you want to do it now!), a nifty option is to integrate a `disassemble [addr]` command into your shell. The fun never stops!
+
+In your `assign5-readme.md`, list the editing features and shell commands supported by your fancy extended shell so we'll know how to try it out when grading.
 
 ## Submitting
 
