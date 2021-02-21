@@ -397,12 +397,12 @@ Pi> poke 0x2020002C 0x8000
     commands do? Hint: the ACT LED on the Pi
     is GPIO pin 47.
 
-  Take care when testing poke. Unlike peek which can read from any address without causing harm, poke is writing to the address and changing the contents of live memory. Depending on what you are changing, this could interfere with the executing program. Before poking an address, figure out what is stored there and what effect your update will have.
+  __Take care when testing poke__. Unlike peek which can read from any address without causing harm, poke is writing to the address and changing the contents of live memory. Depending on what you are changing, this could interfere with the executing program. Before poking an address, figure out what is stored there and what effect your update will have. Once you have confirmed that poke works for select addresses, it is reasonable to extrapolate that it will also handle the rest without testing on every single address from 0 to 2^32 😅
 
     Check out the
-    [Wikipedia article on peek and poke](https://en.wikipedia.org/wiki/PEEK_and_POKE) if you're curious.
+    [Wikipedia article on peek and poke](https://en.wikipedia.org/wiki/PEEK_and_POKE) if you're curious to learn about their historical origins.
 
-> Be sure that all your output goes through `shell_prinff` and please try to make the output of your commands __exactly match__ the format and wording of the output and error messages given above. We know this request is nitpicky, but this enables automated comparison of shell output which translates to fewer staff hours going into manual grading and more time to hang out with y'all in office hours.
+> For all of Your shell commands, be sure that all your output goes through `shell_printf` and please try to make the output __exactly match__ the format and wording of the output and error messages given above. We know this request is nitpicky, but this enables automated comparison of shell output which translates to fewer staff hours going into manual grading and more time to hang out with y'all in office hours.
 > {: .callout-success}
 
 ## Testing and debugging
