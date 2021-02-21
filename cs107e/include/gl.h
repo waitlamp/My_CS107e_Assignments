@@ -93,10 +93,10 @@ color_t gl_color(unsigned char r, unsigned char g, unsigned char b);
 void gl_clear(color_t c);
 
 /*
- * If in double-buffered mode, all gl drawing takes place off-screen
- * and a call to `gl_swap_buffer` is required to bring the drawing on-screen.
- * (Swap action exchanges the front and draw buffers of the virtual
- * framebuffer).
+ * If in double-buffered mode, all gl drawing takes place in the
+ * off-screen buffer and updated drawing is not brought on-screen until
+ * a call is made to `gl_swap_buffer` to exchange the on-screen
+ * and off-screen buffers.
  *
  * If not in double-buffer mode, all drawing takes place on-screen and
  * the `gl_swap_buffer` function has no effect.
@@ -128,7 +128,8 @@ color_t gl_read_pixel(int x, int y);
  * Draw a single character at location x,y in color c.
  * Only those pixels of the character that lie within the bounds
  * of the framebuffer are drawn. Any pixel that lies outside is
- * clipped (i.e. not drawn).
+ * clipped (i.e. not drawn). Only the "on" pixels of the character
+ * are drawn, all "off" pixels are left as-is.
  *
  * @param x   the x location of the upper left corner of the character glyph
  * @param y   the y location of the upper left corner of the character glyph
@@ -142,7 +143,8 @@ void gl_draw_char(int x, int y, int ch, color_t c);
  * Draw a string at location x,y in color c. The characters are drawn
  * left to right in a single line. Only the pixels of the characters
  * that lie within the bounds of the framebuffer are drawn. Any pixel
- * that lies outside is clipped (i.e. not drawn).
+ * that lies outside is clipped (i.e. not drawn). Only the "on" pixels of
+ * the characters are drawn, all "off" pixels are left as-is.
  *
  * @param x    the x location of the upper left corner of the first char of string
  * @param y    the y location of the upper left corner of the first char of string

@@ -11,15 +11,18 @@
  * Date: 3/24/16
  */
 
+#include "gl.h"
 
 /*
  * Initialize the console. The console text begins empty and
  * the cursor is in the home position (upper left corner).
  *
- * @param nrows the requested number of rows in characters
- * @param ncols the requested number of columns in characters
+ * @param nrows       the requested number of rows in characters
+ * @param ncols       the requested number of columns in characters
+ * @param foreground  foreground color used for text
+ * @param background  background color
  */
-void console_init(unsigned int nrows, unsigned int ncols);
+void console_init(unsigned int nrows, unsigned int ncols, color_t foreground, color_t background);
 
 /*
  * Clear all console text and move the cursor to the home
@@ -37,7 +40,10 @@ void console_clear(void);
  * '\r' :  carriage return (move cursor to first position in the same line)
  * '\f' :  form feed (clear contents and move cursor to home position)
  *
- * @return the number of characters written to the console
+ * @param format    format for output string. May contain ordinary characters
+ *                  and format conversions
+ * @param ...       variable arguments to be converted
+ * @return          count of characters written to the console
  */
 int console_printf(const char *format, ...) __attribute__((format(printf, 1, 2)));
 

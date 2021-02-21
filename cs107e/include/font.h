@@ -29,11 +29,14 @@ typedef struct  {
 
 /*
  * Get the current font.
+ *
+ * @return  pointer to the current font in use
  */
 const font_t *font_get_font(void);
 
 /*
  * Set the current font.
+ * @param f    pointer to the font to use
  */
 void font_set_font(font_t *f);
 
@@ -52,8 +55,9 @@ size_t font_get_height(void);
 size_t font_get_width(void);
 
 /*
- * Get the total number of bytes needed to store a character
- * image. This is equal to character height * character width.
+ * Get the total number of bytes needed to store the image
+ * for a single character. This is equal to the product of
+ * (character height * character width).
  *
  * @return    the size in bytes
  */
