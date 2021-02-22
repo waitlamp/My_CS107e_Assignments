@@ -36,15 +36,21 @@ typedef struct {
 static volatile mailbox_t *mailbox = (volatile mailbox_t *)MAILBOX_BASE;
 
 
-void mailbox_write(unsigned int channel, unsigned int addr) {
+bool mailbox_request(unsigned int channel, unsigned int addr) {
+    if (!mailbox_write(channel, addr))
+        return false;
+    return (mailbox_read(channel) == 0); // returned data is 0 on success
+}
+
+bool mailbox_write(unsigned int channel, unsigned int addr) {
     // mailbox has a maximum of 16 channels
     if (channel >= MAILBOX_MAXCHANNEL) {
-        return;
+        return false;
     }
 
     // addr must be a multiple of 16
     if (addr & 0xF) {
-        return;
+        return false;
     }
 
     // wait until mailbox is not full ...
@@ -56,6 +62,7 @@ void mailbox_write(unsigned int channel, unsigned int addr) {
     // addr is a multiple of 16, so the low 4 bits are zeros
     // 4-bit channel number is stuffed into those low bits
     mailbox->write = addr + channel;
+    return true;
 }
 
 unsigned int mailbox_read(unsigned int channel) {

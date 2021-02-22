@@ -11,6 +11,8 @@
  * Date: Jan 31 2016
  */
 
+#include <stdbool.h>
+
 /*
  * The maximum number of channels on the Pi
  */
@@ -34,16 +36,35 @@ typedef enum {
     MAILBOX_TAGS_VC_TO_ARM,
 } mailbox_channel_t;
 
+
 /*
- * Write a mailbox message to `channel`
+ * Send a mailbox request and confirm response. Uses
+ * `mailbox_write` to send `addr` to `channel` and `mailbox_read`
+ * to verify response.
+ *
+ * @param channel send request to `channel`
+ * @param addr    `addr` is the address of the message data to send. This address
+ *                must be a multiple of 16 (i.e. lower 4 bits are 0).
+ *                GPU_NOCACHE will be added to the address so that the contents
+ *                of the message is not cached by the GPU.
+ * @return        true if request successfully processed, false otherwise
+ *                returns false if channel or addr is invalid
+ */
+bool mailbox_request(unsigned int channel, unsigned int addr);
+
+/*
+ * Write a mailbox message to `channel`. After writing a message,
+ * must call `mailbox_read` to receive response from GPU.
  *
  * @param channel send the message to `channel`
  * @param addr    `addr` is the address of the message data to send. This address
  *                must be a multiple of 16 (i.e. lower 4 bits are 0).
  *                GPU_NOCACHE will be added to the address so that the contents
  *                of the message is not cached by the GPU.
+ * @return        true if message successfully sent, false otherwise
+ *                returns false if channel or addr is invalid
  */
-void mailbox_write(unsigned int channel, unsigned int addr);
+bool mailbox_write(unsigned int channel, unsigned int addr);
 
 /*
  * Receive a mailbox message for `channel`.
@@ -53,5 +74,8 @@ void mailbox_write(unsigned int channel, unsigned int addr);
  *
  */
 unsigned int mailbox_read(unsigned int channel);
+
+
+
 
 #endif
