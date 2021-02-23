@@ -134,10 +134,10 @@ color_t gl_read_pixel(unsigned int x, unsigned int y);
  * @param x   the x location of the upper left corner of the character glyph
  * @param y   the y location of the upper left corner of the character glyph
  * @param ch  the character to be drawn, e.g. 'a'. If this character has no glyph
- *            in the current font, nothing is drawn (refer to font_get_char())
+ *            in the current font, nothing is drawn (refer to font_get_glyph())
  * @param c   the color of the character
  */
-void gl_draw_char(unsigned int x, unsigned int y, int ch, color_t c);
+void gl_draw_char(unsigned int x, unsigned int y, char ch, color_t c);
 
 /*
  * Draw a string at location x,y in color c. The characters are drawn
@@ -156,14 +156,14 @@ void gl_draw_string(unsigned int x, unsigned int y, const char* str, color_t c);
 /*
  * Get the height in pixels of a single character glyph.
  *
- * @return the character height in pixels
+ * @return the height of character glyph in pixels
  */
 unsigned int gl_get_char_height(void);
 
 /*
  * Get the width in pixels of a single character glyph.
  *
- * @return the character width in pixels
+ * @return the width of character glyph in pixels
  */
 unsigned int gl_get_char_width(void);
 

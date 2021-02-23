@@ -18,24 +18,24 @@ const font_t *font_get_font(void) {
     return g_font;
 }
 
-size_t font_get_height(void) {
-    return g_font->char_height;
+size_t font_get_glyph_height(void) {
+    return g_font->glyph_height;
 }
 
-size_t font_get_width(void) {
-    return g_font->char_width;
+size_t font_get_glyph_width(void) {
+    return g_font->glyph_width;
 }
 
-size_t font_get_size(void) {
-    return font_get_width() * font_get_height();
+size_t font_get_glyph_size(void) {
+    return font_get_glyph_width() * font_get_glyph_height();
 }
 
-/* Extract pixels for requested character from font bitmap.
- * Translate bitmap form into array of bytes, one byte per pixel.
+/* Extract glyph pixels for requested character from font bitmap.
+ * Read bits from font bitmap and store into array of bytes, one byte per pixel.
  * Use 0xff byte for on pixel, 0x0 for off pixel.
  */
-bool font_get_char(char ch, unsigned char buf[], size_t buflen) {
-    if ((ch != ' ' && (ch < g_font->first_char || ch > g_font->last_char)) || (buflen != font_get_size())) {
+bool font_get_glyph(char ch, unsigned char buf[], size_t buflen) {
+    if ((ch != ' ' && (ch < g_font->first_char || ch > g_font->last_char)) || (buflen != font_get_glyph_size())) {
         return false;
     }
 
@@ -45,11 +45,11 @@ bool font_get_char(char ch, unsigned char buf[], size_t buflen) {
         }
     } else {
         int index = 0;
-        int nbits_in_row = (g_font->last_char - g_font->first_char + 1) * font_get_width();
+        int nbits_in_row = (g_font->last_char - g_font->first_char + 1) * font_get_glyph_width();
         int x_offset = (ch - g_font->first_char);
-        for (int y = 0; y < font_get_height(); y++) {
-            for (int x = 0; x < font_get_width(); x++) {
-                int bit_index = y * nbits_in_row + x_offset * font_get_width() + x;
+        for (int y = 0; y < font_get_glyph_height(); y++) {
+            for (int x = 0; x < font_get_glyph_width(); x++) {
+                int bit_index = y * nbits_in_row + x_offset * font_get_glyph_width() + x;
                 int bit_start = bit_index / 8;
                 int bit_offset = bit_index % 8;
                 // extract single bit for this pixel from bitmap
@@ -73,7 +73,7 @@ bool font_get_char(char ch, unsigned char buf[], size_t buflen) {
  */
 static const font_t font_default = {
     .first_char = 0x21, .last_char = 0x7F,
-    .char_width = 14, .char_height = 16,
+    .glyph_width = 14, .glyph_height = 16,
     .pixel_data = {
         0x03, 0x00, 0x33, 0x00, 0xcc, 0x00, 0xc0, 0x3c,
         0x00, 0x30, 0x00, 0x30, 0x00, 0xc0, 0x03, 0x00,

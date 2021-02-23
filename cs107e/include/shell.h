@@ -64,10 +64,12 @@ void shell_bell(void);
  * Reads a single line of input from the user.
  *
  * Reads characters entered by user and stores them into `buf`.
- * Reading stops when the user enters Return ('\n') or when `buf` is
- * full (`bufsize` - 1), whichever comes first. A null-terminator is
- * written to the end of the contents in `buf`.
- * The ending newline is discarded (not written to buf).
+ * Updates display to show current line as user edits.
+ * Stops reading when user enters Return ('\n'). The ending newline
+ * is discarded (not written to `buf`).  If user enters more
+ * characters than fit in `buf` (`bufsize` - 1), those excess characters
+ * are rejected (call `shell_bell`) and not written to `buf`.  A
+ * null-terminator is written to the end of the contents in `buf`.
  *
  * When the user types backspace (\b):
  *   If there are any characters currently in the buffer, deletes the last one.

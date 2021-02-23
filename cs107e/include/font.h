@@ -5,15 +5,18 @@
 #include <stddef.h>
 
 /*
- * Functions that provide bitmaps of ASCII characters.
+ * This module provides a font. Each ASCII character has an
+ * associated glyph. A glyph is a bitmap image for drawing
+ * the character.
  *
- * Each character is represented as an image that has
- * font_get_height() rows and font_get_width() columns.
- * Each pixel of the image is represented as one byte.
+ * The font is fixed width; every glyph has the same width and
+ * same height. A glyph is an image with font_get_glyph_height() rows
+ * and font_get_glyph_width() columns.
+ * Each pixel of the glyph image is represented as one byte.
  * The byte for an "on" pixel is 0xFF, and the byte for
  * "off" pixel is 0x00.
  *
- * You do not have to implement this interface: the source code for
+ * Students do not implement this module: the source code for
  * its implementation is provided as part of assignment 6.
  *
  * Author: Philip Levis <pal@cs.stanford.edu>
@@ -22,7 +25,7 @@
 
 typedef struct  {
     unsigned char first_char, last_char;
-    size_t char_width, char_height;
+    size_t glyph_width, glyph_height;
     unsigned char pixel_data[];
 } font_t;
 
@@ -36,48 +39,48 @@ const font_t *font_get_font(void);
 
 /*
  * Set the current font.
+ *
  * @param f    pointer to the font to use
  */
 void font_set_font(font_t *f);
 
 /*
- * Get the height in pixels of a character.
+ * Get the height in pixels of each glyph in this font.
  *
- * @return    the character height in pixels
+ * @return    the height in pixels
  */
-size_t font_get_height(void);
+size_t font_get_glyph_height(void);
 
 /*
- * Get the width in pixels of a character.
+ * Get the width in pixels of each glyph in this font.
  *
- * @return    the character width in pixels
+ * @return    the width in pixels
  */
-size_t font_get_width(void);
+size_t font_get_glyph_width(void);
 
 /*
- * Get the total number of bytes needed to store the image
- * for a single character. This is equal to the product of
- * (character height * character width).
+ * Get the total number of bytes needed to store the glyph image
+ * for one character. This is equal to the product of
+ * (glyph height * glyph width).
  *
- * @return    the size in bytes
+ * @return    the size in bytes of a glyph image
  */
-size_t font_get_size(void);
+size_t font_get_glyph_size(void);
 
 /*
- * Fill in the image of character `ch` into the buffer `buf`.
- * `buf` is an array of bytes of length width * height (see
- * font_get_size(). Each 'on' pixel has value 0xff, 'off' pixel has
- * value 0x0.
+ * Fill in the glyph image for character `ch` into `buf`.
+ * `buf` is an array of bytes of length font_get_glyph_size().
+ * Each 'on' pixel has value 0xff, 'off' pixel has value 0x0.
  *
  * @param ch    the requested character
- * @param buf   the buffer in which to place the image of the character.
+ * @param buf   the buffer in which to place the glyph image
  * @param buflen the length of `buf`.
- *              `buflen` should be equal to value returned by font_get_size().
+ *              `buflen` should be equal to value returned by font_get_glyph_size()
  *
  * @return      returns true when successfully filled `buf`, false otherwise.
  *              Failure is when `ch` is not available in this font or `buflen`
- *              does not equal the value returned by font_get_size()
+ *              does not equal the value returned by font_get_glyph_size()
  */
-bool font_get_char(char ch, unsigned char buf[], size_t buflen);
+bool font_get_glyph(char ch, unsigned char buf[], size_t buflen);
 
 #endif

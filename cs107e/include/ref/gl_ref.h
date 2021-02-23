@@ -8,7 +8,7 @@ void ref_gl_clear(color_t c);
 void ref_gl_swap_buffer(void);
 void ref_gl_draw_pixel(unsigned int x, unsigned int y, color_t c);
 color_t ref_gl_read_pixel(unsigned int x, unsigned int y);
-void ref_gl_draw_char(unsigned int x, unsigned int y, int ch, color_t c);
+void ref_gl_draw_char(unsigned int x, unsigned int y, char ch, color_t c);
 void ref_gl_draw_string(unsigned int x, unsigned int y, const char* str, color_t c);
 unsigned int ref_gl_get_char_height(void);
 unsigned int ref_gl_get_char_width(void);
