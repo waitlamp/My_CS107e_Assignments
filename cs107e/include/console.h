@@ -37,8 +37,7 @@ void console_clear(void);
  *
  * '\n' :  newline (move cursor down to the beginning of next line)
  * '\b' :  backspace (move cursor backwards one position)
- * '\r' :  carriage return (move cursor to first position in the same line)
- * '\f' :  form feed (clear contents and move cursor to home position)
+ * '\f' :  form feed (clear all contents and move cursor to home position)
  *
  * @param format    format for output string. May contain ordinary characters
  *                  and format conversions
