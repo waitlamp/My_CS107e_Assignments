@@ -5,7 +5,10 @@
  * Last modified: May 8, 2020
  */
 #include "assert.h"
+#include "bits.h"
 #include "interrupts.h"
+#include <stdbool.h>
+#include <stddef.h>
 #include <stdint.h>
 
 // http://xinu.mscs.mu.edu/BCM2835_Interrupt_Controller
@@ -51,7 +54,14 @@ static struct {
     void *aux_data;
 } handlers[INTERRUPTS_COUNT];
 
+static bool interrupts_initialized = false;
+
 void interrupts_init(void) {
+    // init should happen once and only once
+    // A re-init would disable all previously enabled sources
+    // raise error rather than do that.
+    assert(!interrupts_initialized);
+
     // disable interrupt generation system-wide
     interrupts_global_disable();
     // disable all sources
@@ -68,6 +78,7 @@ void interrupts_init(void) {
     for (int i = 0; i < n; i++) {
         dst[i] = src[i];
     }
+    interrupts_initialized = true;
 }
 
 // verify vector table correctly installed, i.e. interrupts_init() was
@@ -87,74 +98,54 @@ static bool is_shared(unsigned int irq_source) {
     return irq_source >= INTERRUPTS_SHARED_START && irq_source < INTERRUPTS_SHARED_END;
 }
 
-bool interrupts_enable_source(unsigned int irq_source) {
+// Returns whether a given IRQ is safe to be used.
+// From the BCM2835 manual 7.5: "the table above has many empty entries.
+// These should not be enabled as they will interfere with the GPU operation."
+// Returns whether the irq is a non-empty entry, and thus safe to be enabled.
+static bool is_safe(unsigned int irq_source) {
+    unsigned long long bit = 1ULL << irq_source;
+    return ((bit & irq_safe_mask) != 0);
+}
+
+static void interrupts_enable_source(unsigned int irq_source) {
     if (is_basic(irq_source)) {
         unsigned int shift = irq_source - INTERRUPTS_BASIC_BASE;
         interrupt->enable_basic |= 1 << shift;
-        return true;
     } else if (is_shared(irq_source)) {
         unsigned int bank = irq_source / 32;
         unsigned int shift = irq_source % 32;
         interrupt->enable[bank] |= 1 << shift;
-        return true;
-    } else {
-        return false;
     }
 }
 
-bool interrupts_disable_source(unsigned int irq_source) {
+static void interrupts_disable_source(unsigned int irq_source) {
     if (is_basic(irq_source)) {
         unsigned int shift = irq_source - INTERRUPTS_BASIC_BASE;
         interrupt->disable_basic |= 1 << shift;
-        return true;
     } else if (is_shared(irq_source)) {
         unsigned int bank = irq_source / 32;
         unsigned int shift = irq_source % 32;
         interrupt->disable[bank] |= 1 << shift;
-        return true;
-    } else {
-        return false;
-    }
+     }
 }
 
-// Returns whether a given IRQ is safe to be used.
-// From the BCM2835 manual 7.5: the table above has many empty entries.
-// These should not be enabled as they will interfere with the GPU operation."
-// Returns whether the irq is a not-empty entry.
-static bool is_safe(unsigned int irq) {
-    unsigned long long bit = 1ULL << irq;
-    return ((bit & irq_safe_mask) != 0);
-}
-
-
-// Returns true if there is a pending event for the given source, false
-// otherwise. Each source assigned a particular bit in one of the pending
-// registers
-bool interrupts_is_pending(unsigned int irq_source) {
-    if (is_basic(irq_source)) {
-        unsigned int shift = irq_source - INTERRUPTS_BASIC_BASE;
-        return interrupt->pending_basic & (1 << shift);
-    } else if (is_shared(irq_source) && is_safe(irq_source)) {
-        unsigned int bank = irq_source / 32;
-        unsigned int shift = irq_source % 32;
-        return interrupt->pending[bank] & (1 << shift);
-    }
-    return false;
-}
-
-handler_fn_t interrupts_register_handler(unsigned int source, handler_fn_t fn, void *aux_data) {
-    assert(is_basic(source) || (is_shared(source) && is_safe(source)));
+void interrupts_register_handler(unsigned int source, handler_fn_t fn, void *aux_data) {
+    assert(interrupts_initialized);
     assert(vector_table_is_installed());
+    assert(is_basic(source) || (is_shared(source) && is_safe(source)));
 
-    handler_fn_t old_handler = handlers[source].fn;
-    handlers[source].fn = fn;
-    handlers[source].aux_data = aux_data;
-    return old_handler;
+    if (fn) {
+        handlers[source].fn = fn;
+        handlers[source].aux_data = aux_data;
+        interrupts_enable_source(source);
+    } else {
+        interrupts_disable_source(source);
+        handlers[source].fn = NULL;
+        handlers[source].aux_data = NULL;
+    }
 }
 
-extern unsigned int count_leading_zeroes(unsigned int val); // Defined in assembly
-
-static int interrupts_get_next(void) {
+static int get_next_source(void) {
     unsigned int basic_zeroes = count_leading_zeroes(interrupt->pending_basic);
     unsigned int pending0_zeroes = count_leading_zeroes(interrupt->pending[0]);
     unsigned int pending1_zeroes = count_leading_zeroes(interrupt->pending[1]);
@@ -180,10 +171,10 @@ static int interrupts_get_next(void) {
 // function and is not declared or documented in the interface.
 void interrupt_dispatch(unsigned int pc);
 
-
 void interrupt_dispatch(unsigned int pc) {
-    int next_interrupt = interrupts_get_next();
-    if (next_interrupt < INTERRUPTS_COUNT) {
+    int next_interrupt = get_next_source();
+    if (next_interrupt < INTERRUPTS_COUNT && handlers[next_interrupt].fn) {
         handlers[next_interrupt].fn(pc, handlers[next_interrupt].aux_data);
     }
 }
+

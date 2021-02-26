@@ -27,6 +27,6 @@ run: $(NAME).bin
 clean:
 	rm -f *.o *.bin *.elf *.list
 
-.PHONY: all clean
+.PHONY: all clean run
 
 .PRECIOUS: %.o %.elf

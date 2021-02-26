@@ -10,8 +10,9 @@
 #define assert(EXPR) \
    do { \
         if (!(EXPR)) { \
-            uart_putstring("File " __FILE__ ", line " AS_STRING(__LINE__)  \
-                           ": Assertion '" #EXPR "' failed.\n\04"); \
+            uart_putstring("File " __FILE__ ", line " AS_STRING(__LINE__) ", function "); \
+            uart_putstring(__func__); \
+            uart_putstring("() : Assertion '" #EXPR "' failed.\n\04"); \
             pi_abort(); \
         } \
    } while (0);

@@ -61,7 +61,7 @@ bool mailbox_write(unsigned int channel, unsigned int addr) {
 
     // addr is a multiple of 16, so the low 4 bits are zeros
     // 4-bit channel number is stuffed into those low bits
-    mailbox->write = addr + channel;
+    mailbox->write = addr | channel;
     return true;
 }
 

@@ -5,16 +5,14 @@
 
 volatile int gCount = 0;
 
-bool alarm(unsigned pc) 
+void alarm(unsigned int pc, void *unused)
 {
     if (armtimer_check_and_clear_interrupt()) {
         gCount++;
-        return true;
     }
-    return false;
 }
 
-void main(void) 
+void main(void)
 {
     uart_init();
     interrupts_init();
@@ -22,9 +20,8 @@ void main(void)
     armtimer_init(1000000); // 1s
     armtimer_enable();
     armtimer_enable_interrupts();
-    interrupts_register_handler(INTERRUPTS_BASIC_ARM_TIMER_IRQ, alarm);
-    interrupts_enable_source(INTERRUPTS_BASIC_ARM_TIMER_IRQ);
-    interrupts_global_enable(); 
+    interrupts_register_handler(INTERRUPTS_BASIC_ARM_TIMER_IRQ, alarm, NULL);
+    interrupts_global_enable();
 
 	int nflips = 0;
 	while (1) {
