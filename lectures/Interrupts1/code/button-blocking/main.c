@@ -30,9 +30,8 @@ void main(void)
 {
     gpio_init();
     gpio_set_input(BUTTON_GPIO);
-    gpio_enable_event_detection(BUTTON_GPIO, GPIO_DETECT_FALLING_EDGE);
-
     console_init(NROWS, NCOLS, GL_GREEN, GL_BLACK);
+
     while (1) {
         console_printf("\n\nWaiting for button click...\n");
         wait_for_press();
