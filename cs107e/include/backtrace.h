@@ -6,6 +6,8 @@
 /*
  * Functions for harvesting a debugging backtrace from the stack.
  *
+ * Students implement this module in assignment 4.
+ *
  * Author: Julie Zelenski <zelenski@cs.stanford.edu>
  * Mon Feb  5 20:02:27 PST 2018
  */
@@ -36,7 +38,9 @@ typedef struct {
 
 
 /*
- * backtrace() gathers a backtrace for the calling program and writes the
+ * `backtrace`
+ *
+ * Gathers a backtrace for the calling program and writes the
  * call stack information into the array pointed to by `f`.
  *
  * A backtrace is the sequence of currently active function calls. Each element
@@ -56,6 +60,8 @@ typedef struct {
 int backtrace(frame_t f[], int max_frames);
 
 /*
+ * `print_frames`
+ *
  * Given an array of frames that has previously been filled in by a call to
  * backtrace(), `print_frames` prints the backtrace information, one line per
  * frame, using this format:
@@ -70,12 +76,16 @@ int backtrace(frame_t f[], int max_frames);
 void print_frames(frame_t f[], int n);
 
 /*
+ * `print_backtrace`
+ *
  * Convenience function that calls `backtrace` and `print_frames` to display
  * stack frames of currently executing program.
  */
 void print_backtrace(void);
 
 /*
+ * `name_of`
+ *
  * The argument to `name_of` is the numeric address in memory of the first
  * instruction of a function and `name_of` returns the name of that
  * function.

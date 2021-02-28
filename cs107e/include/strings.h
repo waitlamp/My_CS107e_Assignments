@@ -1,9 +1,19 @@
 #ifndef STRINGS_H
 #define STRINGS_H
+/*
+ * Functions for handling strings.
+ *
+ * Students implement this module in assignment 3
+ *
+ * Author: Julie Zelenski <zelenski@cs.stanford.edu>
+ * Sat Jan 27 11:27:13 PST 2018
+ */
 
 #include <stddef.h>
 
 /*
+ * `memset`
+ *
  * Write `n` bytes of value `val` to the memory area `dst`.
  * Due to historical artifact, `val` parameter has type `int` even
  * though the argument is treated as `unsigned char`. The
@@ -17,6 +27,8 @@
 void *memset(void *dst, int val, size_t n);
 
 /*
+ * `memcpy`
+ *
  * Copy `n` bytes of data from the memory area `src` to the
  * memory area `dst`. It is a client error to call memcpy on
  * `dst` and `src` areas that overlap. In such a case,
@@ -30,6 +42,8 @@ void *memset(void *dst, int val, size_t n);
 void *memcpy(void *dst, const void *src, size_t n);
 
 /*
+ * `strlen`
+ *
  * Compute the length of string `str`.
  *
  * @param str   null-terminated string
@@ -38,6 +52,8 @@ void *memcpy(void *dst, const void *src, size_t n);
 size_t strlen(const char *str);
 
 /*
+ * `strcmp`
+ *
  * Lexicographically compare the null-terminated strings `s1` and `s2`.
  *
  * The function result indicates whether string `s1` is less than (negative),
@@ -50,6 +66,8 @@ size_t strlen(const char *str);
 int strcmp(const char *s1, const char *s2);
 
 /*
+ * `strtonum`
+ *
  * Convert the digit characters in `str` to the corresponding unsigned integer
  * value. If `str` begins with the prefix "0x", the characters of `str` will
  * be interpreted as hexadecimal digits (base 16); otherwise the characters
@@ -85,6 +103,8 @@ int strcmp(const char *s1, const char *s2);
 unsigned int strtonum(const char *str, const char **endptr);
 
 /*
+ * `strlcat`
+ *
  * Size-bounded string concatenation. Append the null-terminated string `src`
  * to the end of `dst`. `strlcat` appends at most `dstsize - strlen(dst) - 1`
  * bytes, and null-terminates `dst`. If `dst` and `src` overlap,

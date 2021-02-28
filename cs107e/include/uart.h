@@ -16,6 +16,8 @@ enum {
 };
 
 /*
+ * `uart_init`: Required initialization for module
+ *
  * Initialize the UART code module. A single call to `uart_init`
  * should made as part of the program initialization, before any
  * calls to other uart_ functions.  It is allowed, although unusual,
@@ -29,6 +31,8 @@ enum {
 void uart_init(void);
 
 /*
+ * `uart_getchar`
+ *
  * Obtains the next input character from the serial port and returns it.
  * If receive buffer is empty, will block until next character is received.
  *
@@ -37,6 +41,8 @@ void uart_init(void);
 int uart_getchar(void);
 
 /*
+ * `uart_putchar`
+ *
  * Outputs a character to the serial port.
  * If send buffer is full, will block until space available.
  *
@@ -46,11 +52,15 @@ int uart_getchar(void);
 int uart_putchar(int ch);
 
 /*
+ * `uart_flush`
+ *
  * Flushes any output characters pending in the send buffer.
  */
 void uart_flush(void);
 
 /*
+ * `uart_haschar`
+ *
  * Returns whether there is a character in the receive buffer.
  *
  * @return      true if character ready to be read, false otherwise
@@ -58,6 +68,8 @@ void uart_flush(void);
 bool uart_haschar(void);
 
 /*
+ * `uart_putstring`
+ *
  * Outputs a string to the serial port by calling `uart_putchar`
  * on each character.
  *
@@ -67,6 +79,8 @@ bool uart_haschar(void);
 int uart_putstring(const char *str);
 
 /*
+ * `uart_send`
+ *
  * Outputs raw byte to the serial port. `uart_send` outputs the raw byte
  * with no translation (unlike `uart_putchar` which adds processing for
  * converting end-of-line markers). To send text character, use
@@ -77,6 +91,8 @@ int uart_putstring(const char *str);
 void uart_send(unsigned char byte);
 
 /*
+ * `uart_recv`
+ *
  * Obtain raw byte from the serial port. `uart_recv` returns the raw
  * byte with no translation (unlike uart_getchar which adds processing
  * for converting end-of-line and end-of-file markers). To read text

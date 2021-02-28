@@ -4,7 +4,7 @@
 /*
  * Interface to a text console displayed on the screen.
  *
- * You implement this interface in assignment 6.
+ * Students implement this module in assignment 6.
  *
  * Author: Pat Hanrahan <hanrahan@cs.stanford.edu>
  * Author: Philip Levis <pal@cs.stanford.edu>
@@ -14,6 +14,8 @@
 #include "gl.h"
 
 /*
+ * `console_init`: required initialization for console
+ *
  * Initialize the console. The console text begins empty and
  * the cursor is in the home position (upper left corner).
  *
@@ -25,12 +27,15 @@
 void console_init(unsigned int nrows, unsigned int ncols, color_t foreground, color_t background);
 
 /*
- * Clear all console text and move the cursor to the home
- * position.
+ * `console_clear`
+ *
+ * Clear all console text and move the cursor to home position.
  */
 void console_clear(void);
 
 /*
+ * `console_printf`
+ *
  * Print the formatted string to the console starting at current cursor
  * position. The arguments to this function are the same as `printf`.
  * When processing characters, interpret the following special characters:

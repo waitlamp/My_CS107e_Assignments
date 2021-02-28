@@ -7,16 +7,14 @@
 
 #include "font.h"
 
+typedef struct  {
+    unsigned char first_char, last_char;
+    size_t glyph_width, glyph_height;
+    unsigned char pixel_data[];
+} font_t;
+
 static const font_t font_default;
 static const font_t *g_font = &font_default;
-
-void font_set_font(font_t *f) {
-    g_font = f;
-}
-
-const font_t *font_get_font(void) {
-    return g_font;
-}
 
 size_t font_get_glyph_height(void) {
     return g_font->glyph_height;

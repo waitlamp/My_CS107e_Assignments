@@ -11,8 +11,9 @@
 
 #include "gpio.h"
 
-
 /*
+ * Enumeration for valid LED identifiers.
+ *
  * The two LEDs on the Raspberry Pi board are:
  *  PI_ACT_LED    green LED labeled `ACT`
  *  PI_PWR_LED    red LED labeled `PWR`
@@ -23,34 +24,50 @@ enum {
 };
 
 /*
+ * `pi_reboot`
+ *
  * Halts current program execution and reboots the Pi.
  */
 void pi_reboot(void) __attribute__ ((noreturn));
 
 /*
+ * `pi_abort`
+ *
  * Goes into an infininte loop that flashes the red power
  * LED on the Pi board. This function does not return.
  */
 void pi_abort(void) __attribute__ ((noreturn));
 
 /*
+ * `pi_led_on`
+ *
  * Turns on the specified LED.
  *
- * `led` must be either PI_ACT_LED or PI_PWR_LED. If not, this function does nothing.
+ * @param led      the led to turn on
+ *
+ * If `led` is not PI_ACT_LED or PI_PWR_LED, function does nothing.
  */
 void pi_led_on(int led);
 
 /*
+ * `pi_led_off`
+ *
  * Turns off the specified LED.
  *
- * `led` must be either PI_ACT_LED or PI_PWR_LED. If not, this function does nothing.
+ * @param led      the led to turn off
+ *
+ * If `led` is not PI_ACT_LED or PI_PWR_LED, function does nothing.
  */
 void pi_led_off(int led);
 
 /*
+ * `pi_led_toggle`
+ *
  * Toggles the specified LED. If on, turns it off. If off, turns on.
  *
- * `led` must be either PI_ACT_LED or PI_PWR_LED. If not, this function does nothing.
+ * @param led      the led to toggle
+ *
+ * If `led` is not PI_ACT_LED or PI_PWR_LED, function does nothing.
  */
 void pi_led_toggle(int led);
 

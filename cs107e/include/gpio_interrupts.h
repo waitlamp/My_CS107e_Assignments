@@ -17,35 +17,37 @@
  */
 
 /*
- * `gpio_interrupts_init`
+ * `gpio_interrupts_init`: Required initialization for module
  *
  * Initialize the GPIO interrupts module. The init function must be
  * called before any calls to other functions in this module.
  * The init function configures gpio interrupts to a clean state.
- * This function registers a handler for GPIO interrupts, which it
- * uses to call handlers on a per-pin basis.
- *
+ * This function registers a handler for GPIO interrupts with the
+ * top-level interrupts module. The top-level handler receives
+ * GPIO events for all pins and in turn dispatches to the handler
+ * registered with the gpio interrupts module for the specific pin.
  */
 void gpio_interrupts_init(void);
 
 /*
  * `gpio_interrupts_register_handler`
  *
- * Register a handler function to a given GPIO pin. Each pin
- * source can have one handler: further dispatch should be invoked by
- * the handler itself. Whether or not a particular pin will
- * generate interrupts is specified by the events system,
- * defined in `gpio_extra.h`.
+ * Register a handler function to a given GPIO pin. Each GPIO
+ * pin can have one handler: further dispatch should be invoked by
+ * the handler itself. Use the events system defined in `gpio_extra.h`
+ * to configure which GPIO events are detected by the pin.
  *
- * @param pin       GPIO pin to register handler for
+ * @param pin       GPIO pin to register handler
  * @param fn        handler function to call when interrupt generated on pin
  * @param aux_data  client's data pointer to be passed as second argument
  *                  when calling handler function
  *
  * An assert is raised if `pin` is invalid. `aux_data` can be NULL if
  * handler function has no need for auxiliary data. If `fn` is NULL, removes
- * any previously registered handler for pin.
+ * any handler previously registered for `pin`.
  *
+ * This function asserts on an attempt to register handler without first
+ * initializing the module (i.e. required to call `gpio_interrupts_init`).
  */
 void gpio_interrupts_register_handler(unsigned int pin, handler_fn_t fn, void *aux_data);
 

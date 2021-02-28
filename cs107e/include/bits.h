@@ -12,9 +12,17 @@
  */
 
 /*
- * Returns the number of leading zeroes in val. Returns 32 if
- * no bits are set. 0x80000000 will return 0, while 0x1 will
- * return 31.
+ * `count_leading_zeroes`
+ *
+ * Count the number of leading zero bits in `val`. Counting
+ * proceeds from most significant to least significant bit.
+ * Examples:
+ *    count_leading_zeroes(0) => 32
+ *    count_leading_zeroes(0x80000000 ) => 0
+ *    count_leading_zeroes(0x1) => 31
+ *
+ * @param val   32-bit unsigned value
+ * @return      the count of leading zeroes in val
  */
 unsigned int count_leading_zeroes(unsigned int val);
 

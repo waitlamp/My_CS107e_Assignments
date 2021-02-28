@@ -55,7 +55,6 @@ typedef struct {
  */
 void keyboard_init(unsigned int clock_gpio, unsigned int data_gpio);
 
-
 /*
  * `keyboard_read_next`: Top level keyboard interface.
  *
@@ -73,7 +72,6 @@ void keyboard_init(unsigned int clock_gpio, unsigned int data_gpio);
  * @return      Ascii value of typed char or function code for non-ascii key
  */
 unsigned char keyboard_read_next(void);
-
 
 /*
  * `keyboard_read_event`: Mid level keyboard interface.
@@ -96,7 +94,6 @@ unsigned char keyboard_read_next(void);
  */
 key_event_t keyboard_read_event(void);
 
-
 /*
  * `keyboard_read_sequence`: Low level keyboard interface.
  *
@@ -117,7 +114,6 @@ key_event_t keyboard_read_event(void);
  */
 key_action_t keyboard_read_sequence(void);
 
-
 /*
  * `keyboard_read_scancode`: Bottom level keyboard interface.
  *
@@ -127,7 +123,6 @@ key_action_t keyboard_read_sequence(void);
  * @return      scancode read from keyboard
  */
 unsigned char keyboard_read_scancode(void);
-
 
 /*
  * `keyboard_use_interrupts`
@@ -139,5 +134,6 @@ unsigned char keyboard_read_scancode(void);
  * polling-only (assign5) and later changed to interrupt-only (assign7).
  */
 void keyboard_use_interrupts(void);
+
 
 #endif

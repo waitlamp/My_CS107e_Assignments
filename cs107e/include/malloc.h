@@ -4,6 +4,8 @@
 /*
  * Functions for dynamic allocation.
  *
+ * Students implement this module in assignment 4.
+ *
  * Author: Julie Zelenski <zelenski@cs.stanford.edu>
  * Mon Feb  5 20:02:27 PST 2018
  */
@@ -35,8 +37,6 @@ void *malloc(size_t nbytes);
  * @param ptr       address of memory block to deallocate
  */
 void free(void *ptr);
-
-
 
 /*
  * Return the address of the previous end of the heap segment

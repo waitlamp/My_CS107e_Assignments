@@ -23,28 +23,9 @@
  * Date: Mar 25 2016
  */
 
-typedef struct  {
-    unsigned char first_char, last_char;
-    size_t glyph_width, glyph_height;
-    unsigned char pixel_data[];
-} font_t;
-
-
 /*
- * Get the current font.
+ * `font_get_glpyh_height`
  *
- * @return  pointer to the current font in use
- */
-const font_t *font_get_font(void);
-
-/*
- * Set the current font.
- *
- * @param f    pointer to the font to use
- */
-void font_set_font(font_t *f);
-
-/*
  * Get the height in pixels of each glyph in this font.
  *
  * @return    the height in pixels
@@ -52,6 +33,8 @@ void font_set_font(font_t *f);
 size_t font_get_glyph_height(void);
 
 /*
+ * `font_get_glpyh_width`
+ *
  * Get the width in pixels of each glyph in this font.
  *
  * @return    the width in pixels
@@ -59,6 +42,8 @@ size_t font_get_glyph_height(void);
 size_t font_get_glyph_width(void);
 
 /*
+ * `font_get_glpyh_size`
+ *
  * Get the total number of bytes needed to store the glyph image
  * for one character. This is equal to the product of
  * (glyph height * glyph width).
@@ -68,6 +53,8 @@ size_t font_get_glyph_width(void);
 size_t font_get_glyph_size(void);
 
 /*
+ * `font_get_glpyh`
+ *
  * Fill in the glyph image for character `ch` into `buf`.
  * `buf` is an array of bytes of length font_get_glyph_size().
  * Each 'on' pixel has value 0xff, 'off' pixel has value 0x0.

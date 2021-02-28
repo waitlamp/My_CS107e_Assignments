@@ -17,6 +17,8 @@
 typedef struct ps2_device ps2_device_t;
 
 /*
+ *  `ps2_new`
+ *
  * Initializes a new PS2 device connected to specified clock and data GPIO
  * pins and returns pointer to device.
  *
@@ -44,6 +46,8 @@ ps2_device_t *ps2_new(unsigned int clock_gpio, unsigned int data_gpio);
 
 
 /*
+ * `ps2_read`
+ *
  * Read (blocking) a single scancode from the specifed PS2 device.
  * Bits are read on the falling edge of the clock.
  *
@@ -63,6 +67,8 @@ unsigned char ps2_read(ps2_device_t *dev);
 
 
 /*
+ * `ps2_write`: optional extension
+ *
  * Write a command scancode to the specifed PS2 device.
  * You do not need to implement this function unless you are
  * doing the mouse extension.
@@ -75,6 +81,8 @@ bool ps2_write(ps2_device_t *dev, unsigned char command);
 
 
 /*
+ * `ps2_use_interrupts` : reference-only
+ *
  * The default behavior of `ps2_read` is to read scancode bits
  * by polling the clock GPIO and waiting for a falling edge. An
  * alternate mode would be to register for event detection

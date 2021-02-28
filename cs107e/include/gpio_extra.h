@@ -24,6 +24,8 @@ enum gpio_event {
 };
 
 /*
+ * `gpio_enable_event_detection`
+ *
  * Enables detection of GPIO `event` for GPIO pin number `pin`.
  *
  * @param pin       GPIO pin number to configure
@@ -34,6 +36,8 @@ enum gpio_event {
 void gpio_enable_event_detection(unsigned int pin, unsigned int event);
 
 /*
+ * `gpio_disable_event_detection`
+ *
  * Disables detection of GPIO `event` for GPIO pin number `pin`.
  *
  * @param pin       GPIO pin number to configure
@@ -44,6 +48,8 @@ void gpio_enable_event_detection(unsigned int pin, unsigned int event);
 void gpio_disable_event_detection(unsigned int pin, unsigned int event);
 
 /*
+ * `gpio_get_event_detection`
+ *
  * Gets the state of detection of GPIO `event` for GPIO pin number `pin`.
  * Returns true if event detection is enabled for `event`, false if disabled.
  *
@@ -56,6 +62,8 @@ void gpio_disable_event_detection(unsigned int pin, unsigned int event);
 bool gpio_get_event_detection(unsigned int pin, unsigned int event);
 
 /*
+ * `gpio_disable_all_event_detection`
+ *
  * Disables detection of all GPIO events for GPIO pin number `pin`.
  *
  * @param pin       GPIO pin number to disable detection of all events
@@ -65,6 +73,8 @@ bool gpio_get_event_detection(unsigned int pin, unsigned int event);
 void gpio_disable_all_event_detection(unsigned int pin);
 
 /*
+ * `gpio_check_event`
+ *
  * Returns the event status for GPIO pin number `pin`.
  * The event status is true if an event has been detected for `pin`
  * and the event has not been cleared, status is false otherwise.
@@ -77,6 +87,8 @@ void gpio_disable_all_event_detection(unsigned int pin);
 bool gpio_check_event(unsigned int pin);
 
 /*
+ * `gpio_clear_event`
+ *
  * Clears the event status for GPIO pin number `pin`. Note that if the
  * event detected is high or low level and the level is still high or low,
  * clearing the event makes no change in event status.  The event
@@ -89,6 +101,8 @@ bool gpio_check_event(unsigned int pin);
 void gpio_clear_event(unsigned int pin);
 
 /*
+ * `gpio_check_and_clear_event`
+ *
  * Returns the event status for GPIO pin number `pin` and clears the
  * event status.
  *
@@ -112,6 +126,8 @@ bool gpio_check_and_clear_event(unsigned int pin);
  */
 
 /*
+ * `gpio_set_pullup`
+ *
  * Set pull state of GPIO pin number `pin` to pull-up.
  *
  * @param pin       GPIO pin number to configure as pull-up
@@ -121,6 +137,9 @@ bool gpio_check_and_clear_event(unsigned int pin);
 void gpio_set_pullup(unsigned int pin);
 
 /*
+ *
+ * `gpio_set_pulldown`
+ *
  * Set pull state of GPIO pin number `pin` to pull-down.
  *
  * @param pin       GPIO pin number to configure as pull-down
@@ -130,6 +149,8 @@ void gpio_set_pullup(unsigned int pin);
 void gpio_set_pulldown(unsigned int pin);
 
 /*
+ * `gpio_set_pullnone`
+ *
  * Disables any pull state of GPIO pin number `pin` (will float).
  *
  * @param pin       GPIO pin number to disable pull state

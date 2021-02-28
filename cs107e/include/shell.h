@@ -4,14 +4,17 @@
 #include <stddef.h>
 
 /*
- * Interface to the CS107E shell. Students implement the shell
- * module in assignment 5.
+ * Interface to the CS107E shell.
+ *
+ * Students implement this module in assignment 5.
  *
  * Author: Julie Zelenski <zelenski@cs.stanford.edu>
  * Last update: February 2019
  */
 
 /*
+ * Type: `input_fn_t`
+ *
  * This typedef gives a nickname to the type of function pointer used as the
  * the shell input function.  A input_fn_t function takes no arguments and
  * returns a value of type unsigned char. `keyboard_read_next` is an example
@@ -19,8 +22,9 @@
  */
 typedef unsigned char (*input_fn_t)(void);
 
-
 /*
+ * Type: `formatted_fn_t`
+ *
  * This typedef gives a nickname to the type of function pointer used as the
  * the shell output function.  A formatted_fn_t function has one fixed
  * parameter (format string) and variable arguments to follow. The return

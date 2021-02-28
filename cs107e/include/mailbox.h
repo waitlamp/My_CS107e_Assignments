@@ -76,6 +76,4 @@ bool mailbox_write(unsigned int channel, unsigned int addr);
 unsigned int mailbox_read(unsigned int channel);
 
 
-
-
 #endif

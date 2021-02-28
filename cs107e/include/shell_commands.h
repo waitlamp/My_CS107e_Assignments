@@ -20,16 +20,14 @@ typedef struct _command_struct {
 } command_t;
 
 /*
- * cmd_echo
- * ========
+ * `cmd_echo`
  *
  * Prints its arguments and returns 0.
 */
 int cmd_echo(int argc, const char *argv[]);
 
 /*
- * cmd_help
- * ========
+ * `cmd_help`
  *
  * When called without arguments:
  *   Prints a list of all available commands and their descriptions.
@@ -55,8 +53,7 @@ int cmd_echo(int argc, const char *argv[]);
 int cmd_help(int argc, const char *argv[]);
 
 /*
- * cmd_reboot
- * ==========
+ * `cmd_reboot`
  *
  * reboot the Raspberry Pi back to the bootloader using `pi_reboot`
  *
@@ -66,8 +63,7 @@ int cmd_help(int argc, const char *argv[]);
 int cmd_reboot(int argc, const char *argv[]);
 
 /*
- * cmd_peek
- * ========
+ * `cmd_peek`
  *
  * Usage: peek [addresss]
  *
@@ -92,8 +88,7 @@ int cmd_reboot(int argc, const char *argv[]);
 int cmd_peek(int argc, const char *argv[]);
 
 /*
- * cmd_poke
- * ========
+ * `cmd_poke`
  *
  * Usage: poke [adress] [value]
  *

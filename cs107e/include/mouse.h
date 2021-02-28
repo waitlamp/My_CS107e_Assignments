@@ -24,14 +24,16 @@ typedef struct {
 #define MOUSE_DATA GPIO_PIN6
 
 /*
- * `mouse_init`: Required initialization for mouse
+ * `mouse_init`: Required initialization for mouse.
  *
  * The mouse must first be initialized before any mouse events can be read.
- * The first and second arguments identify which GPIO pins to use for the
- * PS/2 clock and data lines, respectively.
- * Returns true if able to initialize mouse, false otherwise.
+ * The two arguments are the GPIO pins of the PS2 clock and data lines
+ * to use when creating the PS2 device.
+ *
+ * @param clock_gpio    the gpio connected to the clock line of mouse
+ * @param data_gpio     the gpio connected to the data line of mouse
  */
-bool mouse_init(unsigned int clock_gpio, unsigned int data_gpio);
+void mouse_init(unsigned int clock_gpio, unsigned int data_gpio);
 
 /*
  * `mouse_read_event`
@@ -43,6 +45,8 @@ bool mouse_init(unsigned int clock_gpio, unsigned int data_gpio);
  * if actual value of dx/dy exceeded +/- 255.  The left/middle/right fields
  * give the state of the mouse buttons. Each field is true if the corresponding
  * mouse button is down, false otherwise.
+ *
+ * @return         mouse_event_t struct containing event data
  */
 mouse_event_t mouse_read_event(void);
 

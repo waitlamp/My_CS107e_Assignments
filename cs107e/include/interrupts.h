@@ -15,7 +15,7 @@
  */
 
 /*
- * `interrupts_init`
+ * `interrupts_init`: Required initialization for interrupts
  *
  * Initialize interrupts and configures to a clean state.
  *
@@ -45,9 +45,9 @@ void interrupts_global_enable(void);
  * `interrupts_global_disable`
  *
  * Turns off interrupts system-wide. No interrupts will be generated.
- * Does not remove registered handlers or disable sources, temporarily
- * suspends interrupt generation. Use `interrupts_global_enable` to
- * resume generating interrupts.
+ * Does not remove registered handlers or disable interrupt sources,
+ * only temporarily suspends interrupt generation. Call
+ * `interrupts_global_enable` to resume generating interrupts.
  */
 void interrupts_global_disable(void);
 
@@ -68,14 +68,14 @@ typedef void (*handler_fn_t)(unsigned int, void *);
  *
  * Register the handler function for a given interrupt source. Each interrupt
  * source can have one handler: further dispatch should be invoked by
- * the handler itself. The interrupt source is enabled when a handler
- * is registered for that source. In order for interrupts to be generated,
+ * the handler itself. When a handler is registered for an interrupt source,
+ * interrupts are enabled for that source. In order for interrupts to be generated,
  * must also turn on interrupts with `interrupts_global_enable`.
  *
- * This function asserts on attempt to register handler without initializing
+ * This function asserts on an attempt to register handler without initializing
  * the interrupts module (i.e. required to call `interrupts_init` first).
  *
- * Valid interrupts are basic interrupts and those with entries in
+ * Valid interrupt sources are basic interrupts and those with entries in
  * the interrupt table in the BCM2835 manual: GPU and other reserved
  * interrupts are invalid.
  *
@@ -85,18 +85,22 @@ typedef void (*handler_fn_t)(unsigned int, void *);
  *     INTERRUPTS_GPIO3 for gpio interrupts (source shared by all gpios)
  *     INTERRUPTS_BASIC_ARM_TIMER_IRQ  for armtimer interrupts
  *
- * @param source    interrupt source (see enumeration values below)
+ * @param source    which interrupt source (see enumeration values below)
  * @param fn        handler function to call when interrupt generated on source
  * @param aux_data  client's data pointer to be passed as second argument
  *                  when calling handler function
  *
  * An assert is raised if `source` is invalid. `aux_data` can be NULL if
- * handler function has no need for auxiliary data. If `fn` is NULL, removes
- * any previously registered handler and disable the interrupt source.
+ * handler function has no need for auxiliary data. If `fn` is NULL, this
+ * removes any handler previously registered and disables interrupts for
+ * `source`.
  */
 void interrupts_register_handler(unsigned int source, handler_fn_t fn, void *aux_data);
 
-/* The valid interrupt sources that this module can enable, disable,
+/*
+ * Enumeration of valid interrupt sources
+ *
+ * Below are the interrupt sources that this module can enable, disable,
  * and handle. AUX through VC_UART are all IRQs from peripherals. There
  * are 64 peripheral interrupts, but only these ones should be handled by
  * your code -- the datasheet says (BCM2835 Sec 7.5)
@@ -145,7 +149,6 @@ enum interrupt_source {
     INTERRUPTS_COUNT,
     INTERRUPTS_NONE = 255,
 };
-
 
 
 #endif

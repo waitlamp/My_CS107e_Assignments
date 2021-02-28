@@ -27,7 +27,7 @@ struct interrupt_t {
 #define INTERRUPT_CONTROLLER_BASE (void *)0x2000B200
 
 static volatile struct interrupt_t * const interrupt = INTERRUPT_CONTROLLER_BASE;
-static const unsigned long long irq_safe_mask = (1ULL << INTERRUPTS_AUX)       |
+static const uint64_t irq_safe_mask = (1ULL << INTERRUPTS_AUX)       |
         (1ULL << INTERRUPTS_I2CSPISLV) |
         (1ULL << INTERRUPTS_PWA0)      |
         (1ULL << INTERRUPTS_PWA1)      |
@@ -45,10 +45,11 @@ static const unsigned long long irq_safe_mask = (1ULL << INTERRUPTS_AUX)       |
 extern uint32_t _vectors, _vectors_end;
 extern uint32_t *_RPI_INTERRUPT_VECTOR_BASE;
 
-// This stores the handlers for peripheral interrupts (IRQs) and as well
+// This array stores the handlers for peripheral interrupts (IRQs) and as well
 // as basic interrupts. The 2835 has 64 IRQs, these are entries 0-63. We
 // place the basic interrupts after them (see the enumeration in
-// interrupts.h).
+// interrupts.h). If no handler is registered for a given interrupt source,
+// the fn at that index is NULL.
 static struct {
     handler_fn_t fn;
     void *aux_data;
@@ -103,7 +104,7 @@ static bool is_shared(unsigned int irq_source) {
 // These should not be enabled as they will interfere with the GPU operation."
 // Returns whether the irq is a non-empty entry, and thus safe to be enabled.
 static bool is_safe(unsigned int irq_source) {
-    unsigned long long bit = 1ULL << irq_source;
+    uint64_t bit = 1ULL << irq_source;
     return ((bit & irq_safe_mask) != 0);
 }
 

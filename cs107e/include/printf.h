@@ -4,6 +4,8 @@
 /*
  * Functions for printing formatted strings.
  *
+ * Students implement this module in assignment 3
+ *
  * Author: Julie Zelenski <zelenski@cs.stanford.edu>
  * Sat Jan 27 11:27:13 PST 2018
  */
@@ -36,6 +38,8 @@
  */
 
 /*
+ * `vsnprintf`
+ *
  * Constructs a formatted output string from an input string and a va_list
  * of arguments. Writes output string to the destination buffer.
  *
@@ -52,6 +56,8 @@
 int vsnprintf(char *buf, size_t bufsize, const char *format, va_list args);
 
 /*
+ * `snprintf`
+ *
  * Constructs a formatted output string from an input string and variable
  * arguments. Writes output string to the destination buffer.
  *
@@ -67,6 +73,8 @@ int vsnprintf(char *buf, size_t bufsize, const char *format, va_list args);
 int snprintf(char *buf, size_t bufsize, const char *format, ...) __attribute__((format(printf, 3, 4)));
 
 /*
+ * `printf`
+ *
  * Constructs a formatted output string from an input string and arguments.
  * Writes output string to UART.
  *

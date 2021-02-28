@@ -3,7 +3,8 @@
 
 /*
  * Functions for controlling Raspberry Pi GPIO.
- * You will implement this interface in assignment 2.
+ *
+ * Students implement this module in assignment 2.
  *
  * Author: Pat Hanrahan <hanrahan@cs.stanford.edu>
  *         Philip Levis <pal@cs.stanford.edu>
@@ -12,8 +13,82 @@
  * Last edited Jan 2018
  */
 
+#define GPIO_INVALID_REQUEST  -1  // return value for invalid request
 
 /*
+ * `gpio_init`
+ *
+ * Initialize the GPIO code module. For assignment 2, this does nothing.
+ * However, all libpi peripheral modules require an init, so it is included
+ * for consistency's sake.
+ */
+void gpio_init(void);
+
+/*
+ * `gpio_set_function`
+ *
+ * Set a GPIO function for GPIO pin number `pin`. Settings for other pins
+ * should be unchanged.
+ *
+ * @param pin      the GPIO pin number to configure
+ * @param function the GPIO function to set for the pin
+ *
+ * If `pin` or `function` is invalid, does nothing.
+ */
+void gpio_set_function(unsigned int pin, unsigned int function);
+
+/*
+ * `gpio_get_function`
+ *
+ * Get the GPIO function for GPIO pin number `pin`.
+ *
+ * @param pin the GPIO pin number to read the function of
+ * @return    the current GPIO function of the specified pin
+ *
+ * If `pin` is invalid, returns GPIO_INVALID_REQUEST.
+ */
+unsigned int gpio_get_function(unsigned int pin);
+
+/*
+ * `gpio_set_input`, `gpio_set_output`
+ *
+ * Convenience functions for setting a pin to GPIO_FUNC_INPUT or
+ * GPIO_FUNC_OUTPUT. The implementation calls `gpio_set_function`.
+ *
+ * @param pin the GPIO pin number to set the function of
+ */
+void gpio_set_input(unsigned int pin);
+void gpio_set_output(unsigned int pin);
+
+/*
+ * `gpio_write`
+ *
+ * Set GPIO pin number `pin` to high (1) or low (0). This
+ * function assumes the pin is already in output mode.
+ * Settings for other pins should be unchanged.
+ *
+ * @param pin   the GPIO pin number to set or clear
+ * @param val   1 to set pin to high, 0 to clear pin
+ *
+ * If `pin` or `val` is invalid, does nothing.
+ */
+void gpio_write(unsigned int pin, unsigned int val);
+
+/*
+ * `gpio_read`
+ *
+ * Get current level (1 for high, 0 for low) for GPIO pin number `pin`.
+ *
+ * @param pin the GPIO pin number to read the value of
+ * @return    the value of the specified pin
+ *
+ * If `pin` is invalid, returns GPIO_INVALID_REQUEST.
+ */
+unsigned int gpio_read(unsigned int pin);
+
+/*
+ * Enumeration of GPIO pin numbers
+ *
  * The enumerated values below establish symbolic names for each of the GPIO pins.
  * Although you could directly refer to pins by number, using the
  * names makes it more clear to the reader what a given value represents.
@@ -85,6 +160,8 @@ enum {
 #define GPIO_RX GPIO_PIN15
 
 /*
+ * Enumeration for GPIO functions
+*
  * The enumerated values below establish symbolic names for each of the
  * available GPIO pin functions. Each pin function corresponds to
  * a particular "mode" of operation.  For example, setting a pin's
@@ -100,68 +177,6 @@ enum {
     GPIO_FUNC_ALT4    = 3,
     GPIO_FUNC_ALT5    = 2,
 };
-
-#define GPIO_INVALID_REQUEST  -1  // return value for invalid request
-
-
-/*
- * Initialize the GPIO code module. For assignment 2, this does nothing.
- * However, all libpi peripheral modules require an init, so it is included
- * for consistency's sake.
- */
-void gpio_init(void);
-
-/*
- * Set a GPIO function for GPIO pin number `pin`. Settings for other pins
- * should be unchanged.
- *
- * @param pin      the GPIO pin number to configure
- * @param function the GPIO function to set for the pin
- *
- * If `pin` or `function` is invalid, does nothing.
- */
-void gpio_set_function(unsigned int pin, unsigned int function);
-
-/*
- * Get the GPIO function for GPIO pin number `pin`.
- *
- * @param pin the GPIO pin number to read the function of
- * @return    the current GPIO function of the specified pin
- *
- * If `pin` is invalid, returns GPIO_INVALID_REQUEST.
- */
-unsigned int gpio_get_function(unsigned int pin);
-
-/*
- * Convenience functions for setting a pin to GPIO_FUNC_INPUT or
- * GPIO_FUNC_OUTPUT. The implementation calls `gpio_set_function`.
- *
- * @param pin the GPIO pin number to set the function of
- */
-void gpio_set_input(unsigned int pin);
-void gpio_set_output(unsigned int pin);
-
-/*
- * Set GPIO pin number `pin` to high (1) or low (0). This
- * function assumes the pin is already in output mode.
- * Settings for other pins should be unchanged.
- *
- * @param pin   the GPIO pin number to set or clear
- * @param val   1 to set pin to high, 0 to clear pin
- *
- * If `pin` or `val` is invalid, does nothing.
- */
-void gpio_write(unsigned int pin, unsigned int val);
-
-/*
- * Get current level (1 for high, 0 for low) for GPIO pin number `pin`.
- *
- * @param pin the GPIO pin number to read the value of
- * @return    the value of the specified pin
- *
- * If `pin` is invalid, returns GPIO_INVALID_REQUEST.
- */
-unsigned int gpio_read(unsigned int pin);
 
 
 #endif

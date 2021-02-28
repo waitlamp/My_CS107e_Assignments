@@ -7,8 +7,7 @@
  * that a graphics library can then use to provide useful drawing
  * primitives.
  *
- * In assignment 6 you are given a single-buffered implementation
- * of this module and extend it to provide double-buffering.
+ * Students implement this module for assignment 6.
  *
  * Author: Philip Levis <pal@cs.stanford.edu>
  * Date: Mar 23 2016
@@ -17,6 +16,8 @@
 typedef enum { FB_SINGLEBUFFER = 0, FB_DOUBLEBUFFER = 1 } fb_mode_t;
 
 /*
+ * `fb_init` : Required initialized for framebuffer
+ *
  * Initialize the framebuffer.
  *
  * @param width  the requested width in pixels of the framebuffer
@@ -29,6 +30,8 @@ typedef enum { FB_SINGLEBUFFER = 0, FB_DOUBLEBUFFER = 1 } fb_mode_t;
 void fb_init(unsigned int width, unsigned int height, unsigned int depth_in_bytes, fb_mode_t mode);
 
 /*
+ * `fb_get_width`
+ *
  * Get the current width in pixels of the framebuffer.
  *
  * @return    the width in pixels
@@ -36,6 +39,8 @@ void fb_init(unsigned int width, unsigned int height, unsigned int depth_in_byte
 unsigned int fb_get_width(void);
 
 /*
+ * `fb_get_height`
+ *
  * Get the current height in pixels of the framebuffer.
  *
  * @return    the height in pixels
@@ -43,6 +48,8 @@ unsigned int fb_get_width(void);
 unsigned int fb_get_height(void);
 
 /*
+ * `fb_get_depth`
+ *
  * Get the current depth in bytes of a single pixel.
  *
  * @return    the depth in bytes
@@ -50,6 +57,8 @@ unsigned int fb_get_height(void);
 unsigned int fb_get_depth(void);
 
 /*
+ * `fb_get_pitch`
+ *
  * Get the current pitch in bytes of a single row of pixels in the framebuffer.
  * The pitch is nominally the width (number of pixels per row) multiplied by
  * the depth in bytes per pixel. However, the pitch may be greater than that if the
@@ -60,6 +69,8 @@ unsigned int fb_get_depth(void);
 unsigned int fb_get_pitch(void);
 
 /*
+ * `fb_get_draw_buffer`
+ *
  * Get the start address of the framebuffer memory into which the
  * client can draw pixels.  The address returned is the start of an
  * array of size pitch*height bytes.
@@ -87,6 +98,8 @@ unsigned int fb_get_pitch(void);
 void* fb_get_draw_buffer(void);
 
 /*
+ * `fb_swap_buffer`
+ *
  * Swap the on-screen and off-screen buffers. The draw buffer (off-screen)
  * is moved on-screen (contents now displayed) and on-screen buffer
  * is moved off-screen (becomes the draw buffer, contents off-screen).

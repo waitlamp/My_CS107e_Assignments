@@ -8,8 +8,8 @@
  * access and configuration; trying to use both fb and gl
  * simultaneously is discouraged.
  *
- * You implement this module in assignment 6 (text and rectangles are
- * required, lines and triangles are an extension).
+ * Students implement this module in assignment 6 (text and rectangles
+ * are required, lines and triangles are an extension).
  *
  * Author: Philip Levis <pal@cs.stanford.edu>
  * Date: Mar 23 2016
@@ -20,7 +20,9 @@
 typedef enum { GL_SINGLEBUFFER = FB_SINGLEBUFFER, GL_DOUBLEBUFFER = FB_DOUBLEBUFFER } gl_mode_t;
 
 /*
- * Initialize the graphic library. This function will call fb_init in turn
+ * `gl_init` : Required initialized for graphics library
+ *
+ * Initialize the graphic library. This function will call `fb_init` in turn
  * to initialize the framebuffer. The framebuffer will be initialzed to
  * 4-byte depth (32 bits per pixel).
  *
@@ -33,6 +35,8 @@ typedef enum { GL_SINGLEBUFFER = FB_SINGLEBUFFER, GL_DOUBLEBUFFER = FB_DOUBLEBUF
 void gl_init(unsigned int width, unsigned int height, gl_mode_t mode);
 
 /*
+ * `gl_get_width`
+ *
  * Get the current width in pixels of the framebuffer.
  *
  * @return    the width in pixels
@@ -40,6 +44,8 @@ void gl_init(unsigned int width, unsigned int height, gl_mode_t mode);
 unsigned int gl_get_width(void);
 
 /*
+ * `gl_get_height`
+ *
  * Get the current height in pixels of the framebuffer.
  *
  * @return    the height in pixels
@@ -47,6 +53,8 @@ unsigned int gl_get_width(void);
 unsigned int gl_get_height(void);
 
 /*
+ * `color_t`
+ *
  * Define a type for color. We use BGRA colors, where each color
  * component R, B, G, or A is a single unsigned byte. The least
  * signficant byte is the B component, and A is most significant.
@@ -76,6 +84,8 @@ typedef unsigned int color_t;
 #define GL_SILVER   0xFFBBBBBB
 
 /*
+ * `gl_color`
+*
  * Returns a color composed of the specified red, green, and
  * blue components. The alpha component of the color will be
  * set to 0xff (fully opaque).
@@ -89,6 +99,8 @@ typedef unsigned int color_t;
 color_t gl_color(unsigned char r, unsigned char g, unsigned char b);
 
 /*
+ * `gl_clear`
+ *
  * Clear all the pixels in the framebuffer to the given color.
  *
  * @param c  the color drawn into the framebuffer
@@ -96,6 +108,8 @@ color_t gl_color(unsigned char r, unsigned char g, unsigned char b);
 void gl_clear(color_t c);
 
 /*
+ * `gl_swap_buffer`
+ *
  * If in double-buffered mode, all gl drawing takes place in the
  * off-screen buffer and updated drawing is not brought on-screen until
  * a call is made to `gl_swap_buffer` to exchange the on-screen
@@ -107,6 +121,8 @@ void gl_clear(color_t c);
 void gl_swap_buffer(void);
 
 /*
+ * `gl_draw_pixel`
+ *
  * Draw a single pixel at location x,y in color c.
  * If the location is outside the bounds of framebuffer, it is not drawn.
  *
@@ -117,6 +133,8 @@ void gl_swap_buffer(void);
 void gl_draw_pixel(unsigned int x, unsigned int y, color_t c);
 
 /*
+ * `gl_read_pixel`
+ *
  * Return the color of the pixel at location x,y. Returns 0 if the
  * location is outside the bounds of the framebuffer.
  *
@@ -128,6 +146,8 @@ void gl_draw_pixel(unsigned int x, unsigned int y, color_t c);
 color_t gl_read_pixel(unsigned int x, unsigned int y);
 
 /*
+ * `gl_draw_char`
+ *
  * Draw a single character at location x,y in color c.
  * Only those pixels of the character that lie within the bounds
  * of the framebuffer are drawn. Any pixel that lies outside is
@@ -143,6 +163,8 @@ color_t gl_read_pixel(unsigned int x, unsigned int y);
 void gl_draw_char(unsigned int x, unsigned int y, char ch, color_t c);
 
 /*
+ * `gl_draw_string`
+ *
  * Draw a string at location x,y in color c. The characters are drawn
  * left to right in a single line. Only the pixels of the characters
  * that lie within the bounds of the framebuffer are drawn. Any pixel
@@ -157,6 +179,8 @@ void gl_draw_char(unsigned int x, unsigned int y, char ch, color_t c);
 void gl_draw_string(unsigned int x, unsigned int y, const char* str, color_t c);
 
 /*
+ * `gl_get_char_height`
+ *
  * Get the height in pixels of a single character glyph.
  *
  * @return the height of character glyph in pixels
@@ -164,6 +188,8 @@ void gl_draw_string(unsigned int x, unsigned int y, const char* str, color_t c);
 unsigned int gl_get_char_height(void);
 
 /*
+ * `gl_get_char_width`
+ *
  * Get the width in pixels of a single character glyph.
  *
  * @return the width of character glyph in pixels
@@ -171,6 +197,8 @@ unsigned int gl_get_char_height(void);
 unsigned int gl_get_char_width(void);
 
 /*
+ * `gl_draw_rect`
+ *
  * Draw a filled rectangle at location x,y with size w,h filled with color c.
  * All pixels in the rectangle that lie within the bounds of the
  * framebuffer are drawn. Any pixel that lies outside is clipped (i.e. not drawn).
@@ -184,6 +212,8 @@ unsigned int gl_get_char_width(void);
 void gl_draw_rect(unsigned int x, unsigned int y, unsigned int w, unsigned int h, color_t c);
 
 /*
+ * `gl_draw_line`: optional extension
+ *
  * Draw a line segment from location x1,y1 to location x2,y2 of color c.
  * All pixels along the line that lie within the bounds of the framebuffer
  * are drawn. Any pixel that lies outside is clipped (i.e. not drawn).
@@ -194,12 +224,14 @@ void gl_draw_rect(unsigned int x, unsigned int y, unsigned int w, unsigned int h
  * @param y2  the y location of vertex 2
  * @param c   the color of the line
  *
- * This function is NOT part of the basic requirements.
+ * This function is NOT part of the core requirements.
  * You can leave this function unimplemented if not doing the extension.
  */
 void gl_draw_line(unsigned int x1, unsigned int y1, unsigned int x2, unsigned int y2, color_t c);
 
 /*
+ * `gl_draw_triangle`: optional extension
+ *
  * Draw a filled triangle connecting the three vertices filled with color c.
  * All pixels within the triangle that lie within the bounds of the
  * framebuffer are drawn. Any pixel that lies outside is clipped (i.e. not drawn).
@@ -212,7 +244,7 @@ void gl_draw_line(unsigned int x1, unsigned int y1, unsigned int x2, unsigned in
  * @param y3  the y location of vertex 3
  * @param c   the color of the triangle
  *
- * This function is NOT part of the basic requirements.
+ * This function is NOT part of the core requirements.
  * You can leave this function unimplemented if not doing the extension.
  */
 void gl_draw_triangle(unsigned int x1, unsigned int y1, unsigned int x2, unsigned int y2, unsigned int x3, unsigned int y3, color_t c);
