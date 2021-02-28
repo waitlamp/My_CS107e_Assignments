@@ -26,6 +26,7 @@ static void update_screen()
     for (int r = 0; r < REPEAT; r++) {
         console_printf("%4d", gCount);
     }
+    console_printf("\n\nWaiting for button click...\n");
 }
 
 void main(void)
@@ -46,7 +47,6 @@ void main(void)
         if (last_count != gCount) {
             update_screen();
             last_count = gCount;
-            console_printf("\n\nWaiting for button click...\n");
-       }
+        }
     }
 }
