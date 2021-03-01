@@ -108,6 +108,10 @@ static bool is_safe(unsigned int irq_source) {
     return ((bit & irq_safe_mask) != 0);
 }
 
+static bool is_valid(unsigned int irq_source) {
+    return is_basic(irq_source) || (is_shared(irq_source) && is_safe(irq_source));
+}
+
 static void interrupts_enable_source(unsigned int irq_source) {
     if (is_basic(irq_source)) {
         unsigned int shift = irq_source - INTERRUPTS_BASIC_BASE;
@@ -133,7 +137,7 @@ static void interrupts_disable_source(unsigned int irq_source) {
 void interrupts_register_handler(unsigned int source, handler_fn_t fn, void *aux_data) {
     assert(interrupts_initialized);
     assert(vector_table_is_installed());
-    assert(is_basic(source) || (is_shared(source) && is_safe(source)));
+    assert(is_valid(source));
 
     if (fn) {
         handlers[source].fn = fn;

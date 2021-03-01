@@ -1,13 +1,12 @@
 permalink,title,released
-"/assignments/assign7/","Assignment 7: System Monitor with Interrupts",false
-"/lectures/ArithmeticAndSensors/","Sensors and Arithmetic",false
-"/lectures/Interrupts2/","Interrupts, cont'd",false
-"/lectures/SystemDesign/","System Design and Computer Architecture",false
-"/lectures/Arithmetic/","Computer Arithmetic",false
+"/project/","Final Project",false
 "/lectures/MakingEngineering/","Engineering an Art Project",false
 "/lectures/Sensors/","Sensors",false
+"/lectures/ArithmeticAndSensors/","Sensors and Arithmetic",false
 "/lectures/Wrap/","Wrap or There and Back Again",false
-"/project/","Final Project",false
+"/lectures/SystemDesign/","System Design and Computer Architecture",false
+"/lectures/Arithmetic/","Computer Arithmetic",false
 "/labs/projectlab2/","Project Lab 2: How Are You Doing?",false
 "/labs/projectlab1/","Project Lab: Getting Started",false
 "/labs/lab7/","Lab 7: Raspberry Pi, Interrupted",false
+"/assignments/assign7/","Assignment 7: System Monitor with Interrupts",false
