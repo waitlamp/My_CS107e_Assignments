@@ -15,7 +15,7 @@
  * Author: Julie Zelenski <zelenski@cs.stanford.edu>
  */
 
-typedef volatile struct ringbuffer rb_t;
+typedef struct ringbuffer rb_t;
 
 /*
  * `rb_new`

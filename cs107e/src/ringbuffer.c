@@ -8,6 +8,7 @@
  */
 
 #include "ringbuffer.h"
+#include "assert.h"
 #include "malloc.h"
 
 #define LENGTH 256
@@ -36,10 +37,12 @@ rb_t *rb_new(void) {
 }
 
 bool rb_empty(rb_t *rb) {
+    assert(rb != NULL);
     return rb->head == rb->tail;
 }
 
 bool rb_full(rb_t *rb) {
+    assert(rb != NULL);
     return (rb->tail + 1) % LENGTH == rb->head;
 }
 
@@ -48,6 +51,7 @@ bool rb_full(rb_t *rb) {
  * no changes to rb->head.  This design allows safe concurrent access.
  */
 bool rb_enqueue(rb_t *rb, int elem) {
+    assert(rb != NULL);
     if (rb_full(rb)) {
         return false;
     }
@@ -62,6 +66,7 @@ bool rb_enqueue(rb_t *rb, int elem) {
  * no changes to rb->tail. This design allows safe concurrent access.
  */
 bool rb_dequeue(rb_t *rb, int *p_elem) {
+    assert(rb != NULL && p_elem != NULL);
     if (rb_empty(rb)) {
         return false;
     }
