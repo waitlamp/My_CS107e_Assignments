@@ -229,7 +229,7 @@ In past quarters, we have used some of the time in lab7 do some explorations in 
 
 Before leaving the lab, check in with a TA and discuss any challenges to answering the questions in the lab. If you do not feel confident about your responses, please ask us about it too!
 
-[^1]: Why is 4 subtracted from the `lr?
+[^1]: Why is 4 subtracted from the `lr`?
 
 [^2]: How is a function "registered" as a handler for an interrupt source? Can there be multiple handlers registered to the same source? What happens if an event is generated on a source for which no handler s been registered?
 
