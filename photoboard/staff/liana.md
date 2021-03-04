@@ -1,1 +1,0 @@
-If I'm carrying a sword, I recommend staying out of my path

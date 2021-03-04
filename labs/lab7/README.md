@@ -202,7 +202,7 @@ To track all updates and process each one by one, we can use a queue to communic
 
 How to rework the code:
 
-- Review the [ringbuffer.h](header#ringbuffer) header file and [ringbuffer.c](https://github.com/cs107e/cs107e.github.io/blob/master/cs107e/src/ringbuffer.c) source for documentation on the ring buffer queue. This ADT maintains a queue of integer values implemented as a ring buffer.
+- Review the [ringbuffer.h](header#ringbuffer) header file and source file `$CS107E/src/ringbuffer.c` to see the provided ring buffer queue. This ADT maintains a queue of integer values implemented as a ring buffer.
 - In the `main` function, declare a variable of type `rb_t *rb` and initialize with a call to `rb_new`.  Use the  `rb` pointer as the `aux_data` pointer when registering the handler.
 - Edit your handler to now cast the `aux_data` parameter to type `rb_t *`.  In the handler, enqueue the updated value of count to the ring buffer by calling `rb_enqueue`.
 - Edit `main` to use `rb_dequeue` to retrieve each update from the queue. This replaces the previous code that compared `gCount` to the saved value to detect a change in click count.
@@ -220,7 +220,7 @@ You're ready for the final check-in question [^6]
 
 ### Project brainstorm and team speed-dating
 
-Visit our [project gallery](https://cs107e.github.io/project_gallery/) to see a sampling of projects from our past students. We are __so so proud__ of the creations of our past students -- impressive, inventive, and fun! You'll get started in earnest on the project next week, but we set aside a little time in this week's lab for a group discussion to preview the general guidelines and kindle your creativity about possible directions you could take in your project. If you have questions about the project arrangements or are curious about any of our past projects, please ask us for more info, we love to talk about the neat work we've seen our students do. If you have ideas already fomenting, share with the group to find synergy and connect with possible teammates. Project teams are most typically pairs, although occasionally we have allowed solo or trios by special request.
+Visit our [project gallery](/project_gallery/) to see a sampling of projects from our past students. We are __so so proud__ of the creations of our past students -- impressive, inventive, and fun! You'll get started in earnest on the project next week, but we set aside a little time in this week's lab for a group discussion to preview the general guidelines and kindle your creativity about possible directions you could take in your project. If you have questions about the project arrangements or are curious about any of our past projects, please ask us for more info, we love to talk about the neat work we've seen our students do. If you have ideas already fomenting, share with the group to find synergy and connect with possible teammates. Project teams are most typically pairs, although occasionally we have allowed solo or trios by special request.
 
 ### Bonus speed exercise
 In past quarters, we have used some of the time in lab7 do some explorations in performance optimization. We don't have time for it this quarter, but we linked the [materials](speed) if you want to check it out for fun.

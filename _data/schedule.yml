@@ -44,11 +44,11 @@ weeks:
     assign: /assignments/assign7/
     fri: /lectures/Sensors/
   -
-    mon: /lectures/Guest
+    mon: /lectures/AnnaLiana/
     lab: /labs/projectlab1/
     assign: /project/
     fri: /lectures/Arithmetic/
   -
-    mon: /lectures/Guest/
+    mon: /lectures/PeterSean/
     lab: /labs/projectlab2/
     fri: Project Presentations

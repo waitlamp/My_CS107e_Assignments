@@ -1,1 +1,0 @@
-Clappy Bird Lives!

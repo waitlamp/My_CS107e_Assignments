@@ -1,9 +1,8 @@
 permalink,title,released
-"/lectures/MakingEngineering/","Engineering an Art Project",false
-"/lectures/Sensors/","Sensors",false
+"/labs/projectlab1/","Lab 8: Project Team Meeting 1",false
+"/labs/projectlab2/","Lab 9: Project Team Meeting 2",false
 "/lectures/ArithmeticAndSensors/","Sensors and Arithmetic",false
-"/lectures/Wrap/","Wrap or There and Back Again",false
-"/lectures/SystemDesign/","System Design and Computer Architecture",false
 "/lectures/Arithmetic/","Computer Arithmetic",false
-"/labs/projectlab2/","Project Lab 2: How Are You Doing?",false
-"/labs/projectlab1/","Project Lab: Getting Started",false
+"/lectures/Sensors/","Sensors",false
+"/lectures/MakingEngineering/","Engineering an Art Project",false
+"/lectures/Wrap/","Wrap or There and Back Again",false

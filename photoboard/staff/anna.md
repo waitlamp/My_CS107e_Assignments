@@ -1,4 +1,0 @@
-- Pronouns she/her
-- From Miami, FL
-- Aspiring baker (very open to recipe suggestions)
-- Has kept the same goldfish alive and happy for six years :)

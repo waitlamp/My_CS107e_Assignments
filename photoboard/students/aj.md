@@ -1,1 +1,0 @@
-AJ was a freshman
