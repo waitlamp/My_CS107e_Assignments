@@ -27,7 +27,7 @@
 {% assign code_found = other_files | where_exp:"file","file.path contains '/code/'" | first %}
 {% assign code_path = "https://github.com/cs107e/cs107e.github.io/tree/master/" | append: resource_path | append: "/code/" %}
 {% if code_found %} <a href="{{code_path}}">code</a> {% endif %}
-{% elsif front_matter.permalink contains "labs" or front_matter.permalink contains "assignments" %} <a href="{{front_matter.permalink}}">writeup</a>
+{% elsif front_matter.permalink contains "labs" or front_matter.permalink contains "assignments" or front_matter.permalink contains "project"%} <a href="{{front_matter.permalink}}">writeup</a>
 {% endif %}
 {% endcapture %}
 
