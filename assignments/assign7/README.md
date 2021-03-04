@@ -41,8 +41,7 @@ In completing this assignment you will have:
 - used an interrupt-safe data structure to correctly share data across regular and interrupt code.
 
 The stretch goal is to achieve the __complete system bonus__. The modules you've written can be bundled into a comprehensive library to support a bare-metal system on the Pi. The console application running on your library attests to your success at constructing a complete system of your own top to bottom. This work completes the transformation of your Raspberry Pi into a
-standalone computer, ready to be extended and improved in your final
-project. Way to go!
+standalone computer, ready to be extended and improved in your final project. Way to go!
 
 ## Get starter files
 
@@ -135,7 +134,7 @@ hardware! What you have running is not too far from an Apple II computer.
 ### 4) Need for speed?
 
 Your new interrupt-driven keyboard driver won't drop a key unless someone can
-type 86+ characters in between calls to `ps2_read`: the ringbuffer is 256 elements and most keys are 3 scan codes. Unless you're doing something really CPU-intensive, this is unlikely.
+type 86+ characters in between calls to `ps2_read`: the ring buffer is 256 elements and most keys are 3 scan codes. Unless you're doing something really CPU-intensive, this is unlikely.
 
 But even a moderately fast typist can still enqueue a decent number of keys during a slow console redraw that makes for a longish wait as the console works through the backlog. __This is the expected behavior: the console receives every character that is typed and painstakingly draws and responds to that input__. But, ... if the performance exercise from lab 7 has roused your interest in optimization, we'd love to see what you can do to improve the
 refresh performance. A few ideas to consider:
