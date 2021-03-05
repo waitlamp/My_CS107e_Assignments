@@ -21,7 +21,7 @@ and to do something creative with your Raspberry Pi. We hope you find the projec
 
 ## Project schedule and deliverables
 
-### Team formation and initial idea due __11:59pm Sunday March 6__
+### Team formation and initial idea due __11:59pm Sunday March 7__
 
 Form a team of 1 to 3 people. We've observed that a 2-person team works out the best, so that is our recommendation. If you have a project in mind that would be better run as a solo effort or requires a team of 3, come talk it through with us to understand the tradeoffs and challenges for the different arrangements.
 
