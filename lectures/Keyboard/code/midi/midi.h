@@ -3,7 +3,9 @@
 
 typedef unsigned char uint8_t;
 
-void midi_init();
+#define MIDI_PIN GPIO_PIN26
+
+void midi_init(unsigned int pin);
 void midi_send(uint8_t* cmd, unsigned len);
 void midi_note_on(uint8_t key, uint8_t velocity);
 void midi_note_off(uint8_t key, uint8_t velocity);
