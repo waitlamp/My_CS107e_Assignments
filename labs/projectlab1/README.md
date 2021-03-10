@@ -26,17 +26,26 @@ By the end of the lab session, you want to
 
 Refer to the [project writeup](/project/) for more information on the project itself.
 
-### Project repository
+### Project repository and project mirror repository
 
 You've been git-wrangling all quarter as part of your individual development process; the benefits of revision control become even more critical when coordinating work across multiple authors. 
 
-This quick lab exercise is to get your team started on using git collaboratively. Each project has its own remote repository on GitHub; you should have received an email invitation to access it. This remote repository is the "drop point" where your team synchronizes the joint work.
+This quick lab exercise is to get your team started on using git collaboratively. Each project has its own remote repository on GitHub; you should have received an email invitation to access it. This remote repository is the "drop point" where your team synchronizes the joint work. You also should have received an email invitation to access the project mirror repo, which contains a skeleton project structure (Makefile included!) that you can use a starting point for your project. 
 
 The basic workflow goes like this. Each team member has a local copy of the repository on their laptop. Edit files in the local repository and commit changes. When your latest work has stabilized to a state that is ready to share, use `git push` to send your updates to the remote. Your teammate then uses `git pull` to fetch changes from the remote which are brought into their local repository. 
 
-Do this now to have each team member add their own name to the proposal document:
+One (and only one) team member should pull in the starter code from the
+project repo. After changing to `cs107e_home` and cloning your team's project repository, this team member should do the following:
 
-+ Change to `cs107e_home` directory and clone the project repository.
+```bash
+$ git remote add starter-code git@github.com:cs107e/project-mirror.git
+$ git pull --allow-unrelated-histories starter-code master
+$ git push 
+```
+
+The remaining team members should now change to the `cs107e_home` directory and clone your team's project repository. 
+
+Now, all team members should do the following.
 + In the local repository, edit the file `Proposal.md` file and add your name to the list of team members.  Save the file.
 + Commit your change and push to Github.
 + Have your teammates pull your change.
