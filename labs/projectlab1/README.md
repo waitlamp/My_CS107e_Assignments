@@ -34,19 +34,26 @@ This quick lab exercise is to get your team started on using git collaboratively
 
 The basic workflow goes like this. Each team member has a local copy of the repository on their laptop. Edit files in the local repository and commit changes. When your latest work has stabilized to a state that is ready to share, use `git push` to send your updates to the remote. Your teammate then uses `git pull` to fetch changes from the remote which are brought into their local repository. 
 
-One (and only one) team member should pull in the starter code from the
-project repo. After changing to `cs107e_home` and cloning your team's project repository, this team member should do the following:
+The initial project repository is empty.  Choose __one (and only one!)__ team member to do the initial setup. The steps below clone the team's project repository and incorporate the starter files from the project mirror:
 
-```bash
+```console
+$ cd ~/cs107e_home
+$ git clone git@github.com:cs107e/[YOUR-GITHUB_USERNAMES]-project.git project
+$ cd project
 $ git remote add starter-code git@github.com:cs107e/project-mirror.git
 $ git pull --allow-unrelated-histories starter-code master
 $ git push 
 ```
 
-The remaining team members should now change to the `cs107e_home` directory and clone your team's project repository. 
+The remaining team members now clone the team's project repository, which now contains the starter files.
 
-Now, all team members should do the following.
-+ In the local repository, edit the file `Proposal.md` file and add your name to the list of team members.  Save the file.
+```console
+$ cd ~/cs107e_home
+$ git clone git@github.com:cs107e/[YOUR-GITHUB_USERNAMES]-project.git project
+```
+
+Have each team member do the following to confirm that your local project repository is correctly configured.
++ In the local project repository, edit the file `Proposal.md` file and add your name to the list of team members.  Save the file.
 + Commit your change and push to Github.
 + Have your teammates pull your change.
 
