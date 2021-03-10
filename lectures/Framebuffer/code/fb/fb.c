@@ -19,6 +19,7 @@ typedef struct {
 
 static volatile fb_config_t fb __attribute__((aligned(16)));
 
+//static const int WIDTH = 625; // appears to align with a multiple of 64
 static const int WIDTH = 640;
 static const int HEIGHT = 480;
 static const int DEPTH = 32;   // depth in bits
