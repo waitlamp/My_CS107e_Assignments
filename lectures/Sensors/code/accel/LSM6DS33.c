@@ -1,18 +1,23 @@
 /*
-  MinIMU-9 v5 
+  MinIMU-9 v5
     https://www.pololu.com/product/2738
 
   Raspberry Pi I2C
-	SDA = gpio pin2 
+	SDA = gpio pin2
 	SCL = gpio pin3
 
     void i2c_init(void);
     void i2c_read(unsigned slave_address, char *data, int data_length);
     void i2c_write(unsigned slave_address, char *data, int data_length);
 
-    i2c slave address;
-  	  LSM6DS33 (gyro and accelerometer)	1101011b
-	  LIS3MDL (magnetometer)    			0011110b
+    i2c slave address:
+      Below are the i2c addresses for https://www.pololu.com/product/2738
+  	  LSM6DS33 (gyro and accelerometer)	0b1101011  0x6b
+	  LIS3MDL (magnetometer)    		0b0011110  0x1e
+
+      NOTE: The address for your sensor may be different! Read spec sheet and
+      check for label on your part. (This helpful advice brought to you by
+      Jenna Ruzekowicz)
 
  */
 #include "timer.h"
@@ -52,7 +57,7 @@ void lsm6ds33_enable_gyroscope() {
 
 // default is enabled
 void lsm6ds33_enable_accelerometer() {
-    // accelerator _XL registers 
+    // accelerator _XL registers
 	lsm6ds33_write_reg(CTRL9_XL, 0x38);  // ACCEL: x,y,z enabled (bits 4-6)
 }
 
@@ -70,7 +75,7 @@ void lsm6ds33_read_gyroscope(short *x, short *y, short *z) {
 void lsm6ds33_read_accelerometer(short *x, short *y, short *z) {
     *x =  lsm6ds33_read_reg(OUTX_L_XL);
     *x |= lsm6ds33_read_reg(OUTX_H_XL) << 8;
-	
+
     *y =  lsm6ds33_read_reg(OUTY_L_XL);
     *y |= lsm6ds33_read_reg(OUTY_H_XL) << 8;
 
