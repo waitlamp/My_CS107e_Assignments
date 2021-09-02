@@ -29,6 +29,7 @@ Each student is given a CS107e parts kit containing the materials needed for the
     - a USB MicroSD __card reader__ <https://www.aliexpress.com/item/4001223105774.html>
     - a 2-4 pin __header strip__ <https://www.taydaelectronics.com/40-pin-2-54-mm-single-row-pin-header-strip.html>
     - mini __claw clips__ (for cable management) <https://www.amazon.com/gp/product/B089R9R8MH>
+    - an inexpensive, low-speed USB __logic analyzer__ that works with PulseView <https://www.amazon.com/dp/B077LSG5P2>
 
 
 
@@ -39,7 +40,6 @@ Doing the labs also requires a few hand tools and supplies. When we teach the co
 - needlenose __pliers__ <https://www.amazon.com/dp/B0000AY5DQ>
 - angled __cutter__ <https://www.amazon.com/dp/B0829SSZJZ>
 - solid core __wire__, 22-24 AWG
-- an inexpensive, low-speed USB __logic analyzer__ that works with PulseView <https://www.amazon.com/dp/B077LSG5P2>
 - __HDMI cable__
 - PS/2 __keyboard__ and __mouse__ <https://www.amazon.com/dp/B0758BF15X>
 
