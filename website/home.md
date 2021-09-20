@@ -13,7 +13,8 @@ or answers to [common questions from prospective students](http://cs107e.stanfor
 <div class="col-xs-5" markdown="1">
 
 ## Announcements
-- We will post announcements to our [Ed forum]({{ site.data.course.forum }}). Be sure to join us there!
+- We will post announcements to our [Ed forum]({{ site.data.course.forum }}). Be sure to join us there! You can [join the forum
+with this link]({{ site.data.course.forum-join}}).
 
 <i class="fas fa-clock"></i> Pacific time now is:
 <iframe src="http://free.timeanddate.com/clock/i7mp4gs7/n900/fn2/fc009/ftb/ts1" frameborder="0" width="116" height="21"></iframe>
