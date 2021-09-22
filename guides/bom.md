@@ -14,7 +14,7 @@ Each student is given a CS107e parts kit containing the materials needed for the
 - a __MicroSDHC card__ <https://en.wikipedia.org/wiki/SD_card>
 - a __CP2102 USB-to-serial__ breakout board <https://www.taydaelectronics.com/cp2102-serial-converter-usb-2-0-to-ttl-uart-ftdi.html>
 - a full-sized __breadboard__ <https://www.jameco.com/z/WBU-202-R-Jameco-Valuepro-830-Point-Solderless-Breadboard-6-5-x-2-125-_20723.html>
-- __jumpers__ (10-25 of each kind) <https://www.aliexpress.com/item/32891879068.html>
+- __jumpers__ (5-25 of each kind) <https://www.aliexpress.com/item/32891879068.html>
     -  __female-female__ (short, 10cm) and (long, 20cm)
     -  __female-male__ (long, 20cm)
     -  __male-male__ jumpers, various lengths
@@ -29,7 +29,6 @@ Each student is given a CS107e parts kit containing the materials needed for the
     - a USB MicroSD __card reader__ <https://www.aliexpress.com/item/4001223105774.html>
     - a 2-4 pin __header strip__ <https://www.taydaelectronics.com/40-pin-2-54-mm-single-row-pin-header-strip.html>
     - mini __claw clips__ (for cable management) <https://www.amazon.com/gp/product/B089R9R8MH>
-    - an inexpensive, low-speed USB __logic analyzer__ that works with PulseView <https://www.amazon.com/dp/B077LSG5P2>
 
 
 
