@@ -43,8 +43,8 @@ During this lab you will:
 When you arrive at lab, say hello and introduce yourself to your
 labmates.  Together you will tackle the exercises below.  Everyone is
 encouraged to collaborate with other labmates to share insights and
-offer each other useful tips. You pair up and use private messages to
-exchange notes, or just talk to one another. The instructors and TAs
+offer each other useful tips. You should pair up and 
+exchange notes look at the materials together. The instructors and TAs
 will circulate to offer advice and answers so as to keep everyone
 progressing smoothly.
 
@@ -97,7 +97,7 @@ When you start lab, pull up the [check-in questions](checkin) in your browser so
 Use the __Final check steps__ at the end of the [installation guide](/guides/install) to confirm that the needed tools are installed and your environment is correctly configured. If you hit any snags, bring those issues to lab and we can help you resolve.
 
 ### 2. Inventory your kit
-You should have received your CS107e kit. Unpack and identify each part and compare to the [kit inventory](/guides/bom/) to ensure your kit is complete. Let us know without delay if any shortage so we can get you the missing supplies.
+We will hand out a kit that includes your Raspberry Pi and many components. Unpack and identify each part and compare to the [kit inventory](/guides/bom/) to ensure your kit is complete. Let us know without delay if any shortage so we can replace the missing supplies.
 
 ### 3. Set up your local assignments repository
 Our course repositories will be hosted on GitHub. You will download assignment 
@@ -244,7 +244,6 @@ As you explore, see if you find answers to such questions as:
 + I'm so sick of unplugging and replugging in my USB-serial adapter. Is there another solution? (For bonus points, find a link to a soldering tutorial!)
 + What is the course policy on late work?
 + Breadboards make no sense to me. How do I know which holes are connected?
-+ Pat demo'ed this cool ARM simulator in lecture. How can I play with that myself?
 + I'm working really hard to write tests, but I just don't feel like I'm covering my bases. What am I doing wrong? Is there advice on software testing more broadly?
 + My partner and I are struggling to come up with project ideas. Are there examples of what other groups have done in the past?
 
