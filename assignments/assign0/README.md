@@ -78,7 +78,7 @@ If you're on `dev`, you're all set. Otherwise, switch to `dev`:
 $ git checkout dev
 ```
 
-### 2. Record your lab preference
+### 2. Record your lab time
 
 Create a file named `lab.txt` and edit its contents so that it displays the following information:
 
