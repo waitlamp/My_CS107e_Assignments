@@ -8,6 +8,11 @@
     If calendar event not located in B21, add to the cs107e-specific calendar
     For now I am adding lecture/lab/assign due dates to google calendar manually
     Would be nice if it auto-populated from quarter.yml data
+    
+    Note from Anna:
+    The B21 calendar wasn't loading, so I've commented it out for now. Feel free to un-comment
+    it out when we go back to using the B21 calendar! For now, all office hours are logged
+    in the CS 107E calendar.
 */
 
 $().ready(function() {
@@ -18,20 +23,25 @@ $().ready(function() {
     var options = '&singleEvents=true&orderBy=startTime&sortorder=ascending' + min + max;
     var url = base + options;
 
-    var b21 = '7hiop9tvins97kal7flob282e8@group.calendar.google.com';
-    var ours = 'h15bjedfkcdpfa17tdf5d0l2j8@group.calendar.google.com';
-    // var ours = 'stanford.edu_6c8r06pvjoff3ims422n60p3mk@group.calendar.google.com';
+    // Version that uses B21 and CS107E calendars:
+    // var b21 = '7hiop9tvins97kal7flob282e8@group.calendar.google.com';
+    // var ours = 'stanford.edu_6c8r06pvjoff3ims422n60p3mk@group.calendar.google.com'; // Winter 2021
     // var ours = 'cs.stanford.edu_nhpcljcvd03ub5s8rkf14o3vig@group.calendar.google.com';
+    // var request1 = $.getJSON(url.replace('WHICH', b21));
+    // var request2 = $.getJSON(url.replace('WHICH', ours));
+    
+    var fall2021 = 'h15bjedfkcdpfa17tdf5d0l2j8@group.calendar.google.com';
+    var request = $.getJSON(url.replace('WHICH', fall2021));
 
-    var request1 = $.getJSON(url.replace('WHICH', b21));
-    var request2 = $.getJSON(url.replace('WHICH', ours));
-
-    $.when(request1, request2).done(function(data1, data2) {
+    // $.when(request1, request2).done(function(data1, data2) {
+    $.when(request).done(function(data) {
         // event w/ private visibility will not have summary, skip it
         // only harvest events with our tag from B21 (other class reservations ignored)
-        var from_b21 = data1[0].items.filter(e => e.summary && e.summary.includes('#CS107E'));
-        var from_ours = data2[0].items.filter(e => e.summary);
-        var all_events = from_b21.concat(from_ours);
+        // Version that uses B21 and CS107E calendars:
+        // var from_b21 = data1[0].items.filter(e => e.summary && e.summary.includes('#CS107E'));
+        // var from_ours = data2[0].items.filter(e => e.summary);
+        // var all_events = from_b21.concat(from_ours);
+        var all_events = data[0].items.filter(e => e.summary);
         // cheezy (string sort) but 'works' as format is YYYY-MM-DD-HH-MM-SS
         all_events.sort((a, b) => a.start.dateTime.localeCompare(b.start.dateTime));
 
