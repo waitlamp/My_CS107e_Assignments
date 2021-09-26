@@ -41,9 +41,7 @@ $().ready(function() {
         // var from_b21 = data1[0].items.filter(e => e.summary && e.summary.includes('#CS107E'));
         // var from_ours = data2[0].items.filter(e => e.summary);
         // var all_events = from_b21.concat(from_ours);
-        console.log(data);
         var all_events = data.items.filter(e => e.summary);
-        console.log(all_events);
         // cheezy (string sort) but 'works' as format is YYYY-MM-DD-HH-MM-SS
         all_events.sort((a, b) => a.start.dateTime.localeCompare(b.start.dateTime));
 
