@@ -54,6 +54,7 @@ weeks:
   -
     mon: /lectures/MakingEngineering/
     lab: /labs/projectlab2/
-    fri: /lectures/Wrap
+    fri: /lectures/Wrap/
   - 
-    thu: Final Project presentations (12:15PM)
+    project_due: "2021-12-09" 
+  -
