@@ -32,9 +32,9 @@ weeks:
     mon: /lectures/Keyboard/
     lab: /labs/lab5/
     assign: /assignments/assign5/
-    fri: /lectures/Framebuffer/
+    fri: /lectures/Sound/
   -
-    mon: /lectures/Sound/ 
+    mon: /lectures/Framebuffer/ 
     lab: /labs/lab6/
     assign: /assignments/assign6/
     fri: /lectures/Interrupts1/
@@ -44,11 +44,16 @@ weeks:
     assign: /assignments/assign7/
     fri: /lectures/Sensors/
   -
-    mon: /lectures/Chris/
+    mon: /lectures/Arithmetic/
     lab: /labs/projectlab1/
     assign: /project/
-    fri: /lectures/Arithmetic/
+    fri: /lectures/Chris/
+  -
+    mon: Thanksgiving break
+    fri: Thanksgiving break
   -
     mon: /lectures/MakingEngineering/
     lab: /labs/projectlab2/
-    fri: Project Presentations
+    fri: /lectures/Wrap
+  - 
+    thu: Final Project presentations (12:15PM)
