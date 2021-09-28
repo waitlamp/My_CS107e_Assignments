@@ -54,7 +54,9 @@ weeks:
   -
     mon: /lectures/MakingEngineering/
     lab: /labs/projectlab2/
+    assign: /project/
     fri: /lectures/Wrap/
   - 
-    project_due: Thursday, December 9th 12:15PM
+    assign: /project/
+    project_due: "2021-12-09" 
   -
