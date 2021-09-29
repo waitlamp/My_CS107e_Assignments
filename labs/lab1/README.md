@@ -58,7 +58,7 @@ To prepare, please do the following before coming to lab:
 
 ## Lab exercises
 
-> This lab has a few activities that use a multimeter. Alas, we are not in our lab room where we can supply those tools for you. If one of your table group has access to a multimeter, please use it! If not, try to work through what you expect the experimental results to be and check-in with one of the staff to confirm your understanding.
+> This lab has a few activities that use a multimeter. If one of your table group has access to a multimeter, please use it! If not, try to work through what you expect the experimental results to be and check-in with one of the staff to confirm your understanding.
 {: .callout-info}
 
 

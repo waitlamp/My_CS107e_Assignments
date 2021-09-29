@@ -24,6 +24,6 @@ lsl r1, #20        // #0x00100000
 str r1, [r0]       // store 1<<20 to address 0x2020001c
 
 // loop forever
-loop:
-b loop
+anna:
+b anna
 

@@ -10,25 +10,24 @@ mov r1, #(1<<20)
 
 loop: 
 
-// set GPIO 20 high
+// Set pin 20 high
 ldr r0, SET0
-str r1, [r0] 
+str r1, [r0]
+// wait
+mov r2, #DELAY
+wait0:
+  subs r2, r2, #1
+  bne wait0
 
-// delay
+
+// Set pin 20 low (clear)
+ldr r0, CLR0
+str r1, [r0]
+// wait
 mov r2, #DELAY
 wait1:
-    subs r2, #1
-    bne wait1
-
-// set GPIO 20 low
-ldr r0, CLR0
-str r1, [r0] 
-
-// delay
-mov r2, #DELAY
-wait2:
-    subs r2, #1
-    bne wait2
+  subs r2, r2, #1
+  bne wait1
 
 b loop
 
