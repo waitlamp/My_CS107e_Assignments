@@ -64,7 +64,7 @@ The course follows a weekly cadence where material is introduced in the Friday-M
 
 Each assignment is structured into a core/basic part and one or more proposed extensions. Completing the core part is required for all students; the extensions are the optional "stretch goals" for those students aiming to go further. We encourage everyone to try the extensions; they're a great way to challenge yourself and solidify your understanding.
 
-> **YEAH = Your Early Assignment Help**  Each Thursday we'll hold a YEAH session as a kickoff for the week's assignment and more quality time with the CS107e tribe! We can answer your questions, pump you up for the neat things you'll be learning, and facilitate a group brainstorm on practices for success. YEAH Hours will take place Thursday 7-8pm in B53 (where labs take place). Everyone welcome!
+> **YEAH = Your Early Assignment Help**  Each Thursday we'll hold a YEAH session as a kickoff for the week's assignment and more quality time with the CS107e family! We can answer your questions, pump you up for the neat things you'll be learning, and facilitate a group brainstorm on practices for success. YEAH Hours will take place Thursday 7-8pm in B53 (where labs take place). Everyone welcome!
 {: .callout-success}
 
 ## Core functionality: simple scan pattern
