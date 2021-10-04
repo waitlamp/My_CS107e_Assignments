@@ -18,6 +18,9 @@ wait:
     ldr r0, SET0    // set GPIO 20 high
     str r3, [r0]
 
+anna:
+    b anna
+
 FSEL1: .word 0x20200004
 FSEL2: .word 0x20200008
  SET0: .word 0x2020001C
