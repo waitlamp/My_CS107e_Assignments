@@ -6,29 +6,33 @@ toc: true
 
 
 ## Grading Policy
-Your course grade is compromised your participation in lab and your work on the assignments and final project. 
+Your course grade is compromised your participation in lab and your work on the assignments and final project.
 
 + __Labs__ meet weekly, your participation is mandatory.
-+ There are 7 weekly __assignments__. Each assignment has a set of required core features along with optional extensions or "stretch goals".  You must implement the core functionality and are encouraged to attempt some of the extensions.  
-+ The course culminates with a final __project__ where you design and implement a system of your choosing. 
++ There are 7 weekly __assignments__. Each assignment has a set of required core features along with optional extensions or "stretch goals".  You must implement the core functionality and are encouraged to attempt some of the extensions.
++ The course culminates with a final __project__ where you design and implement a system of your choosing.
+
+Your code for each assignment will be evaluated against a set of tests, sorted into three priority levels. Priority 1 tests exercise core functionality without which your code is unusable. Priority 2 tests exercise other functionality prescribed by the basic assignment spec, but without which your modules are still usuable in the most important ways. Priority 3 tests evaluate minor or more obscure edge cases that are important to be aware of but will likely not affect the use of your module.
+
+Many of the assignments in this course build upon each other. It is a good idea, both for your learning and your grade, to revise and resubmit old assignments after seeing what tests they fail.
 
 If you have your sights set on earning an __A__ course grade, you will need consistently __outstanding__ work:
-+ Attend and participate in all labs 
++ Attend and participate in all labs
 + Assignments core
     - Core functionality is complete/correct for all assignments
-        - Passing results on all Priority 1 and Priority 2 tests (revise and resubmit ok)
+        - Passing results on all Priority 1 and Priority 2 tests for all assignments by the due date for assignment 7
+        - At least 5 out of 7 assignments have their respective Priority 1 tests passing by the assignment due date. Fewer assignments passing P1 on time will correspond to a lower course grade, depending on the number of on-time functional submissions.
     - Code quality (style and tests) trending to `+`
 + Assignments stretch/bonus
     - 3 or more assignment extensions successfully completed
     - Earn the full system bonus for using all your own code on the last assignment
-    - Achieved timeliness for most/all assignments
 + Outstanding final project, excellent execution
 
 For a __B__ course grade, we expect consistently __solid__ work:
 + Attend and participate in all labs
 + Assignments core
     - Core functionality is mostly complete/correct for all assignments
-        - Passing results on all Priority 1 tests (revise and resubmit ok)
+        - Passing results on all Priority 1 tests
     - Code quality (style and tests) trending to `ok`
 + Assignments stretch/bonus
     - One extension completed or full system bonus earned
@@ -41,13 +45,9 @@ Work that is not completed satisfactorily will earn grades **C and below**.
 
 The course moves at a steady pace and the weekly assignments build on one other. In our experience, one of the clearest factors in student success has been the dedication to stay on pace. Learning to set a schedule and manage your time to hit deadlines is a valuable skill to develop and an accomplishment we want to reward. We designed our policy to encourage good habits, but also allow some flexibility in these unpredictable times of online learning.
 
-1. The submission deadline for the weekly assignments will be end of day in the Pacific time zone, i.e. Tuesday 11:59pm GMT-7. Completing your work by scheduled deadline and submitting on-time earns you a "timeliness" reward for that assignment. Your accumulated timeliness rewards boost your overall course grade. As Steve Jobs famously said "_Real artists ship_". Challenge yourself to learn how to pace your work and deliver on time.
+1. For assignments 2 through 7, The submission deadline will be end of day in the Pacific time zone, i.e. Tuesday 11:59pm GMT-7. As noted above, completing your work by scheduled deadline and submitting on-time for the majority of assignments is necessary to earn an A grade. Steve Jobs famously said "_Real artists ship_". Challenge yourself to learn how to pace your work and deliver on time.
 
-2. There is a 2-day (48-hour) "grace period" for late submissions after the deadline. There is no grading penalty for a late submission, but it does not earn the timeliness reward. The grace period is intended as built-in accommodation for a snag or setback. If you plan your work to submit by the deadline, you have the grace period in reserve to give you cover if something unexpected derails your schedule. We do not admonish you for using the grace period, but we will encourage you to catch back up without further delay.
-
-3. Our grading begins after the grace period closes, and thus we expect a submission from all students at that time. There will be an opportunity to later revise and resubmit to address shortcomings in your initial submit. 
-
-4. The final project must be submitted on time.
+2. The final project must be submitted on time.
 
 
 
@@ -99,6 +99,7 @@ part, we will treat students with trust and respect.
         margin-right: 4px;
     }
 </style>
+
 ### Assistance that is allowed
 
 These things are encouraged and allowed for all students and require no citation:
