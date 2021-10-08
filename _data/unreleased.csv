@@ -1,33 +1,33 @@
 permalink,title,released
-"/lectures/ArithmeticAndSensors/","Sensors and Arithmetic",false
-"/lectures/Arithmetic/","Computer Arithmetic",false
-"/lectures/Memory/","Memory Management",false
-"/lectures/InfoSession","Course Information Session",false
-"/lectures/Interrupts1/","Interrupts",false
-"/lectures/Framebuffer/","Graphics and the framebuffer",false
-"/lectures/Interrupts2/","Interrupts, cont'd",false
-"/lectures/C_Mastery/","C Mastery",false
-"/lectures/Sound/","Sound, Analog, and Music",false
-"/lectures/PeterSean/","Guest",false
-"/lectures/Wrap/","Wrap or There and Back Again",false
-"/lectures/AnnaLiana/","Guest",false
-"/lectures/Linking/","Modules, Libraries, and Linking",false
-"/lectures/Sensors/","Sensors",false
-"/lectures/Keyboard/","Keyboards and the PS/2 Protocol",false
-"/lectures/C_Functions/","C Functions",false
-"/lectures/Chris/","Chris Gregg's Projects",false
-"/lectures/MakingEngineering/","Engineering an Art Project",false
-"/lectures/Serial/","Communication and the Serial Protocol",false
-"/assignments/assign3/","Assignment 3: Implement a String Formatting Library",false
+"/labs/lab6/","Lab 6: Drawing into the Framebuffer",false
+"/labs/lab7/","Lab 7: Raspberry Pi, Interrupted",false
+"/labs/lab5/","Lab 5: Keyboard Surfin'",false
+"/labs/lab3/","Lab 3: Debugging and Testing",false
+"/labs/projectlab2/","Lab 9: Project Team Meeting 2",false
+"/labs/projectlab1/","Lab 8: Project Team Meeting 1",false
+"/labs/lab4/","Lab 4: Linked and Loaded",false
 "/assignments/assign6/","Assignment 6: Graphics Library and Console",false
 "/assignments/assign5/","Assignment 5: Keyboard and Simple Shell",false
-"/assignments/assign7/","Assignment 7: System Monitor with Interrupts",false
 "/assignments/assign4/","Assignment 4: Backtrace and Malloc",false
-"/labs/projectlab1/","Lab 8: Project Team Meeting 1",false
-"/labs/lab5/","Lab 5: Keyboard Surfin'",false
-"/labs/lab6/","Lab 6: Drawing into the Framebuffer",false
-"/labs/lab4/","Lab 4: Linked and Loaded",false
-"/labs/projectlab2/","Lab 9: Project Team Meeting 2",false
-"/labs/lab3/","Lab 3: Debugging and Testing",false
-"/labs/lab7/","Lab 7: Raspberry Pi, Interrupted",false
+"/assignments/assign7/","Assignment 7: System Monitor with Interrupts",false
+"/assignments/assign3/","Assignment 3: Implement a String Formatting Library",false
 "/project/","Final Project",false
+"/lectures/AnnaLiana/","Guest",false
+"/lectures/Framebuffer/","Graphics and the framebuffer",false
+"/lectures/Sound/","Sound, Analog, and Music",false
+"/lectures/Arithmetic/","Computer Arithmetic",false
+"/lectures/Chris/","Chris Gregg's Projects",false
+"/lectures/Serial/","Communication and the Serial Protocol",false
+"/lectures/Interrupts2/","Interrupts, cont'd",false
+"/lectures/Keyboard/","Keyboards and the PS/2 Protocol",false
+"/lectures/Sensors/","Sensors",false
+"/lectures/C_Mastery/","C Mastery",false
+"/lectures/MakingEngineering/","Engineering an Art Project",false
+"/lectures/C_Functions/","C Functions",false
+"/lectures/InfoSession","Course Information Session",false
+"/lectures/Memory/","Memory Management",false
+"/lectures/ArithmeticAndSensors/","Sensors and Arithmetic",false
+"/lectures/Linking/","Modules, Libraries, and Linking",false
+"/lectures/Interrupts1/","Interrupts",false
+"/lectures/PeterSean/","Guest",false
+"/lectures/Wrap/","Wrap or There and Back Again",false
