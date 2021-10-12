@@ -47,7 +47,7 @@ These exercises are useful preparation for your next assignment which is to impl
 
 To prepare for lab, do the following:
 
-1. Read Sections 1, 2, 3.6, 4 of [Medical Devices: The Therac-25](http://sunnyday.mit.edu/papers/therac.pdf). This famous paper describes a series of software bugs in a medical device that killed several patients. These accidents were an important milestone that proved the ethical need for testing and sometimes formal verification of software. It also greatly motivates research subfields on these topics.
+1. Read Sections 1, 2, 3.6 (up to but not including 3.6.2), 4 of [Medical Devices: The Therac-25](http://sunnyday.mit.edu/papers/therac.pdf). This famous paper describes a series of software bugs in a medical device that killed several patients. These accidents were an important milestone that proved the ethical need for testing and sometimes formal verification of software. It also greatly motivates research subfields on these topics.
 1. Read our [guide to using gdb in simulation mode](/guides/gdb). Print out a copy of the [gdb reference card](/readings/gdb-refcard.pdf) to have on hand.
 1. Pull the latest version of the `cs107e.github.io` courseware repository. 
 1. Clone the lab repository `https://github.com/cs107e/lab3`.
@@ -449,9 +449,9 @@ Open `hello.c` in your text editor and edit the `main` function to try out `prin
 
 Reset your Pi, and run `make run` again to see your program's output. How does the hex value stored in `FSEL2` change after changing the pin functions?
 
-### 3. Talk about THERAC-25 (10 minutes)
+### 3. Talk about Therac-25 (10 minutes)
 
-Talk with your neighbor(s) about the THERAC-25 article. A few questions to consider:
+Talk with your neighbor(s) about the Therac-25 article. A few questions to consider:
   - Can you imagine scenarios in which a bug in a Raspberry Pi serial library 
   might cause harm? For example, scenarios in which a safety-critical program
   assumes the text output from a Pi is correct?
@@ -614,7 +614,7 @@ functions are put on the stack: `filename` is 128 bytes on the stack.
 Talk with your neighbor: what happens if `request->filename` is longer than 128 bytes long?
 What will the `strcpy` do?
 How might this cause software to fail or act unpredictably? If this code existed in a device
-such as the THERAC-25, could it cause a serious failure? It's useful to note that that
+such as the Therac-25, could it cause a serious failure? It's useful to note that that
 [the git codebase (source code for the git program itself) bans the use of `strcpy`](https://github.com/git/git/blob/master/banned.h). Instead, you always are supposed to use `strncpy`, which has an explicit maximum
 length for copying. E.g., this code would be OK:
 
