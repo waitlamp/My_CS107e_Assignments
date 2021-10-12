@@ -47,7 +47,7 @@ These exercises are useful preparation for your next assignment which is to impl
 
 To prepare for lab, do the following:
 
-1. Read Sections 1, 2, 3.6, 4 of [Medical Devices: The Therac-25](http://sunnyday.mit.edu/papers/therac.pdf). This famous paper describes a series of software bugs in a medical device that killed several patients. These accidents were an important milestone that proved the ethical need for testing and sometimes formal verification of software. It also created research subfields on these topics.
+1. Read Sections 1, 2, 3.6, 4 of [Medical Devices: The Therac-25](http://sunnyday.mit.edu/papers/therac.pdf). This famous paper describes a series of software bugs in a medical device that killed several patients. These accidents were an important milestone that proved the ethical need for testing and sometimes formal verification of software. It also greatly motivates research subfields on these topics.
 1. Read our [guide to using gdb in simulation mode](/guides/gdb). Print out a copy of the [gdb reference card](/readings/gdb-refcard.pdf) to have on hand.
 1. Pull the latest version of the `cs107e.github.io` courseware repository. 
 1. Clone the lab repository `https://github.com/cs107e/lab3`.
@@ -588,6 +588,50 @@ Type `Control-c` to stop the program. Without exiting gdb, use `run` to run the 
 
 The gdb simulator is a powerful addition to your toolbox, but it is important to understand its limitations and differences from an actual Pi. [^4]
 
+#### 4d) The dangers of strings
+
+The fact that C strings are just a sequence of bytes terminated by a NULL is tremendously unsafe. If you forget the NULL,
+or it's removed, it can be easy to scribble over memory. For example, consider this code:
+
+```c
+struct request {
+  char* filename;
+  char* host;
+};
+
+void load_file(struct request* request) {
+  char filename[128];
+  strcpy(filename, request->filename);
+  fix_filename(filename);
+  read_file(filename); 
+}
+```
+
+This code might seem contrived, but it's very similar to what a lot of web server code
+looked like in the early 2000s. Recall from lecture that variables allocated inside
+functions are put on the stack: `filename` is 128 bytes on the stack. 
+
+Talk with your neighbor: what happens if `request->filename` is longer than 128 bytes long?
+What will the `strcpy` do?
+How might this cause software to fail or act unpredictably? If this code existed in a device
+such as the THERAC-25, could it cause a serious failure? It's useful to note that that
+[the git codebase (source code for the git program itself) bans the use of `strcpy`](https://github.com/git/git/blob/master/banned.h). Instead, you always are supposed to use `strncpy`, which has an explicit maximum
+length for copying. E.g., this code would be OK:
+
+```c
+struct request {
+  char* filename;
+  char* host;
+};
+
+void load_file(struct request* request) {
+  char filename[128];
+  // 127 to make sure there's space for a \0
+  stnrcpy(filename, request->filename, 127);
+  fix_filename(filename);
+  read_file(filename); 
+}
+```
 
 ## Check in with TA
 
@@ -600,3 +644,4 @@ Answer these questions that probe on topics from the lab and review your answers
 [^3]: On a hosted system, executing an incorrect call to `strlen` (e.g. argument is an invalid address or unterminated string) can result in a runtime error (crash/halt). But when running bare metal on the Pi, every call to `strlen` (whether well-formed or not) will complete "successfully" and return a value. Explain the difference in behavior. What will be the return value for an erroneous call?
 
 [^4]: Running a program under the gdb simulator is not be a perfect match to running on the actual Pi. A particularly frustrating situation can come from a program that exhibits a bug running on the Pi, but appears to run correctly under the simulator or work on a first run in gdb but not a subsequent. What underlying difference(s) between the simulator and real thing might contribute to this kind of inconsistency?
+
