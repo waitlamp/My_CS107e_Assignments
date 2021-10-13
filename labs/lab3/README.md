@@ -501,11 +501,11 @@ If you get the red flash of doom, dig in to find out what's gone wrong
 and work to resolve the issue. Don't move on until all
 tests pass and you earn your green light merit badge.
 
-### 4. Gdb and testing
+### 5. Gdb and testing
 
 You can also test a program by running within gdb in simulation mode. Let's try that now on the cstrings program from the previous exercise.
 
-#### 4a) Debug strlen
+#### 5a) Debug strlen
 
 Edit `strlen` to intentionally plant a bug, such as changing the function to always return `7`. This will cause test failures in `test_strlen`. Use `make run` to build the program and run on the Pi and you get the flashing red LED that indicates a failed assert.
 
@@ -554,7 +554,7 @@ Learn to recognize these two common situations:
 + a successful run to completion that is waiting in `hang`
 + a failed assert in `pi_abort` attempting to flash a non-existent red LED
 
-#### 4b) Debug bogus_strlen_calls
+#### 5b) Debug bogus_strlen_calls
 
 Both `strlen` and `strcpy` have been shown to work correctly for valid calls. We are now going to do a little exploration into what happens 
 for calls that are not so kosher. 
@@ -573,7 +573,7 @@ Uncomment the call to `stress_test_strlen` in `main()`. Rebuild the program and 
 bad calls. Is the result what you anticipated?  What did you learn from this about the
 observed consequences of reading uninitialized or invalid memory? Confirm you understanding with this check-in question[^3]
 
-#### 4c) Differences under simulation
+#### 5c) Differences under simulation
 It is important to be aware of the discrepancies you may observe when comparing the behavior of a program running on the Pi versus running under the gdb simulator. Read the section titled [Differences due to simulation](/guides/gdb/#differences-due-to-simulation) in our gdb guide to be introduced to some of the issues you may run into.
 
 Change to the directory `lab3/code/simulator` directory and review the program in the `buggy.c` file  Trace through the operation of the program. What do you predict will be printed as output?
@@ -588,7 +588,7 @@ Type `Control-c` to stop the program. Without exiting gdb, use `run` to run the 
 
 The gdb simulator is a powerful addition to your toolbox, but it is important to understand its limitations and differences from an actual Pi. [^4]
 
-#### 4d) The dangers of strings
+#### 5d) The dangers of strings
 
 The fact that C strings are just a sequence of bytes terminated by a NULL is tremendously unsafe. If you forget the NULL,
 or it's removed, it can be easy to scribble over memory. For example, consider this code:
