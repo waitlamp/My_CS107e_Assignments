@@ -331,7 +331,7 @@ The additional tests of lower priority will examine less critical features, edge
 
 ### Our grading process
 
-- After the grace period closes, we run our automated grading tests against all submissions and CAs do the qualitative reviews. We give feedback on your pull request and our automated grading tool files **GitHub Issues** for any tests that were not passed that are eligible for revisions (see below).
+- After the due date, we will run our automated grading tests against all submissions and CAs do the qualitative reviews. We give feedback on your pull request and our automated grading tool files **GitHub Issues** for any tests that were not passed that are eligible for revisions (see below).
 
 - Our grading tests are organized by **priority**. **Priority 1** tests confirm correct behavior on fundamental operations in standard use cases. This represents the essential core functionality. **Priority 2 and 3** tests exercise functions that are less critical and behavior on robustness and edge cases. **Priority 4** tests evaluate functionality for the extensions if you attempt them. Higher priority tests are considered more significant in grading.
 
