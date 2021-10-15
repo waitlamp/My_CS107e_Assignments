@@ -1,7 +1,7 @@
-static unsigned int *FSEL1 =  (unsigned int *)0x20200004;
-static unsigned int *FSEL2 =  (unsigned int *)0x20200008;
-static unsigned int *SET0  =  (unsigned int *)0x2020001c;
-static unsigned int *LEV0  =  (unsigned int *)0x20200034;
+volatile static unsigned int *FSEL1 =  (unsigned int *)0x20200004;
+volatile static unsigned int *FSEL2 =  (unsigned int *)0x20200008;
+volatile static unsigned int *SET0  =  (unsigned int *)0x2020001c;
+volatile static unsigned int *LEV0  =  (unsigned int *)0x20200034;
 
 void main(void)
 {
